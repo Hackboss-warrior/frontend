@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import "./listPosts.css";
 import Post from "../../components/Post";
+import { Menu } from "../../compontents/Menu";
 
 const ListPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -27,6 +28,7 @@ const ListPosts = () => {
 
   return (
     <>
+    
       <h1>Listado de posts</h1>
 
       {errorMessage && <p>Error: {errorMessage}</p>}
