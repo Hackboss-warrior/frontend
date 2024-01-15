@@ -11,13 +11,9 @@ const ListPosts = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get("http://localhost:3001/posts");
-
-        if (res.statusText === "OK") {
-          setPosts(res.data);
-        } else {
-          setErrorMessage(res.data.message);
-        }
+        setPosts(res.data);
       } catch (error) {
+        setErrorMessage(res.data.message);
         console.error(error);
       }
     };
@@ -28,17 +24,11 @@ const ListPosts = () => {
   return (
     <>
       <h1>Listado de posts</h1>
-
-      {errorMessage && <p>Error: {errorMessage}</p>}
-      <ul>
-        {posts.map((post) => {
-          return (
-            <li key={post.id}>
-              <Post post={post} />
-            </li>
-          );
-        })}
-      </ul>
+      <div className="posts">
+        {posts.map(post =>(
+          <Post key={post.id} post={post} />
+        ))}
+      </div>
     </>
   );
 };
