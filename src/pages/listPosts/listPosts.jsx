@@ -5,7 +5,6 @@ import Post from "../../components/Post";
 
 const ListPosts = () => {
   const [posts, setPosts] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,7 +14,6 @@ const ListPosts = () => {
         );
         setPosts(res.data);
       } catch (error) {
-        setErrorMessage(res.data.message);
         console.error(error);
       }
     };
@@ -27,7 +25,7 @@ const ListPosts = () => {
     <>
       <h1>Listado de posts</h1>
       <div className="posts">
-        {posts.map(post =>(
+        {posts.map((post) => (
           <Post key={post.id} post={post} />
         ))}
       </div>
