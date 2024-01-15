@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
 
@@ -36,11 +36,15 @@ const Register = () => {
       formData.append("avatar", avatar);
       formData.append("DOB", DOB);
 
-      await axios.post("http://localhost:3001/register", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/register`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       navigate("/");
     } catch (error) {

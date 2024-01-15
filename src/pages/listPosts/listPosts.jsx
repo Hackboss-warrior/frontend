@@ -10,7 +10,9 @@ const ListPosts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/posts");
+        const res = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/posts`
+        );
         setPosts(res.data);
       } catch (error) {
         setErrorMessage(res.data.message);
