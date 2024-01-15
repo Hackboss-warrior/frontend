@@ -48,7 +48,6 @@ const Register = () => {
 
       navigate("/");
     } catch (error) {
-      console.log(error);
       setErrorAlert(<div>fakNews: {error.response.data.error}</div>);
       setTimeout(() => {
         setErrorAlert(null);
