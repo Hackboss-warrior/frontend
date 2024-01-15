@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
@@ -20,11 +20,15 @@ const Login = () => {
     formData.append("password", password);
 
     try {
-      const res = await axios.post("http://localhost:3001/login", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/login`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       setToken(localStorage.setItem("token", res.data.token));
 
