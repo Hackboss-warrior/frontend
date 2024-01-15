@@ -8,7 +8,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
-  const [token, setToken] = useState("");
+  const [, setToken] = useState("");
   const navigate = useNavigate();
 
   const logUser = async (e) => {
