@@ -14,7 +14,7 @@ const DetailPost = () => {
         const res = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/post/${postId}`
         );
-        console.log(res.data);
+
         setPost(res.data);
       } catch (error) {
         console.error(error);
@@ -23,7 +23,7 @@ const DetailPost = () => {
 
     fetchData();
   }, [postId]);
-  console.log(post);
+
   return (
     <>
       <h1>Página de detalle de post</h1>
