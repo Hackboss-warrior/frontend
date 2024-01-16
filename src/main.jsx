@@ -5,6 +5,7 @@ import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import "./index.css";
 import ListPosts from "./pages/listPosts/listPosts";
+import DetailPost from "./pages/detailPost/detailPost";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/post/:postId",
+    element: <DetailPost />,
   },
 ]);
 
