@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import Menu from "../../compontents/Menu/Menu";
 
 const Login = () => {
   const [nickName, setnickName] = useState("");
@@ -45,6 +46,7 @@ const Login = () => {
 
   return (
     <>
+    <Menu/>
       <h1>Accede a tu perfil</h1>
       <form className="loginForm" onSubmit={logUser}>
         {errorAlert}

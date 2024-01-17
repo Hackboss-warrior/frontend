@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import "./listPosts.css";
 import Post from "../../components/Post";
-import { Menu } from "../../compontents/Menu";
+import Menu from "../../compontents/Menu/Menu";
 
 const ListPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -24,7 +24,7 @@ const ListPosts = () => {
 
   return (
     <>
-    
+    <Menu/>
       <h1>Listado de posts</h1>
       <div className="posts">
         {posts.map((post) => (
