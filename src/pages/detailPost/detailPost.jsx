@@ -15,8 +15,7 @@ const DetailPost = () => {
         const res = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/post/${postId}`
         );
-        console.log("res.data[0]", res.data[0]);
-        console.log("res.data[1]", res.data[1]);
+
         setPost(res.data[0]);
         setComments(res.data[1]);
       } catch (error) {
@@ -30,7 +29,12 @@ const DetailPost = () => {
   return (
     <>
       <h1>Página de post único - postId: {post.id}</h1>
-      <Post key={uuidv4()} post={post} comments={comments} />
+      <Post
+        key={uuidv4()}
+        post={post}
+        comments={comments}
+        setComments={setComments}
+      />
     </>
   );
 };

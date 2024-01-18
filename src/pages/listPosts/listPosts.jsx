@@ -31,17 +31,12 @@ const ListPosts = () => {
 
       <div className="posts">
         {posts.map((post) => (
-          /*  <Link
-            key={uuidv4()}
-            to={`${import.meta.env.VITE_FRONTEND_URL}/post/${post.id}`}
-          > */
           <Post
             key={uuidv4()}
             post={post}
             comments={comments}
             setComments={setComments}
           />
-          /* </Link> */
         ))}
       </div>
     </>

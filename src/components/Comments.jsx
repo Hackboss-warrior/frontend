@@ -6,10 +6,6 @@ const Comments = ({ comments, postId, setComments }) => {
   const [token] = useState(localStorage.getItem("token"));
   const [commentValue, setCommentValue] = useState("");
 
-  const filteredComments = comments.filter(
-    (comment) => comment.postId === postId
-  );
-
   const insertComment = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -27,9 +23,12 @@ const Comments = ({ comments, postId, setComments }) => {
         }
       );
 
-      console.log(res);
       setComments([...comments, res.data]);
       setCommentValue("");
+
+      //Buscando encontré esta solución
+      window.location.reload();
+      // Según he visto no es muy óptima porque va un poco en contra de lo que busca react con la SPA, pero es la que hay que no lo doy hecho de otra forma.
     } catch (error) {
       console.error(error.message);
     }
@@ -38,22 +37,26 @@ const Comments = ({ comments, postId, setComments }) => {
   return (
     <div className={`comments-postId-${postId}`}>
       <h3>Comentarios:</h3>
-      {filteredComments.map((cmt) => (
-        <div key={cmt.id}>
-          <h4>{cmt.nickName}</h4>
-          <img src={`${import.meta.env.VITE_BACKEND_URL}/${cmt.avatar}`} />
-          <p>{cmt.createdAt.split("T")[0]}</p>
-          <p>{cmt.comment}</p>
-        </div>
-      ))}
+
+      {comments
+        .filter((comment) => comment.postId === postId)
+        .map((cmt) => (
+          <div key={cmt.id}>
+            <h4>{cmt.nickName}</h4>
+            <img src={`${import.meta.env.VITE_BACKEND_URL}/${cmt.avatar}`} />
+            <p>{cmt.createdAt.split("T")[0]}</p>
+            <p>{cmt.comment}</p>
+          </div>
+        ))}
       <div>
         <form className="commentsForm" onSubmit={insertComment}>
           <input
             type="text"
             onChange={(e) => setCommentValue(e.target.value)}
+            value={commentValue}
             id="comment"
             name="comment"
-            placeholder="Introduce tu comentario..."
+            placeholder="Introduce tu comentario aquí ..."
             className="input-comment"
             required
           />
@@ -65,7 +68,7 @@ const Comments = ({ comments, postId, setComments }) => {
 };
 
 Comments.propTypes = {
-  comments: PropTypes.isRequired,
+  comments: PropTypes.array.isRequired,
   postId: PropTypes.number,
   setComments: PropTypes.func,
 };
