@@ -1,15 +1,16 @@
 import PropTypes from "prop-types";
+import Comments from "./Comments";
 
-const Post = ({ post }) => {
+const Post = ({ post, comments, setComments }) => {
   return (
-    <div className="post">
+    <div className={`post ${post.id}`}>
+      <h2>{post.title}</h2>
+      <h3> {post.topic}</h3>
       <p>avatar user:</p>
       {post.avatar && (
         <img src={`${import.meta.env.VITE_BACKEND_URL}/${post.avatar}`} />
       )}
       <p>nickName user: {post.nickName}</p>
-      <h2>{post.title}</h2>
-      <h3> {post.topic}</h3>
       <p>{post.body}</p>
       {post.files && (
         <img
@@ -18,13 +19,19 @@ const Post = ({ post }) => {
         />
       )}
       <p>Interaction:{post.interaction}</p>
-      <p>Comment: {post.comment}</p>
+      <Comments
+        comments={comments}
+        postId={post.id}
+        setComments={setComments}
+      />
     </div>
   );
 };
 
 Post.propTypes = {
-  post: PropTypes.object.isRequired,
+  post: PropTypes.array.isRequired,
+  comments: PropTypes.array.isRequired,
+  setComments: PropTypes.func,
 };
 
 export default Post;
