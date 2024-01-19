@@ -24,11 +24,13 @@ const Comments = ({ comments, postId, setComments }) => {
       );
 
       setComments([...comments, res.data]);
+
       setCommentValue("");
 
-      //Buscando encontré esta solución
-      window.location.reload();
-      // Según he visto no es muy óptima porque va un poco en contra de lo que busca react con la SPA, pero es la que hay que no lo doy hecho de otra forma.
+      const resComments = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/posts`
+      );
+      setComments(resComments.data[1]);
     } catch (error) {
       console.error(error.message);
     }
