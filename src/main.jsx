@@ -6,6 +6,9 @@ import Login from "./pages/login/Login";
 import "./index.css";
 import ListPosts from "./pages/listPosts/listPosts";
 import DetailPost from "./pages/detailPost/detailPost";
+import Profile from "./pages/UserProfile/Profile";
+import Contact from "./pages/Contact/Contact";
+
 
 const router = createBrowserRouter([
   {
@@ -24,6 +27,14 @@ const router = createBrowserRouter([
     path: "/post/:postId",
     element: <DetailPost />,
   },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import "./listPosts.css";
 import Post from "../../components/Post";
-import Menu from "../../compontents/Menu/Menu";
 import { v4 as uuidv4 } from "uuid";
 // import { Link } from "react-router-dom";
 
@@ -28,7 +27,6 @@ const ListPosts = () => {
 
   return (
     <>
-    <Menu/>
       <h1>Listado de posts</h1>
 
       <div className="posts">
