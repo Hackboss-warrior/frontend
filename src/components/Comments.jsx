@@ -5,7 +5,7 @@ import { useState } from "react";
 const Comments = ({ comments, postId, setComments }) => {
   const [token] = useState(localStorage.getItem("token"));
   const [commentValue, setCommentValue] = useState("");
-
+  
   const insertComment = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -22,17 +22,20 @@ const Comments = ({ comments, postId, setComments }) => {
           },
         }
       );
+      console.log(setComments)
+
 
       setComments([...comments, res.data]);
       setCommentValue("");
 
       //Buscando encontré esta solución
-      window.location.reload();
+      //window.location.reload();
       // Según he visto no es muy óptima porque va un poco en contra de lo que busca react con la SPA, pero es la que hay que no lo doy hecho de otra forma.
     } catch (error) {
       console.error(error.message);
     }
   };
+
 
   return (
     <div className={`comments-postId-${postId}`}>

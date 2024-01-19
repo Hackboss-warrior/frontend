@@ -7,7 +7,6 @@ export const Menu = () => {
   const handleSearch = (e)=>{
 e.preventDefault();
 const searchParam = e.target.elements.search.value
-console.log(searchParam);
 
 //Get  by word
 
@@ -38,7 +37,6 @@ console.log(searchParam);
 
     // getUser()
   }, []);
-  console.log(token);
 
   return (
     <menu className="cabecera">

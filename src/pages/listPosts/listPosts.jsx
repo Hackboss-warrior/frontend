@@ -4,11 +4,12 @@ import "./listPosts.css";
 import Post from "../../components/Post";
 import Menu from "../../compontents/Menu/Menu";
 import { v4 as uuidv4 } from "uuid";
-// import { Link } from "react-router-dom";
+import io from 'socket.io-client'; // Importa la librería del cliente de socket.io
 
 const ListPosts = () => {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,9 +27,26 @@ const ListPosts = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const socket = io("http://localhost:3000"); // Establece la conexión WebSocket
+
+    // Escucha el evento 'newComment' y actualiza los comentarios
+    socket.on('newComment', (newComment) => {
+      console.log(newComment);
+      setComments([setComments]);
+      //setComments((prevComments) => [...prevComments, newComment]);
+    });
+
+
+    // Cierra la conexión al desmontar el componente
+    return () => {
+      socket.disconnect();
+    };
+  }, [posts]);  
+
   return (
     <>
-    <Menu/>
+      <Menu />
       <h1>Listado de posts</h1>
 
       <div className="posts">

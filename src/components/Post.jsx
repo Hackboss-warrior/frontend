@@ -6,7 +6,7 @@ const Post = ({ post, comments, setComments }) => {
   return (
     <div className={`post ${post.id}`}>
       <h2>{post.title}</h2>
-      <h3> {post.topic}</h3>
+      <h3>{post.topic}</h3>
       <p>avatar user:</p>
       {post.avatar && (
         <img
@@ -24,8 +24,7 @@ const Post = ({ post, comments, setComments }) => {
           />
         )}
       </Link>
-      {/* Hay que crear un componente similar para recuperación de interacciones, además de retocar el back para que los sirva en una sola petición junto con los comentarios y los posts, asignarlas a un estado y pasarlas como props (es un proceso muy similar al de los comentarios)*/}
-      <p>Interaction:{post.interaction}</p>
+      <p>Interaction: {post.interaction}</p>
       <Comments
         comments={comments}
         postId={post.id}
@@ -36,7 +35,7 @@ const Post = ({ post, comments, setComments }) => {
 };
 
 Post.propTypes = {
-  post: PropTypes.array.isRequired,
+  post: PropTypes.object.isRequired, // Cambiado de array a object
   comments: PropTypes.array.isRequired,
   setComments: PropTypes.func,
 };
