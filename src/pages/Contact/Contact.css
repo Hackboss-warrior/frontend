@@ -1,0 +1,32 @@
+.cabeceraContactos{
+   display: flex;
+   justify-content: space-between;
+}
+.fotoPortada{
+    margin: 10px;
+    width: 400px;
+    height: 200px;
+}
+
+
+legend {
+    font-size: 2rem;
+}
+h1 {
+font-size: 3rem;}
+
+
+
+
+.labelImputConectForm {
+    
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-grow: grow;
+    align-items: left;}
+
+    .gruesoConsulta{
+    width:100%;
+    height: 300px;
+}

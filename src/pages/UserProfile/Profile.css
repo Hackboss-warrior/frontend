@@ -1,0 +1,31 @@
+.cuerpoProfile{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.NicknameEmailAvatar{
+    display: flex;
+    
+    justify-content: space-around;
+}
+.NicknamEmail{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.presentacionPersonal{
+   
+    margin-left: 20px;
+}
+.separador{
+    margin: 15px;
+    background-color: red;
+    width: 60%;
+    height: 10px;
+    border-radius: 50%;
+}

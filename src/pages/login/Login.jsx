@@ -45,6 +45,7 @@ const Login = () => {
 
   return (
     <>
+    
       <h1>Accede a tu perfil</h1>
       <form className="loginForm" onSubmit={logUser}>
         {errorAlert}
