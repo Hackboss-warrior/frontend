@@ -1,0 +1,8 @@
+.box{
+	height: 400px;
+}
+.title {
+    position: absolute;
+    z-index: 1;
+    vertical-align: middle;
+}
