@@ -6,6 +6,10 @@ import Login from "./pages/login/Login";
 import "./index.css";
 import ListPosts from "./pages/listPosts/listPosts";
 import DetailPost from "./pages/detailPost/detailPost";
+import Profile from "./pages/UserProfile/Profile";
+import Contact from "./pages/Contact/Contact";
+import Error from "./pages/Error/Error"
+
 
 const router = createBrowserRouter([
   {
@@ -24,6 +28,18 @@ const router = createBrowserRouter([
     path: "/post/:postId",
     element: <DetailPost />,
   },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
+  },
+  {
+    path: "/*",
+    element: <Error />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
