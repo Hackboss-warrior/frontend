@@ -42,6 +42,7 @@ const Comments = ({ comments, postId, setComments }) => {
 
       {comments
         .filter((comment) => comment.postId === postId)
+        .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
         .map((cmt) => (
           <div key={cmt.id}>
             <h4>{cmt.nickName}</h4>

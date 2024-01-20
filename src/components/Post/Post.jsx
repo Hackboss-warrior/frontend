@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
-import Comments from "./Comments";
+import Comments from "../Comments";
 import { Link } from "react-router-dom";
+import "./Post.css";
 
-const Post = ({ post, comments, setComments }) => {
+const Post = ({ post, comments, setComments, currentPage }) => {
   return (
-    <div className={`post ${post.id}`}>
-      <h2>{post.title}</h2>
-      <h3> {post.topic}</h3>
+    <div className={`post`}>
+      {currentPage === "list" ? <h2>{post.title}</h2> : <h1>{post.title}</h1>}
+      Fecha publicación post: {post.createdAt}
       <p>avatar user:</p>
       {post.avatar && (
         <img
@@ -24,21 +25,34 @@ const Post = ({ post, comments, setComments }) => {
           />
         )}
       </Link>
+      {currentPage === "list" ? (
+        <h3> Topic: {post.topic}</h3>
+      ) : (
+        <h2> Topic: {post.topic}</h2>
+      )}
       {/* Hay que crear un componente similar para recuperación de interacciones, además de retocar el back para que los sirva en una sola petición junto con los comentarios y los posts, asignarlas a un estado y pasarlas como props (es un proceso muy similar al de los comentarios)*/}
       <p>Interaction:{post.interaction}</p>
-      <Comments
-        comments={comments}
-        postId={post.id}
-        setComments={setComments}
-      />
+      {currentPage === "list" ? (
+        <p>
+          Nº comentarios :
+          {comments.filter((comment) => comment.postId === post.id).length}
+        </p>
+      ) : (
+        <Comments
+          comments={comments}
+          postId={post.id}
+          setComments={setComments}
+        />
+      )}
     </div>
   );
 };
 
 Post.propTypes = {
-  post: PropTypes.array.isRequired,
+  post: PropTypes.object.isRequired,
   comments: PropTypes.array.isRequired,
   setComments: PropTypes.func,
+  currentPage: PropTypes.string,
 };
 
 export default Post;
