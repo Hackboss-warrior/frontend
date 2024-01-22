@@ -37,17 +37,22 @@ const Comments = ({ comments, postId, setComments }) => {
   };
 
   return (
-    <div className={`comments-postId-${postId}`}>
+    <div className={"comments"}>
       <h3>Comentarios:</h3>
 
       {comments
         .filter((comment) => comment.postId === postId)
         .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
         .map((cmt) => (
-          <div key={cmt.id}>
-            <h4>{cmt.nickName}</h4>
-            <img src={`${import.meta.env.VITE_BACKEND_URL}/${cmt.avatar}`} />
-            <p>{cmt.createdAt.split("T")[0]}</p>
+          <div className="commentBox" key={cmt.id}>
+            <div className="commentUserInfo">
+              <img
+                src={`${import.meta.env.VITE_BACKEND_URL}/${cmt.avatar}`}
+                className="userAvatar"
+              />
+              <h4 className="commentNickName">{cmt.nickName}</h4>
+              <p>{cmt.createdAt.split("T")[0]}</p>
+            </div>
             <p>{cmt.comment}</p>
           </div>
         ))}

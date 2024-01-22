@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Contact.css"
+import "./Contact.css";
 
 const Contact = () => {
   const [asunto, setAsunto] = useState("");
@@ -8,39 +8,42 @@ const Contact = () => {
 
   const handleForm = async (e) => {
     try {
-        e.preventDefault()
-        const formData = new FormData()
-    formData.append("asunto",asunto)
-    formData.append("email",email)
-    formData.append("expo",expo)
-  
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("asunto", asunto);
+      formData.append("email", email);
+      formData.append("expo", expo);
     } catch (error) {
-        console.error("No se ha enviado correctamente");
+      console.error("No se ha enviado correctamente");
     }
-}  
+  };
 
   return (
     <>
-    <section className="cabeceraContactos">
-      <h1>Contacta con nosotros</h1>
-      <img className ="fotoPortada" src="public\fakNews-logo.png" alt="FotoPortada" />
-</section>
-<section>
-      <h2>Un lugar donde todas las noticias tenen su espacio y valor.</h2>
-      <p>
-        FakNews es un periódico digital participativo de buenas noticias fundado
-        en el año 2023 y en el que publicamos cada día noticias positivas,
-        historias, acontecimientos o sucesos positivos, entrevistas a gente que
-        tiene algo bueno que contar… ¡porque tod@s tenemos algo bueno y siempre
-        hay algo bueno que contar!
-        <br />
-        Colabora con nosotros compartiendo tus noticias con nosotros
-      </p>
-</section>
+      <section className="cabeceraContactos">
+        <h1>Contacta con nosotros</h1>
+        <img
+          className="fotoPortada"
+          src="public\fakNews-logo.png"
+          alt="FotoPortada"
+        />
+      </section>
+      <section>
+        <h2>Un lugar donde todas las noticias tenen su espacio y valor.</h2>
+        <p>
+          FakNews es un periódico digital participativo de buenas noticias
+          fundado en el año 2023 y en el que publicamos cada día noticias
+          positivas, historias, acontecimientos o sucesos positivos, entrevistas
+          a gente que tiene algo bueno que contar… ¡porque tod@s tenemos algo
+          bueno y siempre hay algo bueno que contar!
+          <br />
+          Colabora con nosotros compartiendo tus noticias con nosotros
+        </p>
+      </section>
       <form className="contactMessage" onSubmit={handleForm}>
         <fieldset>
           <legend>Contacte con nosostros aquí</legend>
-          <div  className="labelImputConectForm" >
+          <div className="labelImputConectForm">
             <label htmlFor="asunto">Asunto</label>
             <input
               type="text"

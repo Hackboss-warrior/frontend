@@ -32,7 +32,7 @@ const ListPosts = () => {
     <>
       <h1>Listado de posts</h1>
 
-      <div className="posts">
+      <main className="posts">
         {posts.map(
           (post) => (
             console.log(post),
@@ -47,7 +47,7 @@ const ListPosts = () => {
             )
           )
         )}
-      </div>
+      </main>
     </>
   );
 };
