@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Post from "../../components/Post/Post";
+import "./DetailPost.css";
 
 const DetailPost = () => {
   const [post, setPost] = useState([]);
   const { postId } = useParams();
   const [comments, setComments] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,21 +28,14 @@ const DetailPost = () => {
   }, [postId]);
 
   return (
-    <>
-      <button
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        Volver al listado de posts
-      </button>
+    <main>
       <Post
         key={uuidv4()}
         post={post}
         comments={comments}
         setComments={setComments}
       />
-    </>
+    </main>
   );
 };
 

@@ -2,9 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import "./listPosts.css";
 import Post from "../../components/Post/Post";
-
-
-
+import { v4 as uuidv4 } from "uuid";
 
 const ListPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -34,7 +32,7 @@ const ListPosts = () => {
     <>
       <h1>Listado de posts</h1>
 
-      <div className="posts">
+      <main className="posts">
         {posts.map(
           (post) => (
             console.log(post),
@@ -49,7 +47,7 @@ const ListPosts = () => {
             )
           )
         )}
-      </div>
+      </main>
     </>
   );
 };
