@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Menu from "../../components/Menu/Menu";
 import "./Profile.css"
 const Profile = () => {
   const [user, setUser] = useState([]);
 
   const token = localStorage.getItem("token");
-  console.log('TOKEN',token);
 
   useEffect(() => {
     const fetchData = async() => {
@@ -16,8 +14,7 @@ const Profile = () => {
           `${import.meta.env.VITE_BACKEND_URL}/profile`, { headers: { 'Authorization': `Bearer ${token}` } }
         );
     // console.log(response.data,"RESPONSE");
-        setUser(response.data
-          ); 
+        setUser(response.data); 
       } 
       catch (err) {
         console.error("Fallo:", err);
@@ -31,7 +28,6 @@ const Profile = () => {
   
   return (
     <>
-     <Menu/>
     <div className="cuerpoProfile">
       <h1>My perfil</h1>
       <section className="NicknameEmailAvatar">

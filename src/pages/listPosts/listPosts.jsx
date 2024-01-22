@@ -16,8 +16,6 @@ const ListPosts = () => {
           `${import.meta.env.VITE_BACKEND_URL}/posts`
         );
 
-        console.log(res);
-
         setPosts(res.data[0]);
         setComments(res.data[1]);
       } catch (error) {
@@ -35,7 +33,6 @@ const ListPosts = () => {
       <main className="posts">
         {posts.map(
           (post) => (
-            console.log(post),
             (
               <Post
                 key={uuidv4()}

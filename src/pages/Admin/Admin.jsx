@@ -80,7 +80,6 @@ function Admin() {
         )}
         {activeSection === 'users' && (
           getUser(),
-          console.log(userData),
 
           <div>
             {userData ? (
