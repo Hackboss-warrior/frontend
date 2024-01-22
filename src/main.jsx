@@ -9,6 +9,7 @@ import DetailPost from "./pages/detailPost/detailPost";
 import Profile from "./pages/UserProfile/Profile";
 import Contact from "./pages/Contact/Contact";
 import Error from "./pages/Error/Error"
+import Admin from "./pages/Admin/Admin";
 
 
 const router = createBrowserRouter([
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/contact",
     element: <Contact />,
+  },
+  {
+    path: "/admin",
+    element: <Admin />,
   },
   {
     path: "/*",

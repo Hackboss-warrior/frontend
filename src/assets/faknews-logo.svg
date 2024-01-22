@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 322 162.51">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        isolation: isolate;
+      }
+
+      .cls-5 {
+        fill: #a9191f;
+      }
+
+      .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #b8b8b8;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        font-family: SegoeUI-BoldItalic, 'Segoe UI';
+        font-style: italic;
+        font-weight: 700;
+      }
+
+      .cls-2, .cls-4 {
+        font-size: 59.87px;
+      }
+
+      .cls-3 {
+        font-size: 69.68px;
+      }
+
+      .cls-3, .cls-6 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: #2d2d2d;
+      }
+
+      .cls-7 {
+        fill: none;
+        stroke: #a9191f;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="Rectángulo_2" data-name="Rectángulo 2">
+    <path class="cls-6" d="M22.84,0h277.31c12.06,0,21.84,9.77,21.84,21.82v117.85c0,12.05-9.78,21.82-21.84,21.82H22.84c-12.06,0-21.84-9.77-21.84-21.82V21.83C1,9.78,10.78,0,22.84,0Z"/>
+    <path class="cls-7" d="M20.86,1h280.28c10.97,0,19.86,8.98,19.86,20.06v120.38c0,11.08-8.89,20.06-19.86,20.06H20.86c-10.97,0-19.86-8.98-19.86-20.06V21.06C1,9.98,9.89,1,20.86,1Z"/>
+  </g>
+  <g>
+    <g id="Grupo_3" data-name="Grupo 3">
+      <rect id="Rectángulo_1" data-name="Rectángulo 1" class="cls-5" x="121.97" y="25.95" width="172.9" height="82.58" rx="7.74" ry="7.74"/>
+      <g id="News" class="cls-1">
+        <text class="cls-3" transform="translate(109.06 87.89)"><tspan x="0" y="0">News</tspan></text>
+      </g>
+    </g>
+    <g id="fak-2" class="cls-1">
+      <text class="cls-2" transform="translate(115.38 92.93) rotate(-179.5)"><tspan x="0" y="0">fak</tspan></text>
+    </g>
+    <g id="fak-2-2" data-name="fak-2" class="cls-1">
+      <text class="cls-4" transform="translate(27.13 82.98)"><tspan x="0" y="0">fak</tspan></text>
+    </g>
+  </g>
+</svg>
