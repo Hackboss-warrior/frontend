@@ -3,14 +3,14 @@ import "./Contact.css";
 import axios from "axios";
 
 const Contact = () => {
-  const [asunto, setAsunto] = useState("");
+  const [subject, setSubject] = useState("");
   const [email, setEmail] = useState("");
   const [body, setBody] = useState("");
 const[alert, setAlert] =useState("")
   const handleForm = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("asunto", asunto);
+    formData.append("subject", subject);
     formData.append("email", email);
     formData.append("body", body);
 
@@ -65,16 +65,17 @@ const[alert, setAlert] =useState("")
           Colabora con nosotros compartiendo tus noticias con nosotros
         </p>
       </section>
+      {alert}
       <form className="contactMessage" onSubmit={handleForm}>
         <fieldset>
           <legend>Contacte con nosostros aquí</legend>
           <div className="labelImputConectForm">
-            <label htmlFor="asunto">Asunto</label>
+            <label htmlFor="subject">Asunto</label>
             <input
               type="text"
-              id="asunto"
-              name="asunto"
-              onChange={(e) => setAsunto(e.target.value)}
+              id="subject"
+              name="subject"
+              onChange={(e) => setSubject(e.target.value)}
               placeholder="Escriba aqui el asunto a tratar..."
               required
             />
