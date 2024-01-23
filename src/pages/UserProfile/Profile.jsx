@@ -34,10 +34,10 @@ const Profile = () => {
       <div className="NicknamEmail"><h2>{user.nickName}</h2>
       <p>{user.email}</p></div>
       
-      <img
+      {user.avatar && <img
           src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
           alt={user.name}
-        />
+        />}
         </section>
         <div className="separador"></div>
       <div className="presentacionPersonal">

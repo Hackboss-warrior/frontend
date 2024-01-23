@@ -44,11 +44,9 @@ const Sidebar = ({ handleSectionChange }) => {
       if (token) {
          const fetchData = async () => {
             try {
-               console.log("1")
                const response = await axios.get(
                   `${import.meta.env.VITE_BACKEND_URL}/profile`, { headers: { 'Authorization': `Bearer ${token}` } }
                );
-               console.log("2")
                setUser(response.data); 
             }
             catch (err) {
@@ -126,7 +124,7 @@ const Sidebar = ({ handleSectionChange }) => {
                   </div>
                </div>
                {token ? <div className="sidebar__account">
-                  <img src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`} alt="sidebar image" className="sidebar__perfil" />
+                  {user.avatar && <img src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`} alt="sidebar image" className="sidebar__perfil" />}
 
                   <div className="sidebar__names">
                      <h3 className="sidebar__name">{user.nickName}</h3>
