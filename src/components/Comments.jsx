@@ -1,6 +1,7 @@
 import axios from "axios";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import dateFormat from "../utils/dateFormat";
 
 const Comments = ({ comments, postId, setComments }) => {
   const [token] = useState(localStorage.getItem("token"));
@@ -58,7 +59,7 @@ const Comments = ({ comments, postId, setComments }) => {
         .filter((comment) => comment.postId === postId)
         .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
         .map((cmt) => (
-          <div className="commentBox" key={cmt.id}>
+          <div className="commentBox" key={cmt.id} id="commentBox">
             <div className="commentUserInfoDate">
               <div className="commentUserInfo">
                 <img
@@ -67,7 +68,7 @@ const Comments = ({ comments, postId, setComments }) => {
                 />
                 <h4 className="commentNickName">{cmt.nickName}</h4>
               </div>
-              <p className="commentDate">{cmt.createdAt.split("T")[0]}</p>
+              <p className="commentDate">{dateFormat(cmt.createdAt)}</p>
             </div>
             <p className="commentContent">{cmt.comment}</p>
           </div>

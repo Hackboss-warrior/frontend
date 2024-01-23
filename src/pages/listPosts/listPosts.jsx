@@ -16,8 +16,6 @@ const ListPosts = () => {
           `${import.meta.env.VITE_BACKEND_URL}/posts`
         );
 
-        console.log(res);
-
         setPosts(res.data[0]);
         setComments(res.data[1]);
       } catch (error) {
@@ -30,8 +28,8 @@ const ListPosts = () => {
 
   return (
     <>
-      <img src={logo} alt="fakNews" className="fakNewsLogo"></img>
       <main className="posts">
+        <img src={logo} alt="fakNews" className="fakNewsLogo"></img>
         {posts.map((post) => (
           <Post
             key={uuidv4()}

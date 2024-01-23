@@ -28,7 +28,7 @@ main .post {
 .post {
   border-radius: 25px;
   box-shadow: 4px 5px 23px #191919;
-  padding: 40px 40px 60px 40px;
+  padding: 40px;
   margin: 50px 0px;
   text-align: center;
   background-color: var(--dark-grey-color);
@@ -74,10 +74,13 @@ main .post {
   margin-bottom: 20px;
 }
 
+.commentsNumber {
+  color: white;
+}
 .postContent {
   border-radius: 10px;
   box-shadow: 4px 5px 23px #191919;
-  padding: 40px 20px 40px 20px;
+  padding: 20px;
 }
 
 .userAvatar {
@@ -91,8 +94,6 @@ main .post {
   justify-content: space-between;
   gap: 40px;
   align-items: center;
-  margin-bottom: 30px;
-  border-bottom: 3px solid var(--main-red-color);
   padding-bottom: 30px;
 }
 
@@ -123,8 +124,12 @@ main .post {
 .postTopic {
   text-align: left;
   margin-bottom: 20px;
+  padding-left: 20px;
+  padding-bottom: 20px;
   font-family: "Lato", sans-serif;
-  margin-left: 20px;
+  border-bottom: 3px solid var(--main-red-color);
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .postBody {
@@ -145,7 +150,7 @@ main .post {
 
 .comments {
   text-align: left;
-  padding: 0px 20px 40px 20px;
+  padding: 20px;
 }
 
 .commentBox {
@@ -202,8 +207,17 @@ main .post {
   width: 100%;
 }
 
+.commentsForm input::placeholder {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
 .commentsForm button {
   background-color: var(--main-red-color);
   border-radius: 10px;
   width: 150px;
+  box-shadow: 4px 5px 23px #191919;
+  background-color: var(--main-red-color);
+  font-family: "Lato", sans-serif;
 }
