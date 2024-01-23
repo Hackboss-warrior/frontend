@@ -34,22 +34,6 @@ const ListPosts = () => {
 
       <img src={logo} alt="fakNews" className="fakNewsLogo"></img>
       <main className="posts">
-<<<<<<< Updated upstream
-        {posts.map(
-          (post) => (
-            console.log(post),
-            (
-              <Post
-                key={uuidv4()}
-                post={post}
-                comments={comments}
-                setComments={setComments}
-                currentPage={currentPage}
-              />
-            )
-          )
-        )}
-=======
         {posts.map((post) => (
           <Post
             key={uuidv4()}
@@ -59,7 +43,6 @@ const ListPosts = () => {
             currentPage={currentPage}
           />
         ))}
->>>>>>> Stashed changes
       </main>
     </>
   );
