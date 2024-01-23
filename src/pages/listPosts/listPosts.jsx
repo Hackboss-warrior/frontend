@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "./listPosts.css";
 import Post from "../../components/Post/Post";
 import { v4 as uuidv4 } from "uuid";
-
+import logo from "../../assets/faknews-logo.svg";
 const ListPosts = () => {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
@@ -32,7 +32,9 @@ const ListPosts = () => {
     <>
       <h1>Listado de posts</h1>
 
+      <img src={logo} alt="fakNews" className="fakNewsLogo"></img>
       <main className="posts">
+<<<<<<< Updated upstream
         {posts.map(
           (post) => (
             console.log(post),
@@ -47,6 +49,17 @@ const ListPosts = () => {
             )
           )
         )}
+=======
+        {posts.map((post) => (
+          <Post
+            key={uuidv4()}
+            post={post}
+            comments={comments}
+            setComments={setComments}
+            currentPage={currentPage}
+          />
+        ))}
+>>>>>>> Stashed changes
       </main>
     </>
   );

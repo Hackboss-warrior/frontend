@@ -5,15 +5,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  --main-red-color: #c50f0f;
+  --main-red-color: #a9191f;
   --dark-grey-color: #2d2d2d;
   --light-grey-color: #b8b8b8;
+  font-family: "Lato", sans-serif;
 }
 
 body {
   display: flex;
   justify-content: center;
-  background-color: var(--dark-grey-color);
+  background-color: #3e3e3e;
 }
 
 main {
@@ -27,87 +28,182 @@ main .post {
 .post {
   border-radius: 25px;
   box-shadow: 4px 5px 23px #191919;
-  padding: 40px;
-  margin-top: 50px;
+  padding: 40px 40px 60px 40px;
+  margin: 50px 0px;
   text-align: center;
+  background-color: var(--dark-grey-color);
+  color: #fff;
 }
 
 .postMainContent {
-  border-bottom: 1px var(--light-grey-color) solid;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 
 .postTitle {
-  color: var(--light-grey-color);
+  color: #fff;
   font-family: "Montserrat", sans-serif;
-  font-size: 4rem;
+  font-size: 3rem;
   margin-bottom: 2rem;
 }
 
-.userAvatar {
-  border-radius: 60%;
-  max-height: 50px;
-  max-width: 50px;
+.postImg {
+  width: 920px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 5px solid var(--main-red-color);
 }
 
-/*div que incluye la información del usuario y la fecha de creación del post*/
+.interactComments {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.postInteractions,
+.commentsNumber {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  box-shadow: 4px 5px 23px #191919;
+  height: 50px;
+  width: 100px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.postContent {
+  border-radius: 10px;
+  box-shadow: 4px 5px 23px #191919;
+  padding: 40px 20px 40px 20px;
+}
+
+.userAvatar {
+  border-radius: 50%;
+  max-height: 40px;
+  max-width: 40px;
+}
+
 .postUserAndDate {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 20px 0px 10px 0px;
-  gap: 180px;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 3px solid var(--main-red-color);
+  padding-bottom: 30px;
 }
-
-/*div que incluye únicamente la información del usuario*/
 
 .postUserInfo {
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 4px 5px 23px #191919;
+}
+
+.postCreatedAt {
+  font-style: italic;
+  padding: 10px 20px;
+  border-radius: 50px;
+  box-shadow: 4px 5px 23px #191919;
+  background-color: var(--main-red-color);
 }
 
 .nickName {
   font-family: "Lato", sans-serif;
   font-weight: 700;
   font-size: 1.2rem;
+  display: inline-block;
 }
 
-.postImg {
-  width: 900px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border: 5px solid #c50f0f;
-}
-
-.postInteractions,
 .postTopic {
   text-align: left;
   margin-bottom: 20px;
-  margin-left: 30px;
   font-family: "Lato", sans-serif;
+  margin-left: 20px;
 }
 
 .postBody {
   text-align: left;
-  margin-left: 30px;
+  margin: 0px 20px;
   font-family: "Lato", sans-serif;
+}
+
+/* CSS para el componente de comentarios */
+
+.comments h3 {
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+  padding: 20px 0px 20px 0px;
+  text-align: center;
+  border-bottom: 3px solid var(--main-red-color);
 }
 
 .comments {
   text-align: left;
-  margin-left: 30px;
-  margin-top: 40px;
+  padding: 0px 20px 40px 20px;
 }
 
 .commentBox {
-  margin: 40px 0px;
-  padding: 20px 10px;
+  margin: 40px 10px;
+  padding: 20px 20px;
   border-radius: 10px;
   box-shadow: 4px 5px 23px #191919;
 }
 
+.commentUserInfoDate {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid var(--light-grey-color);
+  padding-bottom: 30px;
+}
+
 .commentUserInfo {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 10px;
+  border-radius: 10px;
+  box-shadow: 4px 5px 23px #191919;
+}
+
+.commentDate {
+  font-style: italic;
+  padding: 10px 20px;
+  border-radius: 50px;
+  box-shadow: 4px 5px 23px #191919;
+  background-color: var(--main-red-color);
+}
+
+.commentContent {
+  font-size: 1.1rem;
+  margin-left: 15px;
+}
+
+.commentsForm {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  margin: 40px 10px;
+  padding: 40px 20px;
+  border-radius: 10px;
+  box-shadow: 4px 5px 23px #191919;
+}
+.commentsForm input {
+  height: 120px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.commentsForm button {
+  background-color: var(--main-red-color);
+  border-radius: 10px;
+  width: 150px;
 }

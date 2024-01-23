@@ -6,7 +6,7 @@ import Post from "../../components/Post/Post";
 import "./DetailPost.css";
 
 const DetailPost = () => {
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState({});
   const { postId } = useParams();
   const [comments, setComments] = useState([]);
 

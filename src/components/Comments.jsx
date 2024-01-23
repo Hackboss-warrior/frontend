@@ -37,40 +37,42 @@ const Comments = ({ comments, postId, setComments }) => {
   };
 
   return (
-    <div className={"comments"}>
-      <h3>Comentarios:</h3>
-
+    <div className="comments">
+      <h3>Comentarios</h3>
+      <form className="commentsForm" onSubmit={insertComment}>
+        <input
+          type="tex"
+          onChange={(e) => setCommentValue(e.target.value)}
+          value={commentValue}
+          id="comment"
+          name="comment"
+          placeholder="Introduce tu comentario aquí ..."
+          className="input-comment"
+          required
+        />
+        <button className="" type="submit">
+          Comentar
+        </button>
+      </form>
       {comments
         .filter((comment) => comment.postId === postId)
         .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
         .map((cmt) => (
           <div className="commentBox" key={cmt.id}>
-            <div className="commentUserInfo">
-              <img
-                src={`${import.meta.env.VITE_BACKEND_URL}/${cmt.avatar}`}
-                className="userAvatar"
-              />
-              <h4 className="commentNickName">{cmt.nickName}</h4>
-              <p>{cmt.createdAt.split("T")[0]}</p>
+            <div className="commentUserInfoDate">
+              <div className="commentUserInfo">
+                <img
+                  src={`${import.meta.env.VITE_BACKEND_URL}/${cmt.avatar}`}
+                  className="userAvatar"
+                />
+                <h4 className="commentNickName">{cmt.nickName}</h4>
+              </div>
+              <p className="commentDate">{cmt.createdAt.split("T")[0]}</p>
             </div>
-            <p>{cmt.comment}</p>
+            <p className="commentContent">{cmt.comment}</p>
           </div>
         ))}
-      <div>
-        <form className="commentsForm" onSubmit={insertComment}>
-          <input
-            type="text"
-            onChange={(e) => setCommentValue(e.target.value)}
-            value={commentValue}
-            id="comment"
-            name="comment"
-            placeholder="Introduce tu comentario aquí ..."
-            className="input-comment"
-            required
-          />
-          <button type="submit">Comentar</button>
-        </form>
-      </div>
+      <div></div>
     </div>
   );
 };
