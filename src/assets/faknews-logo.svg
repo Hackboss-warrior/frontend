@@ -9,7 +9,6 @@
       .cls-1, .cls-2, .cls-3, .cls-4 {
         isolation: isolate;
       }
-
       .cls-1, .cls-3 {
         font-size: 59.87px;
       }
