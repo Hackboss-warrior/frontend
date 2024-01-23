@@ -46,7 +46,7 @@ const Register = () => {
         }
       );
 
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       setErrorAlert(<div>fakNews: {error.response.data.error}</div>);
       setTimeout(() => {

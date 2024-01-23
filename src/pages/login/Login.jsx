@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
@@ -45,7 +45,6 @@ const Login = () => {
 
   return (
     <>
-    
       <h1>Accede a tu perfil</h1>
       <form className="loginForm" onSubmit={logUser}>
         {errorAlert}
@@ -79,6 +78,9 @@ const Login = () => {
           Login
         </button>
       </form>
+      <p>
+        ¿Aún no tienes cuenta? <Link to="/register"> Registrate aquí</Link>
+      </p>
     </>
   );
 };

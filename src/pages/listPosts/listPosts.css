@@ -1,4 +1,10 @@
 .posts {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 40px 0px;
+}
+
+.fakNewsLogo {
+  width: 400px;
+  margin: 0 auto;
 }
