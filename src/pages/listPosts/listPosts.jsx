@@ -30,8 +30,6 @@ const ListPosts = () => {
 
   return (
     <>
-      <h1>Listado de posts</h1>
-
       <img src={logo} alt="fakNews" className="fakNewsLogo"></img>
       <main className="posts">
         {posts.map((post) => (
