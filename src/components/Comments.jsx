@@ -2,14 +2,20 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import dateFormat from "../utils/dateFormat";
+import { Link, useNavigate } from "react-router-dom";
 
 const Comments = ({ comments, postId, setComments }) => {
   const [token] = useState(localStorage.getItem("token"));
   const [commentValue, setCommentValue] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const navigate = useNavigate();
 
   const insertComment = async (e) => {
     e.preventDefault();
+
+    // Con esta línea envíamos al usuario no logueado a la página de login
+    !token && navigate("/login");
+
     const formData = new FormData();
     formData.append("comment", e.target.comment.value);
 
@@ -59,9 +65,7 @@ const Comments = ({ comments, postId, setComments }) => {
           className="input-comment"
           required
         />
-        <button className="" type="submit">
-          Comentar
-        </button>
+        <button type="submit">Comentar</button>
       </form>
 
       {comments

@@ -7,8 +7,9 @@ import "./DetailPost.css";
 
 const DetailPost = () => {
   const [post, setPost] = useState({});
-  const { postId } = useParams();
   const [comments, setComments] = useState([]);
+  const [likes, setLikes] = useState([]);
+  const { postId } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,6 +20,7 @@ const DetailPost = () => {
 
         setPost(res.data[0]);
         setComments(res.data[1]);
+        setLikes(res.data[2]);
       } catch (error) {
         console.error(error);
       }
@@ -34,6 +36,7 @@ const DetailPost = () => {
         post={post}
         comments={comments}
         setComments={setComments}
+        likes={likes}
       />
     </main>
   );

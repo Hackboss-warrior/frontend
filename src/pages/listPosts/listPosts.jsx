@@ -8,6 +8,7 @@ import logo from "../../assets/faknews-logo.svg";
 const ListPosts = () => {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
+  const [likes, setLikes] = useState([]);
   const [currentPage] = useState("list");
 
   useEffect(() => {
@@ -19,6 +20,7 @@ const ListPosts = () => {
 
         setPosts(res.data[0]);
         setComments(res.data[1]);
+        setLikes(res.data[2]);
       } catch (error) {
         console.error(error);
       }
@@ -38,6 +40,7 @@ const ListPosts = () => {
             comments={comments}
             setComments={setComments}
             currentPage={currentPage}
+            likes={likes}
           />
         ))}
       </main>
