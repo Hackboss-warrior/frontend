@@ -1,6 +1,5 @@
 // En el componente Admin
 import React, { useState } from 'react';
-import axios from "axios";
 import '../pages/Admin/Admin.css';
 import Sidebar from './Sidebar.jsx';
 import { AiOutlineMenu } from "react-icons/ai";
