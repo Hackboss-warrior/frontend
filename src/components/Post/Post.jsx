@@ -7,8 +7,8 @@ import Interactions from "../Interactions";
 import Comments from "../Comments";
 //Componentes importados
 import { FaCommentAlt } from "react-icons/fa";
-
 import logo from "../../assets/faknews-logo.svg";
+
 const Post = ({ post, comments, setComments, currentPage, likes }) => {
   return (
     <article className="post">

@@ -18,6 +18,7 @@ const DetailPost = () => {
           `${import.meta.env.VITE_BACKEND_URL}/post/${postId}`
         );
 
+        console.log(res.data);
         setPost(res.data[0]);
         setComments(res.data[1]);
         setLikes(res.data[2]);
