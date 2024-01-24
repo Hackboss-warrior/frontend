@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+import whiteLogo from "../../assets/fakNews-white-logo-no-bg.svg";
 
 const Login = () => {
   const [nickName, setnickName] = useState("");
@@ -44,12 +45,13 @@ const Login = () => {
   };
 
   return (
-    <>
+    <main className="loginMainContent">
       <h1>Accede a tu perfil</h1>
-      <form className="loginForm" onSubmit={logUser}>
-        {errorAlert}
-        <div className="input-container">
-          <label htmlFor="user">Introduce tu email o usuario</label>
+
+      <div className="input-container">
+        <form className="loginForm" onSubmit={logUser}>
+          {errorAlert}
+
           <input
             type="text"
             onChange={(e) =>
@@ -58,30 +60,32 @@ const Login = () => {
             id="user"
             name="user"
             placeholder="Nickname o Email"
-            className="input-48"
+            className="loginNickname"
             required
           />
-        </div>
-        <div>
-          <label htmlFor="password">Introduce tu contraseña</label>
-          <input
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            id="password"
-            name="password"
-            placeholder="Contraseña"
-            className="input-48"
-            required
-          />
-        </div>
-        <button type="submit" className="btn-enviar">
-          Login
-        </button>
-      </form>
-      <p>
-        ¿Aún no tienes cuenta? <Link to="/register"> Registrate aquí</Link>
-      </p>
-    </>
+
+          <div>
+            <input
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              id="password"
+              name="password"
+              placeholder="Contraseña"
+              className="loginPassword"
+              required
+            />
+          </div>
+
+          <button type="submit" className="login-button">
+            Login
+          </button>
+        </form>
+        <p>
+          ¿Aún no tienes cuenta? <Link to="/register"> Registrate aquí</Link>
+        </p>
+      </div>
+      <img src={whiteLogo} className="loginLogo" alt="fakNews logo" />
+    </main>
   );
 };
 

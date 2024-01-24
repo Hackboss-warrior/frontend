@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 274.47 120.62">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        isolation: isolate;
+      }
+
+      .cls-2 {
+        fill: #b8b8b8;
+      }
+
+      .cls-2, .cls-3, .cls-5 {
+        font-family: SegoeUI-BoldItalic, 'Segoe UI';
+        font-style: italic;
+        font-weight: 700;
+      }
+
+      .cls-2, .cls-5 {
+        font-size: 59.87px;
+      }
+
+      .cls-6 {
+        fill: #a9191f;
+      }
+
+      .cls-6, .cls-7 {
+        stroke-width: 0px;
+      }
+
+      .cls-7 {
+        fill: none;
+      }
+
+      .cls-3 {
+        font-size: 69.68px;
+      }
+
+      .cls-3, .cls-5 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        opacity: .4;
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect id="Rectángulo_1-2" data-name="Rectángulo 1" class="cls-7" x="101.57" width="172.9" height="82.58" rx="7.74" ry="7.74"/>
+    </clipPath>
+  </defs>
+  <g id="Capa_1-2" data-name="Capa 1">
+    <g>
+      <g>
+        <rect id="Rectángulo_1" data-name="Rectángulo 1" class="cls-6" x="101.57" width="172.9" height="82.58" rx="7.74" ry="7.74"/>
+        <g class="cls-8">
+          <g id="News" class="cls-1">
+            <text class="cls-3" transform="translate(88.67 61.93)"><tspan x="0" y="0">News</tspan></text>
+          </g>
+        </g>
+      </g>
+      <g id="fak-2" class="cls-4">
+        <text class="cls-2" transform="translate(94.72 69.72) rotate(-179.5)"><tspan x="0" y="0">fak</tspan></text>
+      </g>
+      <g id="fak-2-2" data-name="fak-2" class="cls-1">
+        <text class="cls-5" transform="translate(6.41 56.95)"><tspan x="0" y="0">fak</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

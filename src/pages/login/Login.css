@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
+/*Reseteo de CSS y variables de color*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --main-red-color: #a9191f;
+  --dark-grey-color: #2d2d2d;
+  --light-grey-color: #b8b8b8;
+  --box-shadow: 4px 5px 23px #191919;
+  font-family: "Lato", sans-serif;
+}
+
+.loginMainContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.input-container {
+  width: 25vw;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+  border-radius: 10px;
+  background-color: var(--dark-grey-color);
+}
+
+.loginForm input {
+  width: 20vw;
+}
+
+.login-button {
+  width: 20vw;
+  height: 51px;
+  background-color: var(--main-red-color);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+
+.login-button:hover {
+  border: 1px solid #fff;
+}
+
+.input-container a {
+  color: #fff;
+  font-weight: 700;
+}
+
+.input-container a:hover {
+  color: var(--main-red-color);
+}
+
+.loginLogo {
+  width: 50%;
+}

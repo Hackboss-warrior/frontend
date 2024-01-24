@@ -6,6 +6,7 @@ import dateFormat from "../utils/dateFormat";
 const Comments = ({ comments, postId, setComments }) => {
   const [token] = useState(localStorage.getItem("token"));
   const [commentValue, setCommentValue] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const insertComment = async (e) => {
     e.preventDefault();
@@ -33,13 +34,20 @@ const Comments = ({ comments, postId, setComments }) => {
       );
       setComments(resComments.data[1]);
     } catch (error) {
-      console.error(error.message);
+      console.error(error);
+      setErrorMsg(error.response.data.error);
+      setTimeout(() => {
+        setErrorMsg(null);
+      }, 5000);
     }
   };
 
   return (
     <div className="comments">
       <h3>Comentarios</h3>
+      {/* Cambiar por react toastify */}
+      {errorMsg}
+      {/* Cambiar por react toastify */}
       <form className="commentsForm" onSubmit={insertComment}>
         <input
           type="tex"
@@ -55,6 +63,7 @@ const Comments = ({ comments, postId, setComments }) => {
           Comentar
         </button>
       </form>
+
       {comments
         .filter((comment) => comment.postId === postId)
         .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))

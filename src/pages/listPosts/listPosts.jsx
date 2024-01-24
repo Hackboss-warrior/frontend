@@ -4,6 +4,7 @@ import "./listPosts.css";
 import Post from "../../components/Post/Post";
 import { v4 as uuidv4 } from "uuid";
 import logo from "../../assets/faknews-logo.svg";
+
 const ListPosts = () => {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
@@ -29,7 +30,7 @@ const ListPosts = () => {
   return (
     <>
       <main className="posts">
-        <img src={logo} alt="fakNews" className="fakNewsLogo"></img>
+        {!posts && <img src={logo} alt="fakNews" className="fakNewsLogo"></img>}
         {posts.map((post) => (
           <Post
             key={uuidv4()}
