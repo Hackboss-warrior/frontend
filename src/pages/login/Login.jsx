@@ -10,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
   const [, setToken] = useState("");
+  const [, setStorageId] = useState("");
   const navigate = useNavigate();
 
   const logUser = async (e) => {
@@ -30,6 +31,7 @@ const Login = () => {
           },
         }
       );
+      setStorageId(localStorage.setItem("storagedUserId", res.data.id));
 
       setToken(localStorage.setItem("token", res.data.token));
 

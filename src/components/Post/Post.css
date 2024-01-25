@@ -63,6 +63,7 @@ main .post {
   display: flex;
   gap: 20px;
   align-items: center;
+  position: relative;
 }
 
 .postLikes,
@@ -79,6 +80,23 @@ main .post {
   width: 100px;
   border-radius: 10px;
   margin-bottom: 20px;
+}
+
+.delPostBtn {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  background-color: var(--main-red-color);
+  box-shadow: var(--box-shadow);
+  height: 50px;
+  width: 80px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  position: absolute;
+  right: 0;
+}
+
+.delPostBtn:hover {
+  border: 1px solid #fff;
 }
 
 .commentsNumber {

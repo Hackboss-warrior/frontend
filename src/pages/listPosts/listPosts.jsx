@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import "./listPosts.css";
 import Post from "../../components/Post/Post";
 import { v4 as uuidv4 } from "uuid";
-import logo from "../../assets/faknews-logo.svg";
 
 const ListPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -19,6 +18,7 @@ const ListPosts = () => {
         );
 
         setPosts(res.data[0]);
+
         setComments(res.data[1]);
         setLikes(res.data[2]);
       } catch (error) {
@@ -32,11 +32,12 @@ const ListPosts = () => {
   return (
     <>
       <main className="posts">
-        {!posts && <img src={logo} alt="fakNews" className="fakNewsLogo"></img>}
         {posts.map((post) => (
           <Post
             key={uuidv4()}
             post={post}
+            setPosts={setPosts}
+            posts={posts}
             comments={comments}
             setComments={setComments}
             currentPage={currentPage}
