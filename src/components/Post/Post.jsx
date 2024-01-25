@@ -23,8 +23,7 @@ const Post = ({
   const [token] = useState(localStorage.getItem("token"));
   const [storagedUserId] = useState(localStorage.getItem("storagedUserId"));
   const navigate = useNavigate();
-  console.log("postUserID", post.userId);
-  console.log("idStorage", Number(storagedUserId));
+
   const deletePost = async (postId) => {
     try {
       await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/post/${postId}`, {
@@ -95,12 +94,13 @@ const Post = ({
               {comments.filter((comment) => comment.postId === post.id).length}
             </p>
           </Link>
-          {Number(storagedUserId) === post.userId ? (
+          {Number(storagedUserId) === post.userId ||
+          Number(storagedUserId) === post.idUserTable ? (
             <button className="delPostBtn" onClick={() => deletePost(post.id)}>
               <FaTrash />
             </button>
           ) : (
-            <></>
+            <p>hola</p>
           )}
         </div>
 
