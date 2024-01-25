@@ -100,7 +100,7 @@ const Post = ({
               <FaTrash />
             </button>
           ) : (
-            <p>hola</p>
+            <></>
           )}
         </div>
 

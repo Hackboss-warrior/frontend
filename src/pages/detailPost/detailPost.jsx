@@ -28,7 +28,7 @@ const DetailPost = () => {
 
     fetchData();
   }, [postId]);
-  console.log(post);
+
   return (
     <main>
       <Post
