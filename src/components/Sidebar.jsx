@@ -68,6 +68,7 @@ const Sidebar = ({ handleSectionChange }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     removeCookie("Token")
+    removeCookie("Id")
     //Elimina correctamente el id almacenado en local Storage, pero al no recargarse los componentes no se vuelve a repintar, es algo similar a lo que vimos del token con Samu en la tutoría ¿Almacenarlo en un useContext?
     localStorage.removeItem("storagedUserId");
     //navigate("/");

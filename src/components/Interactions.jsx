@@ -10,11 +10,11 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from 'react-cookie';
-import { jwtDecode } from "jwt-decode";
 
 const Interactions = ({ post, likes, setLikes }) => {
   const [token] = useState(localStorage.getItem("token"));
-  const [storagedUserId] = useState(localStorage.getItem("storagedUserId"));
+  const [cookies, updateCookies] = useCookies('Id');
+  const storagedUserId = cookies.Id;
   // const [cookies, updateCookies] = useCookies(['Token']);
   // const decoded = jwtDecode(cookies.Token) || nill;
   // const storagedUserId = decoded.jwtPayLoad.id;
