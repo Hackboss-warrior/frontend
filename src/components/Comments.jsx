@@ -20,7 +20,7 @@ const Comments = ({ comments, postId, setComments }) => {
     formData.append("comment", e.target.comment.value);
 
     try {
-      await axios.post(
+      const responsecomments = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/post/${postId}`,
         formData,
         {
@@ -33,10 +33,8 @@ const Comments = ({ comments, postId, setComments }) => {
 
       setCommentValue("");
 
-      const resComments = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/posts`
-      );
-      setComments(resComments.data[1]);
+      setComments(responsecomments.data);
+      
     } catch (error) {
       console.error(error);
       setErrorMsg(error.response.data.error);

@@ -11,12 +11,14 @@ import { RiAdminFill } from "react-icons/ri";
 import { TbUsersGroup } from "react-icons/tb";
 import { BsFileEarmarkPost } from "react-icons/bs";
 import fakNews from "../assets/faknews-logo.svg";
+import { useCookies } from 'react-cookie';
 
 const Sidebar = ({ handleSectionChange }) => {
   const [activeLink, setActiveLink] = useState("home");
   const navigate = useNavigate();
   const [user, setUser] = useState([]);
   const token = localStorage.getItem("token");
+  const [cookies, removeCookie] = useCookies(['Token']);
 
   //  useEffect(() => {
   //    const storedActiveLink = localStorage.getItem('activeLink');
@@ -44,12 +46,10 @@ const Sidebar = ({ handleSectionChange }) => {
     if (token) {
       const fetchData = async () => {
         try {
-          console.log("1");
           const response = await axios.get(
             `${import.meta.env.VITE_BACKEND_URL}/profile`,
             { headers: { Authorization: `Bearer ${token}` } }
           );
-          console.log("2");
           setUser(response.data);
         } catch (err) {
           console.error("Fallo:", err);
@@ -67,9 +67,10 @@ const Sidebar = ({ handleSectionChange }) => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    removeCookie("Token")
     //Elimina correctamente el id almacenado en local Storage, pero al no recargarse los componentes no se vuelve a repintar, es algo similar a lo que vimos del token con Samu en la tutoría ¿Almacenarlo en un useContext?
     localStorage.removeItem("storagedUserId");
-    navigate("/");
+    //navigate("/");
   };
 
   return (

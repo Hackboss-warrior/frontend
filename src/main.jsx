@@ -12,6 +12,7 @@ import Error from "./pages/Error/Error"
 import Admin from "./pages/Admin/Admin";
 import Menu from "./components/Menu";
 import About from "./pages/about/About";
+import { CookiesProvider } from 'react-cookie';
 
 
 // const router = createBrowserRouter([
@@ -51,6 +52,7 @@ import About from "./pages/about/About";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <CookiesProvider>
     <Router>
       <Menu />
 
@@ -68,5 +70,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </Routes>
       </div>
     </Router>
+    </CookiesProvider>
   </React.StrictMode>
 );

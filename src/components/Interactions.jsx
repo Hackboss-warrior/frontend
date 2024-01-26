@@ -9,11 +9,17 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from 'react-cookie';
+import { jwtDecode } from "jwt-decode";
 
 const Interactions = ({ post, likes, setLikes }) => {
   const [token] = useState(localStorage.getItem("token"));
   const [storagedUserId] = useState(localStorage.getItem("storagedUserId"));
+  // const [cookies, updateCookies] = useCookies(['Token']);
+  // const decoded = jwtDecode(cookies.Token) || nill;
+  // const storagedUserId = decoded.jwtPayLoad.id;
   const navigate = useNavigate();
+
   const sendLike = async (postId) => {
     //Con esta línea de código nos aseguramos que si el usuario no esta logueado la página le rediriga a login
     !token && navigate("/login");
@@ -32,6 +38,8 @@ const Interactions = ({ post, likes, setLikes }) => {
           },
         }
       );
+
+      
 
       const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/posts`);
 
