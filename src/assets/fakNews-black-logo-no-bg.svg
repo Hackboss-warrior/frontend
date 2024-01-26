@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 282.86 120.62">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2d2d2d;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        isolation: isolate;
+      }
+
+      .cls-1, .cls-2, .cls-4 {
+        font-family: SegoeUI-BoldItalic, 'Segoe UI';
+        font-style: italic;
+        font-weight: 700;
+      }
+
+      .cls-1, .cls-4 {
+        font-size: 59.87px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-size: 69.68px;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-4 {
+        fill: #b8b8b8;
+      }
+
+      .cls-5 {
+        fill: #a9191f;
+      }
+
+      .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-6 {
+        fill: none;
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <path id="Rectángulo_1-2" data-name="Rectángulo 1" class="cls-6" d="M109.7,0h165.05c4.48,0,8.12,3.47,8.12,7.74v67.1c0,4.28-3.63,7.74-8.12,7.74H109.7c-4.48,0-8.12-3.47-8.12-7.74V7.74c0-4.28,3.63-7.74,8.12-7.74Z"/>
+    </clipPath>
+  </defs>
+  <g id="Capa_1-2" data-name="Capa 1">
+    <g>
+      <g>
+        <path id="Rectángulo_1" data-name="Rectángulo 1" class="cls-5" d="M109.7,0h165.05c4.48,0,8.12,3.47,8.12,7.74v67.1c0,4.28-3.63,7.74-8.12,7.74H109.7c-4.48,0-8.12-3.47-8.12-7.74V7.74c0-4.28,3.63-7.74,8.12-7.74Z"/>
+        <g class="cls-7">
+          <g id="News" class="cls-3">
+            <text class="cls-2" transform="translate(94.39 61.93) scale(1.05 1)"><tspan x="0" y="0">News</tspan></text>
+          </g>
+        </g>
+      </g>
+      <g id="fak-2" class="cls-3">
+        <text class="cls-4" transform="translate(94.72 69.72) rotate(-179.5)"><tspan x="0" y="0">fak</tspan></text>
+      </g>
+      <g id="fak-2-2" data-name="fak-2" class="cls-3">
+        <text class="cls-1" transform="translate(6.42 56.95)"><tspan x="0" y="0">fak</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

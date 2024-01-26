@@ -8,6 +8,7 @@
   --main-red-color: #a9191f;
   --dark-grey-color: #2d2d2d;
   --light-grey-color: #b8b8b8;
+  --box-shadow: 4px 5px 23px #191919;
   font-family: "Lato", sans-serif;
 }
 
@@ -27,7 +28,7 @@ main .post {
 
 .post {
   border-radius: 25px;
-  box-shadow: 4px 5px 23px #191919;
+  box-shadow: var(--box-shadow);
   padding: 40px;
   margin: 50px 0px;
   text-align: center;
@@ -53,13 +54,20 @@ main .post {
   border: 5px solid var(--main-red-color);
 }
 
+.defaultPostImg {
+  width: 920px;
+  margin-bottom: 10px;
+}
+
 .interactComments {
   display: flex;
   gap: 20px;
   align-items: center;
+  position: relative;
 }
 
-.postInteractions,
+.postLikes,
+.postDisLikes,
 .commentsNumber {
   display: flex;
   gap: 10px;
@@ -67,11 +75,39 @@ main .post {
   align-items: center;
   font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
-  box-shadow: 4px 5px 23px #191919;
+  box-shadow: var(--box-shadow);
   height: 50px;
   width: 100px;
   border-radius: 10px;
   margin-bottom: 20px;
+}
+
+.postLikes,
+.postDisLikes {
+  background-color: var(--dark-grey-color);
+}
+
+.commentsNumber:hover,
+.postLikes:hover,
+.postDisLikes:hover {
+  border: 1px solid #fff;
+}
+
+.delPostBtn {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  background-color: var(--main-red-color);
+  box-shadow: var(--box-shadow);
+  height: 50px;
+  width: 80px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  position: absolute;
+  right: 0;
+}
+
+.delPostBtn:hover {
+  border: 1px solid #fff;
 }
 
 .commentsNumber {
@@ -79,7 +115,7 @@ main .post {
 }
 .postContent {
   border-radius: 10px;
-  box-shadow: 4px 5px 23px #191919;
+  box-shadow: var(--box-shadow);
   padding: 20px;
 }
 
@@ -103,14 +139,14 @@ main .post {
   align-items: center;
   padding: 10px 20px;
   border-radius: 10px;
-  box-shadow: 4px 5px 23px #191919;
+  box-shadow: var(--box-shadow);
 }
 
 .postCreatedAt {
   font-style: italic;
   padding: 10px 20px;
   border-radius: 50px;
-  box-shadow: 4px 5px 23px #191919;
+  box-shadow: var(--box-shadow);
   background-color: var(--main-red-color);
 }
 
@@ -157,7 +193,7 @@ main .post {
   margin: 40px 10px;
   padding: 20px 20px;
   border-radius: 10px;
-  box-shadow: 4px 5px 23px #191919;
+  box-shadow: var(--box-shadow);
 }
 
 .commentUserInfoDate {
@@ -176,14 +212,14 @@ main .post {
   padding: 10px 20px;
   gap: 10px;
   border-radius: 10px;
-  box-shadow: 4px 5px 23px #191919;
+  box-shadow: var(--box-shadow);
 }
 
 .commentDate {
   font-style: italic;
   padding: 10px 20px;
   border-radius: 50px;
-  box-shadow: 4px 5px 23px #191919;
+  box-shadow: var(--box-shadow);
   background-color: var(--main-red-color);
 }
 
@@ -199,7 +235,7 @@ main .post {
   margin: 40px 10px;
   padding: 40px 20px;
   border-radius: 10px;
-  box-shadow: 4px 5px 23px #191919;
+  box-shadow: var(--box-shadow);
 }
 .commentsForm input {
   height: 120px;
@@ -217,7 +253,12 @@ main .post {
   background-color: var(--main-red-color);
   border-radius: 10px;
   width: 150px;
-  box-shadow: 4px 5px 23px #191919;
+  box-shadow: var(--box-shadow);
   background-color: var(--main-red-color);
   font-family: "Lato", sans-serif;
+}
+
+.commentsForm button:hover {
+  transform: scale(1.1);
+  border: 1px solid #fff;
 }

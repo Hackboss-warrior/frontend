@@ -2,18 +2,25 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import dateFormat from "../utils/dateFormat";
+import { useNavigate } from "react-router-dom";
 
 const Comments = ({ comments, postId, setComments }) => {
   const [token] = useState(localStorage.getItem("token"));
   const [commentValue, setCommentValue] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const navigate = useNavigate();
 
   const insertComment = async (e) => {
     e.preventDefault();
+
+    // Con esta línea envíamos al usuario no logueado a la página de login
+    !token && navigate("/login");
+
     const formData = new FormData();
     formData.append("comment", e.target.comment.value);
 
     try {
-      const res = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/post/${postId}`,
         formData,
         {
@@ -24,8 +31,6 @@ const Comments = ({ comments, postId, setComments }) => {
         }
       );
 
-      setComments([...comments, res.data]);
-
       setCommentValue("");
 
       const resComments = await axios.get(
@@ -33,13 +38,20 @@ const Comments = ({ comments, postId, setComments }) => {
       );
       setComments(resComments.data[1]);
     } catch (error) {
-      console.error(error.message);
+      console.error(error);
+      setErrorMsg(error.response.data.error);
+      setTimeout(() => {
+        setErrorMsg(null);
+      }, 5000);
     }
   };
 
   return (
     <div className="comments">
       <h3>Comentarios</h3>
+      {/* Cambiar por react toastify */}
+      {errorMsg}
+      {/* Cambiar por react toastify */}
       <form className="commentsForm" onSubmit={insertComment}>
         <input
           type="tex"
@@ -51,10 +63,9 @@ const Comments = ({ comments, postId, setComments }) => {
           className="input-comment"
           required
         />
-        <button className="" type="submit">
-          Comentar
-        </button>
+        <button type="submit">Comentar</button>
       </form>
+
       {comments
         .filter((comment) => comment.postId === postId)
         .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))

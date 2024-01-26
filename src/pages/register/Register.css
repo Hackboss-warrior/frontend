@@ -1,6 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
 * {
   box-sizing: border-box;
+  --main-red-color: #a9191f;
+  --dark-grey-color: #2d2d2d;
+  --light-grey-color: #b8b8b8;
+  --box-shadow: 4px 5px 23px #191919;
+  font-family: "Lato", sans-serif;
 }
+
+.registerMainContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.registerMainContent h1 {
+  font-family: "Montserrat", sans-serif;
+  color: #fff;
+}
+
+input::placeholder {
+  color: var(--light-grey-color);
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
 body {
   margin: 0;
   font-family: sans-serif;
@@ -11,6 +38,7 @@ h1 {
   color: #fff;
   text-align: center;
 }
+
 .form-register {
   width: 95%;
   max-width: 500px;
@@ -18,29 +46,20 @@ h1 {
   background: white;
   border-radius: 7px;
 }
-.form-titulo {
-  background: #0ea7e7;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  font-weight: 100;
-  font-size: 30px;
-  border-top-left-radius: 7px;
-  border-top-right-radius: 7px;
-  border-bottom: 3px solid #ea484e;
-}
+
 .contenedor-inputs {
   padding: 10px 30px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
 input {
   margin-bottom: 15px;
   padding: 15px;
   font-size: 16px;
-  border-radius: 3px;
-  border: 1px solid darkgray;
+  border-radius: 10px;
+  border: 1px solid var(--light-grey-color);
 }
 .input-48 {
   width: 48%;
@@ -48,21 +67,34 @@ input {
 .input-100 {
   width: 100%;
 }
+
+#dob {
+  color: var(--light-grey-color);
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+#avatar {
+  color: var(--light-grey-color);
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
 .btn-enviar {
-  background: #ea484e;
+  background: var(--main-red-color);
   color: #fff;
   margin: auto;
-  padding: 10px 40px;
+  padding: 10px 80px;
   cursor: pointer;
   font-size: 20px;
+  border-radius: 10px;
 }
 .btn-enviar:hover {
-  background: #0ea7e7;
-  transform: scale(1.1);
+  border: 1px solid #fff;
 }
-.btn-enviar:active {
-  transform: scale(1.2);
-}
+
 .form-link {
   width: 100%;
   margin: 7px;
@@ -70,17 +102,32 @@ input {
   text-align: center;
 }
 
-/* Define additional styles for different button sizes or states using the corresponding variables */
-
 .boxregister {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: var(--dark-grey-color);
   max-width: 700px;
   border-radius: 10px;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.8);
+  box-shadow: var(--box-shadow);
   margin: auto auto;
   padding: 40px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+}
+
+.formFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  gap: 20px;
+}
+
+.formFooter a {
+  color: #fff;
+  font-weight: 700;
+}
+
+.formFooter a:hover {
+  color: var(--main-red-color);
+}
+
+.registerLogo {
+  width: 30%;
 }
