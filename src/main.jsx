@@ -12,7 +12,7 @@ import Error from "./pages/Error/Error"
 import Admin from "./pages/Admin/Admin";
 import Menu from "./components/Menu";
 import About from "./pages/about/About";
-
+import CreatePost from "./pages/createPost/CreatePost";
 
 // const router = createBrowserRouter([
 //   {
@@ -59,6 +59,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/" element={<ListPosts />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/createpost" element={<CreatePost />} />
           <Route path="/post/:postId" element={<DetailPost />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/contact" element={<Contact />} />
