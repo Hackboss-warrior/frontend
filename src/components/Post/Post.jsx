@@ -10,7 +10,7 @@ import { FaCommentAlt } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import logo from "../../assets/faknews-logo.svg";
 import axios from "axios";
-import { useState } from "react";
+import { useCookies } from 'react-cookie';
 
 const Post = ({
   post,
@@ -21,8 +21,9 @@ const Post = ({
   setPosts,
   setLikes,
 }) => {
-  const [token] = useState(localStorage.getItem("token"));
-  const [storagedUserId] = useState(localStorage.getItem("storagedUserId"));
+  const [cookies, updateCookies] = useCookies('');
+  const token = cookies.Token;
+  const storagedUserId = cookies.Id;
   const navigate = useNavigate();
 
   const deletePost = async (postId) => {

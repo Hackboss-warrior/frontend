@@ -12,12 +12,9 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 
 const Interactions = ({ post, likes, setLikes }) => {
-  const [token] = useState(localStorage.getItem("token"));
-  const [cookies, updateCookies] = useCookies('Id');
+  const [cookies, updateCookies] = useCookies('');
+  const token = cookies.Token;
   const storagedUserId = cookies.Id;
-  // const [cookies, updateCookies] = useCookies(['Token']);
-  // const decoded = jwtDecode(cookies.Token) || nill;
-  // const storagedUserId = decoded.jwtPayLoad.id;
   const navigate = useNavigate();
 
   const sendLike = async (postId) => {

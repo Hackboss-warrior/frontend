@@ -41,8 +41,6 @@ const Login = () => {
       
       setCookie('Id', decoded.jwtPayLoad.id);
 
-      setStorageId(localStorage.setItem("storagedUserId", res.data.id));
-
       setToken(localStorage.setItem("token", res.data.token));
 
       // Una vez logueados queremos que nos redirija automáticamente a la home
