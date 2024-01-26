@@ -16,6 +16,7 @@ const Profile = () => {
           `${import.meta.env.VITE_BACKEND_URL}/profile`, { headers: { 'Authorization': `Bearer ${token}` } }
         );
     console.log(response.data,"RESPONSE");
+
         setUser(response.data); 
       } 
       catch (err) {
@@ -25,7 +26,6 @@ const Profile = () => {
 
     fetchData();
   }, [token]);
-  // console.log("user",user);
   
   
   return (

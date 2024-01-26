@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import whiteLogo from "../../assets/fakNews-white-logo-no-bg.svg";
+import { useCookies } from 'react-cookie';
 
 const Login = () => {
   const [nickName, setnickName] = useState("");
@@ -12,6 +13,8 @@ const Login = () => {
   const [, setToken] = useState("");
   const [, setStorageId] = useState("");
   const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(['Token']);
+
 
   const logUser = async (e) => {
     e.preventDefault();
@@ -31,6 +34,9 @@ const Login = () => {
           },
         }
       );
+
+      setCookie('Token', res.data.token);
+
       setStorageId(localStorage.setItem("storagedUserId", res.data.id));
 
       setToken(localStorage.setItem("token", res.data.token));

@@ -13,44 +13,11 @@ import Admin from "./pages/Admin/Admin";
 import Menu from "./components/Menu";
 import About from "./pages/about/About";
 import CreatePost from "./pages/createPost/CreatePost";
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <ListPosts />,
-//   },
-//   {
-//     path: "/register",
-//     element: <Register />,
-//   },
-//   {
-//     path: "/login",
-//     element: <Login />,
-//   },
-//   {
-//     path: "/post/:postId",
-//     element: <DetailPost />,
-//   },
-//   {
-//     path: "/profile",
-//     element: <Profile />,
-//   },
-//   {
-//     path: "/contact",
-//     element: <Contact />,
-//   },
-//   {
-//     path: "/admin",
-//     element: <Admin />,
-//   },
-//   {
-//     path: "/*",
-//     element: <Error />,
-//   }
-// ]);
+import { CookiesProvider } from 'react-cookie';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <CookiesProvider>
     <Router>
       <Menu />
 
@@ -69,5 +36,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </Routes>
       </div>
     </Router>
+    </CookiesProvider>
   </React.StrictMode>
 );

@@ -3,12 +3,15 @@ import { useState, useEffect } from "react";
 import "./listPosts.css";
 import Post from "../../components/Post/Post";
 import { v4 as uuidv4 } from "uuid";
+import { useCookies } from 'react-cookie';
+import { jwtDecode } from "jwt-decode";
 
 const ListPosts = () => {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
   const [currentPage] = useState("list");
+  const [cookies, updateCookies] = useCookies(['Token']);
 
   useEffect(() => {
     const fetchData = async () => {
