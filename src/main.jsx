@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router,  Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import "./index.css";
@@ -18,24 +18,23 @@ import { CookiesProvider } from 'react-cookie';
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <CookiesProvider>
-    <Router>
-      <Menu />
-
-      <div className="pages">
-        <Routes>
-          <Route path="/" element={<ListPosts />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/createpost" element={<CreatePost />} />
-          <Route path="/post/:postId" element={<DetailPost />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/*" element={<Error />} />
-        </Routes>
-      </div>
-    </Router>
+      <Router>
+        <Menu />
+        <div className="pages">
+          <Routes>
+            <Route path="/" element={<ListPosts />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/createpost" element={<CreatePost />} />
+            <Route path="/post/:postId" element={<DetailPost />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/*" element={<Error />} />
+          </Routes>
+        </div>
+      </Router>
     </CookiesProvider>
   </React.StrictMode>
 );
