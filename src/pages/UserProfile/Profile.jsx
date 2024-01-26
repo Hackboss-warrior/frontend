@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./Profile.css"
+import dateFormat from "../../utils/dateFormat";
+import ModifyProfile from "../../components/users/ModifyProfile";
 const Profile = () => {
   const [user, setUser] = useState([]);
 
@@ -13,7 +15,7 @@ const Profile = () => {
         const response = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/profile`, { headers: { 'Authorization': `Bearer ${token}` } }
         );
-    // console.log(response.data,"RESPONSE");
+    console.log(response.data,"RESPONSE");
         setUser(response.data); 
       } 
       catch (err) {
@@ -42,11 +44,11 @@ const Profile = () => {
         <div className="separador"></div>
       <div className="presentacionPersonal">
       <h3>{user.name + " "+ user.firstName}</h3>
-      <p>{user.DOB}</p>
+      <p>{dateFormat(user.DOB)}</p>
       <p>{user.BIO}</p>
 
       </div>
-
+      <ModifyProfile/>
     </div>  
     </>
     
