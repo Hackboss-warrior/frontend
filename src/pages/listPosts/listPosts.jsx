@@ -18,7 +18,6 @@ const ListPosts = () => {
         );
 
         setPosts(res.data[0]);
-
         setComments(res.data[1]);
         setLikes(res.data[2]);
       } catch (error) {
@@ -32,18 +31,21 @@ const ListPosts = () => {
   return (
     <>
       <main className="posts">
-        {posts.map((post) => (
-          <Post
-            key={uuidv4()}
-            post={post}
-            setPosts={setPosts}
-            posts={posts}
-            comments={comments}
-            setComments={setComments}
-            currentPage={currentPage}
-            likes={likes}
-          />
-        ))}
+        {posts
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          .map((post) => (
+            <Post
+              key={uuidv4()}
+              post={post}
+              setPosts={setPosts}
+              posts={posts}
+              comments={comments}
+              setComments={setComments}
+              currentPage={currentPage}
+              likes={likes}
+              setLikes={setLikes}
+            />
+          ))}
       </main>
     </>
   );

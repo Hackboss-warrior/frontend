@@ -37,6 +37,7 @@ const DetailPost = () => {
         comments={comments}
         setComments={setComments}
         likes={likes}
+        setLikes={setLikes}
       />
     </main>
   );

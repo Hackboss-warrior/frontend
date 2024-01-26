@@ -19,6 +19,7 @@ const Post = ({
   currentPage,
   likes,
   setPosts,
+  setLikes,
 }) => {
   const [token] = useState(localStorage.getItem("token"));
   const [storagedUserId] = useState(localStorage.getItem("storagedUserId"));
@@ -83,7 +84,7 @@ const Post = ({
         </Link>
 
         <div className="interactComments">
-          <Interactions post={post} likes={likes} />
+          <Interactions post={post} likes={likes} setLikes={setLikes} />
           <Link
             to={`${import.meta.env.VITE_FRONTEND_URL}/post/${
               post.id
@@ -128,10 +129,11 @@ Post.propTypes = {
   post: PropTypes.object.isRequired,
   likes: PropTypes.array,
   comments: PropTypes.array.isRequired,
-  setComments: PropTypes.func,
+  setComments: PropTypes.func.isRequired,
   currentPage: PropTypes.string,
-  posts: PropTypes.array,
-  setPosts: PropTypes.func,
+  posts: PropTypes.array.isRequired,
+  setPosts: PropTypes.func.isRequired,
+  setLikes: PropTypes.func.isRequired,
 };
 
 export default Post;

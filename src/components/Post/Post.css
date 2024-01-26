@@ -82,6 +82,17 @@ main .post {
   margin-bottom: 20px;
 }
 
+.postLikes,
+.postDisLikes {
+  background-color: var(--dark-grey-color);
+}
+
+.commentsNumber:hover,
+.postLikes:hover,
+.postDisLikes:hover {
+  border: 1px solid #fff;
+}
+
 .delPostBtn {
   font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
