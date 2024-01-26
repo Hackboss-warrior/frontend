@@ -131,8 +131,8 @@ Post.propTypes = {
   comments: PropTypes.array.isRequired,
   setComments: PropTypes.func.isRequired,
   currentPage: PropTypes.string,
-  posts: PropTypes.array.isRequired,
-  setPosts: PropTypes.func.isRequired,
+  posts: PropTypes.array,
+  setPosts: PropTypes.func,
   setLikes: PropTypes.func.isRequired,
 };
 
