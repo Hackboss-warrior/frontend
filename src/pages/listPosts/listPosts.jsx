@@ -11,7 +11,6 @@ const ListPosts = () => {
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
   const [currentPage] = useState("list");
-  const [cookies, updateCookies] = useCookies(['Token']);
 
   useEffect(() => {
     const fetchData = async () => {
