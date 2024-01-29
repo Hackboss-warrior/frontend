@@ -55,7 +55,7 @@ const Profile = () => {
       <p>{user.BIO}</p>
 
       </div>
-      <ModifyProfile/>
+      <ModifyProfile user={user} />
     </div>  
     </>
     

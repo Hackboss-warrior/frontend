@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 import { useNavigate } from "react-router-dom";
 import isAuth from "../../isAuth";
 
-const ModifyProfile = () => {
+const ModifyProfile = ({ user }) => {
   const [name, setName] = useState("");
   const [firstName, setfirstName] = useState("");
   const [nickName, setnickName] = useState("");
@@ -17,8 +17,6 @@ const ModifyProfile = () => {
   const [button, setButton] = useState("button");
   const [cookies] = useCookies(['Token']);
   const navigate = useNavigate();
-
-
 
   useEffect(()=>{
     if (!isAuth(cookies.Token)){
@@ -74,7 +72,7 @@ const ModifyProfile = () => {
               onChange={(e) => setName(e.target.value)}
               id="nombre"
               name="nombre"
-              placeholder="Nombre"
+              placeholder={user.name}
               
             />
             <input
@@ -82,7 +80,7 @@ const ModifyProfile = () => {
               onChange={(e) => setfirstName(e.target.value)}
               id="apellidos"
               name="apellidos"
-              placeholder="Apellidos"
+              placeholder={user.firstName}
              
             />
             <input
@@ -90,7 +88,7 @@ const ModifyProfile = () => {
               onChange={(e) => setemail(e.target.value)}
               id="correo"
               name="correo"
-              placeholder="Correo"
+              placeholder={user.email}
              
             />
             <input
@@ -98,7 +96,7 @@ const ModifyProfile = () => {
               onChange={(e) => setBIO(e.target.value)}
               id="bio"
               name="bio"
-              placeholder="Biografía"
+              placeholder={user.BIO}
               
             />
             <input
@@ -106,7 +104,7 @@ const ModifyProfile = () => {
               onChange={(e) => setnickName(e.target.value)}
               id="usuario"
               name="usuario"
-              placeholder="Usuario"
+              placeholder={user.nickName}
              
             />
             <input
@@ -114,7 +112,7 @@ const ModifyProfile = () => {
               onChange={(e) => setpassword(e.target.value)}
               id="clave"
               name="clave"
-              placeholder="Contraseña"
+              placeholder="*****"
               
             />
           
