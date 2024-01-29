@@ -28,15 +28,26 @@ const ModifyProfile = ({ user }) => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("name", name);
-      formData.append("firstName", firstName);
-      formData.append("nickName", nickName);
-      formData.append("email", email);
-      formData.append("BIO", BIO);
-      formData.append("password", password);
+      if (name.trim() !== "") {
+        formData.append("name", name);
+      }
+      if (firstName.trim() !== "") {
+        formData.append("firstName", firstName);
+      }
+      if (nickName.trim() !== "") {
+        formData.append("nickName", nickName);
+      }
+      if (email.trim() !== "") {
+        formData.append("email", email);
+      }
+      if (BIO.trim() !== "") {
+        formData.append("BIO", BIO);
+      }
+      if (password.trim() !== "") {
+        formData.append("password", password);
+      }
       // formData.append("avatar", avatar);
       // formData.append("DOB", DOB);
-
 
       await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/user`, formData, {
         headers: {
@@ -44,6 +55,7 @@ const ModifyProfile = ({ user }) => {
           "Authorization": `Bearer ${cookies.Token}`,
         },
       });
+      setButton("form");
     } catch {
       console.error("error");
     }
@@ -115,12 +127,7 @@ const ModifyProfile = ({ user }) => {
               placeholder="*****"
               
             />
-          
-       
-
-          <button type="submit" onClick={changeBtnForm}>
-            Enviar
-          </button>
+          <button type="submit">Enviar</button>
           <button onClick={changeBtnForm}>Cancelar</button>
         </form>
       )}
