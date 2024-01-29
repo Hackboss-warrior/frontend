@@ -2,14 +2,14 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreatePost.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [topic, setTopic] = useState("");
   const [body, setbody] = useState("");
-  // const [tags, setTags] = useState("");
-  // const [tags2, setTags2] = useState("");
-  // const [tags3, setTags3] = useState("");
+  const [tag, setTag] = useState("");
   const [image, setImage] = useState("");
 
   // --------- Manejadores de eventos. No se manda al backend ---------
@@ -17,7 +17,7 @@ const CreatePost = () => {
 
   const navigate = useNavigate();
 
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("Token");
 
   const createNewPost = async (e) => {
     e.preventDefault();
@@ -26,11 +26,8 @@ const CreatePost = () => {
       formData.append("title", title);
       formData.append("topic", topic);
       formData.append("body", body);
-      // formData.append("tags", tags);
-      // formData.append("tags2", tags2);
-      // formData.append("tagas3", tags3);
+      formData.append("tag", tag);
       formData.append("image", image);
-
       await axios.post(`${import.meta.env.VITE_BACKEND_URL}/posts`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -38,16 +35,19 @@ const CreatePost = () => {
         },
       });
 
-      navigate("/");
+      //navigate("/");
+      toast.success("¡Publicación creada exitosamente!");
     } catch (error) {
       setErrorAlert(<div>fakNews: {error.response.data.error}</div>);
       setTimeout(() => {
         setErrorAlert(null);
       }, 5000);
+      toast.error("Error al crear la publicación");
     }
   };
 
   return (
+    <>
     <form className="boxregister" onSubmit={createNewPost}>
       {errorAlert}
       <div className="contenedor-inputs">
@@ -79,42 +79,16 @@ const CreatePost = () => {
           required
         />
         <div className="TrioTags">
-        <select name="tag1" id="tag1">       
-          <option value="politica">Política</option>
-          <option value="economia">Economía</option>
-          <option value="tecnologia">Tecnología</option>
-          <option value="ciencia">Ciencia</option>
-          <option value="salud">Salud</option>
-          <option value="cultura">Cultura</option>
-          <option value="deportes">Deportes</option>
-          <option value="entretenimiento">Entretenimiento</option>
-          <option value="nsfw">NSFW</option>
-        </select>
-
-        <select name="tag2" id="tag2">
-        <option value="0">Vacio</option>
-          <option value="politica">Política</option>
-          <option value="economia">Economía</option>
-          <option value="tecnologia">Tecnología</option>
-          <option value="ciencia">Ciencia</option>
-          <option value="salud">Salud</option>
-          <option value="cultura">Cultura</option>
-          <option value="deportes">Deportes</option>
-          <option value="entretenimiento">Entretenimiento</option>
-          <option value="nsfw">NSFW</option>
-        </select>
-
-        <select name="tag3" id="tag3">
-        <option value="0">Vacio</option>
-          <option value="politica">Política</option>
-          <option value="economia">Economía</option>
-          <option value="tecnologia">Tecnología</option>
-          <option value="ciencia">Ciencia</option>
-          <option value="salud">Salud</option>
-          <option value="cultura">Cultura</option>
-          <option value="deportes">Deportes</option>
-          <option value="entretenimiento">Entretenimiento</option>
-          <option value="nsfw">NSFW</option>
+        <select onChange={(e) => setTag(e.target.value)}>       
+          <option value="Políti">Política</option>
+          <option value="Economía">Economía</option>
+          <option value="Tecnología">Tecnología</option>
+          <option value="Ciencia">Ciencia</option>
+          <option value="Salud">Salud</option>
+          <option value="Cultura">Cultura</option>
+          <option value="Deportes">Deportes</option>
+          <option value="Entretenimiento">Entretenimiento</option>
+          <option value="NSFW">NSFW</option>
         </select>
 
         </div>
@@ -132,6 +106,8 @@ const CreatePost = () => {
         </button>
       </div>
     </form>
+    <ToastContainer />
+    </>
   );
 };
 
