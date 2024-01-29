@@ -14,14 +14,12 @@ const About = () => {
         const response = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/about`
         );
-console.log(response, "response");
+        console.log(response, "response");
         setUserCount(response.data.totalUsers);
 
         setPotsCount(response.data.totalPosts);
 
         setCommentsCount(response.data.totalComments);
-
-        
       } catch (error) {
         console.log("error del About");
       }
@@ -32,7 +30,7 @@ console.log(response, "response");
 
   return (
     <>
-      <h1>About</h1>
+      <h1 className="titlePageAbout"> Repartiendo desde 2023</h1>
 
       <section className="presentation">
         <p>
@@ -40,8 +38,10 @@ console.log(response, "response");
           noticias sin pelos en la lengua. Olvídate del aburrimiento, aquí las
           historias son más picantes que tus chismes de vecindario. Sin filtros,
           sin censura, somos la inyección de realidad que necesitas. ¡Prepárate
-          para el desmadre informativo que solo nosotros te ofrecemos!{" "}
+          para el desmadre informativo que solo nosotros te ofrecemos!
         </p>
+        
+        <p>Nuestra mayor pasión es destrozar la realidad hasta que solo queden risas y la triste verdad para que tu puedas tomar tus puñeteras conclusiones mientras honras a Roca.</p>
         <p>
           Conoce a nuestros pícaros developers, el dúo dinámico y su genio
           diminuto. Dos colosos del código que creen que miden en líneas de
@@ -54,9 +54,25 @@ console.log(response, "response");
       </section>
 
       <section className="acounting">
-        <p>numero de usuarios:{userCount}</p>
-        <p>numero de Posts:{postsCount}</p>
-        <p>numero de Comments:{commentsCount}</p>
+        <h2 className="acountingH2">Alctualmente contamos con:</h2>
+<artucle className="accountCards">
+        <div className="acountCard">
+         
+          <h2 className="acountH3">{userCount} </h2> <p>Usuarios registrados</p>
+        </div>
+
+        <div className="acountCard">
+          
+          <h2 className="acountH3">{postsCount} </h2>
+          <p>Publicaciones mordaces</p>
+        </div>
+        <div className="acountCard">
+          
+          <h2 className="acountH3">{commentsCount} </h2>
+          <p>Rios de pura polémica</p>
+        </div>
+        </artucle>
+
       </section>
     </>
   );
