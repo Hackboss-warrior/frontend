@@ -21,7 +21,7 @@ const Post = ({
   setPosts,
   setLikes,
 }) => {
-  const [cookies, updateCookies] = useCookies('');
+  const [cookies, updateCookies] = useCookies(['Token']);
   const token = cookies.Token;
   const storagedUserId = cookies.Id;
   const navigate = useNavigate();
@@ -120,8 +120,10 @@ const Post = ({
           comments={comments}
           postId={post.id}
           setComments={setComments}
+          
         />
       )}
+      
     </article>
   );
 };

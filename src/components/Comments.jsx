@@ -5,16 +5,48 @@ import dateFormat from "../utils/dateFormat";
 import { useNavigate } from "react-router-dom";
 
 const Comments = ({ comments, postId, setComments }) => {
-  const [token] = useState(localStorage.getItem("token"));
+  const [Token, setMiLocalStorage] = useState(localStorage.getItem('Token') || '')
   const [commentValue, setCommentValue] = useState("");
+  const [replyValues, setReplyValues] = useState({});  // Nuevo estado para respuestas
   const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
+
+  const insertAnswers = async (e, commentId) => {
+    e.preventDefault();
+    const replyValue = replyValues[commentId] || '';
+    console.log(replyValue);
+    console.log(commentId)
+
+    const formData = new FormData();
+    formData.append('commentId', commentId);
+    formData.append('answer', replyValue);
+
+    try {
+      const responsecomments = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/answers`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${Token}`,
+          },
+        }
+      );
+
+    } catch (error) {
+      console.error(error);
+      setErrorMsg(error.response.data.error);
+      setTimeout(() => {
+        setErrorMsg(null);
+      }, 5000);
+    }
+  }
 
   const insertComment = async (e) => {
     e.preventDefault();
 
     // Con esta línea envíamos al usuario no logueado a la página de login
-    !token && navigate("/login");
+    !Token && navigate("/login");
 
     const formData = new FormData();
     formData.append("comment", e.target.comment.value);
@@ -26,7 +58,7 @@ const Comments = ({ comments, postId, setComments }) => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${Token}`,
           },
         }
       );
@@ -34,7 +66,7 @@ const Comments = ({ comments, postId, setComments }) => {
       setCommentValue("");
 
       setComments(responsecomments.data);
-      
+
     } catch (error) {
       console.error(error);
       setErrorMsg(error.response.data.error);
@@ -80,9 +112,19 @@ const Comments = ({ comments, postId, setComments }) => {
               <p className="commentDate">{dateFormat(cmt.createdAt)}</p>
             </div>
             <p className="commentContent">{cmt.comment}</p>
+            <form className="commentsForm" onSubmit={(e) => insertAnswers(e, cmt.id)}>
+              <input
+                type="text"
+                onChange={(e) => setReplyValues({ ...replyValues, [cmt.id]: e.target.value })}
+                value={replyValues[cmt.id] || ''}
+                placeholder="Introduce tu respuesta aquí ..."
+                className="input-comment"
+                required
+              />
+              <button type="submit">Responder</button>
+            </form>
           </div>
         ))}
-      <div></div>
     </div>
   );
 };

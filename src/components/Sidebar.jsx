@@ -12,12 +12,14 @@ import { TbUsersGroup } from "react-icons/tb";
 import { BsFileEarmarkPost } from "react-icons/bs";
 import fakNews from "../assets/faknews-logo.svg";
 import { useCookies } from 'react-cookie';
+import { jwtDecode } from "jwt-decode";
+import isAdmin from "../isAdmin";
+import isAuth from "../isAuth";
 
 const Sidebar = ({ handleSectionChange }) => {
    const [activeLink, setActiveLink] = useState("home");
    const navigate = useNavigate();
    const [user, setUser] = useState([]);
-   const token = localStorage.getItem("token");
    const [cookies, removeCookie] = useCookies(['Token']);
 
    //  useEffect(() => {
@@ -42,13 +44,14 @@ const Sidebar = ({ handleSectionChange }) => {
       localStorage.setItem("activeLink", linkMap[path]);
    }, [location.pathname]);
 
+
    useEffect(() => {
-      if (token) {
+      if (isAuth(cookies.Token)) {
          const fetchData = async () => {
             try {
                const response = await axios.get(
                   `${import.meta.env.VITE_BACKEND_URL}/profile`,
-                  { headers: { Authorization: `Bearer ${token}` } }
+                  { headers: { Authorization: `Bearer ${cookies.Token}` } }
                );
                setUser(response.data);
             } catch (err) {
@@ -57,7 +60,7 @@ const Sidebar = ({ handleSectionChange }) => {
          };
          fetchData();
       }
-   }, [token]);
+   }, [cookies.Token]);
 
    const handleLinkClick = (link, url) => {
       setActiveLink(link);
@@ -66,12 +69,10 @@ const Sidebar = ({ handleSectionChange }) => {
    };
 
    const handleLogout = () => {
-      localStorage.removeItem("token");
       removeCookie("Token")
       removeCookie("Id")
-      //Elimina correctamente el id almacenado en local Storage, pero al no recargarse los componentes no se vuelve a repintar, es algo similar a lo que vimos del token con Samu en la tutoría ¿Almacenarlo en un useContext?
-      localStorage.removeItem("storagedUserId");
-      //navigate("/");
+      localStorage.removeItem("token")
+      navigate("/");
    };
 
    return (
@@ -90,6 +91,18 @@ const Sidebar = ({ handleSectionChange }) => {
                         onClick={() => handleLinkClick("home", "/")}
                         icon={<FaHome />}
                      />
+                     {isAuth(cookies.Token) && (<SidebarLink
+                        name="Crear Post"
+                        isActive={activeLink === "about"}
+                        onClick={() => handleLinkClick("about", "/about")}
+                        icon={<FcStatistics />}
+                     />)}
+                     {isAuth(cookies.Token) && (<SidebarLink
+                        name="Favoritos"
+                        isActive={activeLink === "about"}
+                        onClick={() => handleLinkClick("about", "/about")}
+                        icon={<FcStatistics />}
+                     />)}
                      <SidebarLink
                         name="About"
                         isActive={activeLink === "about"}
@@ -104,30 +117,35 @@ const Sidebar = ({ handleSectionChange }) => {
                      />
                   </div>
 
-                  <h3 className="sidebar__title">
-                     <span>Admin</span>
-                  </h3>
+                  {isAdmin(cookies.Token) && (
+                     <div>
+                        <h3 className="sidebar__title">
+                           <span>Admin</span>
+                        </h3>
 
-                  <div className="sidebar__list">
-                     <SidebarLink
-                        name="Publicaciones"
-                        isActive={activeLink === "post"}
-                        onClick={() => handleLinkClick("post")}
-                        icon={<BsFileEarmarkPost />}
-                     />
-                     <SidebarLink
-                        name="Usuarios"
-                        isActive={activeLink === "users"}
-                        onClick={() => handleLinkClick("users", "/login")}
-                        icon={<TbUsersGroup />}
-                     />
-                     <SidebarLink
-                        name="Admin"
-                        isActive={activeLink === "admin"}
-                        onClick={() => handleLinkClick("admin")}
-                        icon={<RiAdminFill />}
-                     />
-                  </div>
+                        <div className="sidebar__list">
+                           <SidebarLink
+                              name="Publicaciones"
+                              isActive={activeLink === "post"}
+                              onClick={() => handleLinkClick("users", "/post")}
+                              icon={<BsFileEarmarkPost />}
+                           />
+                           <SidebarLink
+                              name="Usuarios"
+                              isActive={activeLink === "users"}
+                              onClick={() => handleLinkClick("users", "/users")}
+                              icon={<TbUsersGroup />}
+                           />
+                           <SidebarLink
+                              name="Admin"
+                              isActive={activeLink === "admin"}
+                              onClick={() => handleLinkClick("admin", "/admin")}
+                              icon={<RiAdminFill />}
+                           />
+                        </div>
+                     </div>
+                  )}
+
 
                   <h3 className="sidebar__title">
                      <span>Temas</span>
@@ -186,7 +204,7 @@ const Sidebar = ({ handleSectionChange }) => {
                   </h3>
 
                   <div className="sidebar__list">
-                     {token && (
+                     {isAuth(cookies.Token) && (
                         <SidebarLink
                            name="Profile"
                            isActive={activeLink === "profile"}
@@ -194,7 +212,7 @@ const Sidebar = ({ handleSectionChange }) => {
                            icon={<IoMdLogOut />}
                         />
                      )}
-                     {!token && (
+                     {!isAuth(cookies.Token) && (
                         <SidebarLink
                            name="Login"
                            isActive={activeLink === "login"}
@@ -202,7 +220,7 @@ const Sidebar = ({ handleSectionChange }) => {
                            icon={<IoMdLogOut />}
                         />
                      )}
-                     {!token && (
+                     {!isAuth(cookies.Token) && (
                         <SidebarLink
                            name="Register"
                            isActive={activeLink === "register"}
@@ -210,7 +228,7 @@ const Sidebar = ({ handleSectionChange }) => {
                            icon={<IoMdLogOut />}
                         />
                      )}
-                     {token && (
+                     {isAuth(cookies.Token) && (
                         <SidebarLink
                            name="Logout"
                            isActive={activeLink === "logout"}
@@ -220,7 +238,7 @@ const Sidebar = ({ handleSectionChange }) => {
                      )}
                   </div>
                </div>
-               {token ? (
+               {isAuth(cookies.Token) ? (
                   <div className="sidebar__account">
                      {user.avatar && <img
                         src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}

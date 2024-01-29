@@ -11,13 +11,13 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
-  const [, setToken] = useState("");
-  const [, setStorageId] = useState("");
+  //const [, setToken] = useState("");
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['Token']);
 
   const logUser = async (e) => {
     e.preventDefault();
+    
 
     const formData = new FormData();
     formData.append("nickName", nickName);
@@ -36,14 +36,14 @@ const Login = () => {
       );
 
       setCookie('Token', res.data.token);
+      window.localStorage.setItem("Token", res.data.token)
 
       const decoded = jwtDecode(res.data.token);
       
       setCookie('Id', decoded.jwtPayLoad.id);
+      window.localStorage.setItem("Id", decoded.jwtPayLoad.id)
 
-      setToken(localStorage.setItem("token", res.data.token));
-
-      // Una vez logueados queremos que nos redirija automáticamente a la home
+      //setToken(localStorage.setItem("token", res.data.token));
 
       navigate("/");
     } catch (error) {
