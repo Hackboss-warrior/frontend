@@ -3,16 +3,20 @@ import axios from "axios";
 import { useCookies } from 'react-cookie';
 import { useNavigate } from "react-router-dom";
 import './Admin.css';
+import isAuth from "../../isAuth";
 
 function Admin() {
     const [userData, setUserData] = useState(null);
     const [cookies] = useCookies(['Token']);
+    const navigate = useNavigate();
 
-    useEffect(() => {
- 
+
+    useEffect(()=>{
         fetchUserData();
-
-    }, [cookies.Token]);
+        if (!isAuth(cookies.Token)){
+          navigate("/login")
+        }
+      },[cookies.Token]) 
 
     const fetchUserData = async () => {
         try {

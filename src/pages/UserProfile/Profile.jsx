@@ -3,29 +3,36 @@ import axios from "axios";
 import "./Profile.css"
 import dateFormat from "../../utils/dateFormat";
 import ModifyProfile from "../../components/users/ModifyProfile";
+import { useCookies } from 'react-cookie';
+import isAuth from "../../isAuth";
+import { useNavigate } from "react-router-dom";
+
 const Profile = () => {
   const [user, setUser] = useState([]);
+  const [cookies] = useCookies(['Token']);
+  const navigate = useNavigate();
 
-  const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    const fetchData = async() => {
-      try {
-      
-        const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/profile`, { headers: { 'Authorization': `Bearer ${token}` } }
-        );
-    console.log(response.data,"RESPONSE");
-
-        setUser(response.data); 
-      } 
-      catch (err) {
-        console.error("Fallo:", err);
-      }
-    }
-
+  useEffect(()=>{
     fetchData();
-  }, [token]);
+    if (!isAuth(cookies.Token)){
+      navigate("/login")
+    }
+  },[cookies.Token])
+
+  const fetchData = async() => {
+    try {
+    
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/profile`, { headers: { 'Authorization': `Bearer ${cookies.Token}` } }
+      );
+
+      setUser(response.data); 
+    } 
+    catch (err) {
+      console.error("Fallo:", err);
+    }
+  }
   
   
   return (
