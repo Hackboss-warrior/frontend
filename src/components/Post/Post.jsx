@@ -7,10 +7,10 @@ import Interactions from "../Interactions";
 import Comments from "../Comments";
 //Componentes importados
 import { FaCommentAlt } from "react-icons/fa";
-import { FaTrash } from "react-icons/fa";
 import logo from "../../assets/faknews-logo.svg";
-import axios from "axios";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
+
+import DeleteAndEditPost from "./DeleteAndEditPost";
 
 const Post = ({
   post,
@@ -21,33 +21,7 @@ const Post = ({
   setPosts,
   setLikes,
 }) => {
-  const [cookies, updateCookies] = useCookies(['Token']);
-  const token = cookies.Token;
-  const storagedUserId = cookies.Id;
   const navigate = useNavigate();
-
-  const deletePost = async (postId) => {
-    try {
-      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/post/${postId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (currentPage === "list") {
-        const resPosts = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/posts`
-        );
-
-        setPosts(resPosts.data[0]);
-      } else {
-        navigate("/");
-      }
-
-      //Informar con react Toastify de que el post se ha eliminado correctamente o de que no se ha podido eliminar.
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <article className="post">
@@ -83,27 +57,25 @@ const Post = ({
             <img src={logo} className="defaultPostImg" alt="fakNews logo" />
           )}
         </Link>
+        <div className="interactCommentsButtons">
+          <div className="interactComments">
+            <Interactions post={post} likes={likes} setLikes={setLikes} />
 
-        <div className="interactComments">
-          <Interactions post={post} likes={likes} setLikes={setLikes} />
-          <Link
-            to={`${import.meta.env.VITE_FRONTEND_URL}/post/${
-              post.id
-            }/#commentBox`}
-          >
-            <p className="commentsNumber">
+            <button
+              className="commentsNumber"
+              onClick={() => {
+                navigate(`/post/${post.id}/#commentBox`);
+              }}
+            >
               <FaCommentAlt />
               {comments.filter((comment) => comment.postId === post.id).length}
-            </p>
-          </Link>
-          {Number(storagedUserId) === post.userId ||
-          Number(storagedUserId) === post.idUserTable ? (
-            <button className="delPostBtn" onClick={() => deletePost(post.id)}>
-              <FaTrash />
             </button>
-          ) : (
-            <></>
-          )}
+          </div>
+          <DeleteAndEditPost
+            post={post}
+            setPosts={setPosts}
+            currentPage={currentPage}
+          />
         </div>
 
         <div className="postContent">
@@ -120,10 +92,8 @@ const Post = ({
           comments={comments}
           postId={post.id}
           setComments={setComments}
-          
         />
       )}
-      
     </article>
   );
 };
