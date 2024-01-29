@@ -1,5 +1,8 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useCookies } from 'react-cookie';
+import { useNavigate } from "react-router-dom";
+import isAuth from "../../isAuth";
 
 const ModifyProfile = () => {
   const [name, setName] = useState("");
@@ -12,6 +15,16 @@ const ModifyProfile = () => {
   // const [DOB, setDOB] = useState("");
 /*manejador del botón editar formulario*/
   const [button, setButton] = useState("button");
+  const [cookies] = useCookies(['Token']);
+  const navigate = useNavigate();
+
+
+
+  useEffect(()=>{
+    if (!isAuth(cookies.Token)){
+      navigate("/login")
+    }
+  },[cookies.Token]) 
 
   const sendModifies = async (e) => {
     e.preventDefault();
@@ -26,13 +39,11 @@ const ModifyProfile = () => {
       // formData.append("avatar", avatar);
       // formData.append("DOB", DOB);
 
-      const token = localStorage.getItem("token");
-      if (!token){throw new Error( "Debes loguearte correctamente para realizar modificaciones")}
 
       await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/user`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          "Authorization": `Bearer ${token}`,
+          "Authorization": `Bearer ${cookies.Token}`,
         },
       });
     } catch {
