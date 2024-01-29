@@ -3,29 +3,36 @@ import axios from "axios";
 import "./Profile.css"
 import dateFormat from "../../utils/dateFormat";
 import ModifyProfile from "../../components/users/ModifyProfile";
+import { useCookies } from 'react-cookie';
+import isAuth from "../../isAuth";
+import { useNavigate } from "react-router-dom";
+
 const Profile = () => {
   const [user, setUser] = useState([]);
+  const [cookies] = useCookies(['Token']);
+  const navigate = useNavigate();
 
-  const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    const fetchData = async() => {
-      try {
-      
-        const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/profile`, { headers: { 'Authorization': `Bearer ${token}` } }
-        );
-    console.log(response.data,"RESPONSE");
-        setUser(response.data); 
-      } 
-      catch (err) {
-        console.error("Fallo:", err);
-      }
-    }
-
+  useEffect(()=>{
     fetchData();
-  }, [token]);
-  // console.log("user",user);
+    if (!isAuth(cookies.Token)){
+      navigate("/login")
+    }
+  },[cookies.Token])
+
+  const fetchData = async() => {
+    try {
+    
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/profile`, { headers: { 'Authorization': `Bearer ${cookies.Token}` } }
+      );
+
+      setUser(response.data); 
+    } 
+    catch (err) {
+      console.error("Fallo:", err);
+    }
+  }
   
   
   return (
@@ -36,10 +43,10 @@ const Profile = () => {
       <div className="NicknamEmail"><h2>{user.nickName}</h2>
       <p>{user.email}</p></div>
       
-      <img
+      {user.avatar && <img
           src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
           alt={user.name}
-        />
+        />}
         </section>
         <div className="separador"></div>
       <div className="presentacionPersonal">
@@ -48,7 +55,7 @@ const Profile = () => {
       <p>{user.BIO}</p>
 
       </div>
-      <ModifyProfile/>
+      <ModifyProfile user={user} />
     </div>  
     </>
     

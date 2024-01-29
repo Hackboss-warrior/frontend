@@ -1,8 +1,8 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import '../pages/Admin/Admin.css';
-import SidebarLink from './SidebarLink';
+import "../pages/Admin/Admin.css";
+import SidebarLink from "./SidebarLink";
 import { FcStatistics } from "react-icons/fc";
 import { IoMdLogOut } from "react-icons/io";
 import { FaHome } from "react-icons/fa";
@@ -10,66 +10,69 @@ import { TiMessages } from "react-icons/ti";
 import { RiAdminFill } from "react-icons/ri";
 import { TbUsersGroup } from "react-icons/tb";
 import { BsFileEarmarkPost } from "react-icons/bs";
-import fakNews from '../assets/faknews-logo.svg';
+import fakNews from "../assets/faknews-logo.svg";
+import { useCookies } from 'react-cookie';
+import { jwtDecode } from "jwt-decode";
+import isAdmin from "../isAdmin";
+import isAuth from "../isAuth";
 
 const Sidebar = ({ handleSectionChange }) => {
-   const [activeLink, setActiveLink] = useState('home');
+   const [activeLink, setActiveLink] = useState("home");
    const navigate = useNavigate();
    const [user, setUser] = useState([]);
-   const token = localStorage.getItem("token");
+   const [cookies, removeCookie] = useCookies(['Token']);
 
    //  useEffect(() => {
    //    const storedActiveLink = localStorage.getItem('activeLink');
-   //    setActiveLink(storedActiveLink || 'home'); 
+   //    setActiveLink(storedActiveLink || 'home');
    //  }, []);
 
    useEffect(() => {
       const path = location.pathname;
 
       const linkMap = {
-         '/': 'home',
-         '/register': 'register',
-         '/profile': 'profile',
-         '/contact': 'contact',
-         '/users': 'users',
-         '/login': 'login',
-         '/about': 'about',
-         '/admin': 'admin',
+         "/": "home",
+         "/register": "register",
+         "/profile": "profile",
+         "/contact": "contact",
+         "/users": "users",
+         "/login": "login",
+         "/about": "about",
+         "/admin": "admin",
+         "/createpost": "createpost",
       };
-      setActiveLink(linkMap[path] || 'home');
-      localStorage.setItem('activeLink', linkMap[path]);
-   }, [location.pathname])
+      setActiveLink(linkMap[path] || "home");
+      localStorage.setItem("activeLink", linkMap[path]);
+   }, [location.pathname]);
+
 
    useEffect(() => {
-      if (token) {
+      if (isAuth(cookies.Token)) {
          const fetchData = async () => {
             try {
-               console.log("1")
                const response = await axios.get(
-                  `${import.meta.env.VITE_BACKEND_URL}/profile`, { headers: { 'Authorization': `Bearer ${token}` } }
+                  `${import.meta.env.VITE_BACKEND_URL}/profile`,
+                  { headers: { Authorization: `Bearer ${cookies.Token}` } }
                );
-               console.log("2")
-               setUser(response.data); 
-            }
-            catch (err) {
+               setUser(response.data);
+            } catch (err) {
                console.error("Fallo:", err);
             }
-         }
+         };
          fetchData();
       }
-
-   }, [token]);
-
-
+   }, [cookies.Token]);
 
    const handleLinkClick = (link, url) => {
       setActiveLink(link);
-      localStorage.setItem('activeLink', link);
+      localStorage.setItem("activeLink", link);
       navigate(url);
    };
 
    const handleLogout = () => {
-      localStorage.removeItem('token')
+      removeCookie("Token")
+      removeCookie("Id")
+      localStorage.removeItem("token")
       navigate("/");
    };
 
@@ -83,35 +86,118 @@ const Sidebar = ({ handleSectionChange }) => {
 
                <div className="sidebar__content">
                   <div className="sidebar__list">
-                     <SidebarLink name="Inicio" isActive={activeLink === 'home'} onClick={() => handleLinkClick('home', '/')} icon={<FaHome />} />
-                     <SidebarLink name="About" isActive={activeLink === 'about'} onClick={() => handleLinkClick('about', '/about')} icon={<FcStatistics />} />
-                     <SidebarLink name="Contacto" isActive={activeLink === 'contact'} onClick={() => handleLinkClick('contact', '/contact')} icon={<TiMessages />} />
+                     <SidebarLink
+                        name="Inicio"
+                        isActive={activeLink === "home"}
+                        onClick={() => handleLinkClick("home", "/")}
+                        icon={<FaHome />}
+                     />
+                     {isAuth(cookies.Token) && (<SidebarLink
+                        name="Crear Post"
+                        isActive={activeLink === "createpost"}
+                        onClick={() => handleLinkClick("createpost", "/createpost")}
+                        icon={<FcStatistics />}
+                     />)}
+                     {isAuth(cookies.Token) && (<SidebarLink
+                        name="Favoritos"
+                        isActive={activeLink === "about"}
+                        onClick={() => handleLinkClick("about", "/about")}
+                        icon={<FcStatistics />}
+                     />)}
+                     <SidebarLink
+                        name="About"
+                        isActive={activeLink === "about"}
+                        onClick={() => handleLinkClick("about", "/about")}
+                        icon={<FcStatistics />}
+                     />
+                     <SidebarLink
+                        name="Contacto"
+                        isActive={activeLink === "contact"}
+                        onClick={() => handleLinkClick("contact", "/contact")}
+                        icon={<TiMessages />}
+                     />
                   </div>
 
-                  <h3 className="sidebar__title">
-                     <span>Admin</span>
-                  </h3>
+                  {isAdmin(cookies.Token) && (
+                     <div>
+                        <h3 className="sidebar__title">
+                           <span>Admin</span>
+                        </h3>
 
-                  <div className="sidebar__list">
-                     <SidebarLink name="Publicaciones" isActive={activeLink === 'post'} onClick={() => handleLinkClick('post')} icon={<BsFileEarmarkPost />} />
-                     <SidebarLink name="Usuarios" isActive={activeLink === 'users'} onClick={() => handleLinkClick('users', '/login')} icon={<TbUsersGroup />} />
-                     <SidebarLink name="Admin" isActive={activeLink === 'admin'} onClick={() => handleLinkClick('admin')} icon={<RiAdminFill />} />
-                  </div>
+                        <div className="sidebar__list">
+                           <SidebarLink
+                              name="Publicaciones"
+                              isActive={activeLink === "post"}
+                              onClick={() => handleLinkClick("users", "/post")}
+                              icon={<BsFileEarmarkPost />}
+                           />
+                           <SidebarLink
+                              name="Usuarios"
+                              isActive={activeLink === "users"}
+                              onClick={() => handleLinkClick("users", "/users")}
+                              icon={<TbUsersGroup />}
+                           />
+                           <SidebarLink
+                              name="Admin"
+                              isActive={activeLink === "admin"}
+                              onClick={() => handleLinkClick("admin", "/admin")}
+                              icon={<RiAdminFill />}
+                           />
+                        </div>
+                     </div>
+                  )}
+
 
                   <h3 className="sidebar__title">
                      <span>Temas</span>
                   </h3>
 
                   <div className="sidebar__list">
-                     <SidebarLink name="Política" isActive={activeLink === 'politica'} icon={<BsFileEarmarkPost />} />
-                     <SidebarLink name="Economía" isActive={activeLink === 'economia'} icon={<TbUsersGroup />} />
-                     <SidebarLink name="Tecnología" isActive={activeLink === 'tecnologia'} icon={<RiAdminFill />} />
-                     <SidebarLink name="Ciencia" isActive={activeLink === 'ciencia'} icon={<BsFileEarmarkPost />} />
-                     <SidebarLink name="Salud" isActive={activeLink === 'salud'} icon={<TbUsersGroup />} />
-                     <SidebarLink name="Cultura" isActive={activeLink === 'cultura'} icon={<RiAdminFill />} />
-                     <SidebarLink name="Deportes" isActive={activeLink === 'deportes'} icon={<BsFileEarmarkPost />} />
-                     <SidebarLink name="Entretenimiento" isActive={activeLink === 'entretenimiento'} icon={<TbUsersGroup />} />
-                     <SidebarLink name="NSFW" isActive={activeLink === 'nsfw'} icon={<RiAdminFill />} />
+                     <SidebarLink
+                        name="Política"
+                        isActive={activeLink === "politica"}
+                        icon={<BsFileEarmarkPost />}
+                     />
+                     <SidebarLink
+                        name="Economía"
+                        isActive={activeLink === "economia"}
+                        icon={<TbUsersGroup />}
+                     />
+                     <SidebarLink
+                        name="Tecnología"
+                        isActive={activeLink === "tecnologia"}
+                        icon={<RiAdminFill />}
+                     />
+                     <SidebarLink
+                        name="Ciencia"
+                        isActive={activeLink === "ciencia"}
+                        icon={<BsFileEarmarkPost />}
+                     />
+                     <SidebarLink
+                        name="Salud"
+                        isActive={activeLink === "salud"}
+                        icon={<TbUsersGroup />}
+                     />
+                     <SidebarLink
+                        name="Cultura"
+                        isActive={activeLink === "cultura"}
+                        icon={<RiAdminFill />}
+                     />
+                     <SidebarLink
+                        name="Deportes"
+                        isActive={activeLink === "deportes"}
+                        icon={<BsFileEarmarkPost />}
+                     />
+                     <SidebarLink
+                        name="Entretenimiento"
+                        isActive={activeLink === "entretenimiento"}
+                        icon={<TbUsersGroup />}
+                     />
+                     <SidebarLink
+                        name="NSFW"
+                        isActive={activeLink === "nsfw"}
+                        icon={<RiAdminFill />}
+                     />
                   </div>
 
                   <h3 className="sidebar__title">
@@ -119,21 +205,56 @@ const Sidebar = ({ handleSectionChange }) => {
                   </h3>
 
                   <div className="sidebar__list">
-                     {token && (<SidebarLink name="Profile" isActive={activeLink === 'profile'} onClick={() => handleLinkClick('profile', '/profile')} icon={<IoMdLogOut />} />)}
-                     {!token && (<SidebarLink name="Login" isActive={activeLink === 'login'} onClick={() => handleLinkClick('login', '/login')} icon={<IoMdLogOut />} />)}
-                     {!token && (<SidebarLink name="Register" isActive={activeLink === 'register'} onClick={() => handleLinkClick('register', '/register')} icon={<IoMdLogOut />} />)}
-                     {token && (<SidebarLink name="Logout" isActive={activeLink === 'logout'} onClick={handleLogout} icon={<IoMdLogOut />} />)}
+                     {isAuth(cookies.Token) && (
+                        <SidebarLink
+                           name="Profile"
+                           isActive={activeLink === "profile"}
+                           onClick={() => handleLinkClick("profile", "/profile")}
+                           icon={<IoMdLogOut />}
+                        />
+                     )}
+                     {!isAuth(cookies.Token) && (
+                        <SidebarLink
+                           name="Login"
+                           isActive={activeLink === "login"}
+                           onClick={() => handleLinkClick("login", "/login")}
+                           icon={<IoMdLogOut />}
+                        />
+                     )}
+                     {!isAuth(cookies.Token) && (
+                        <SidebarLink
+                           name="Register"
+                           isActive={activeLink === "register"}
+                           onClick={() => handleLinkClick("register", "/register")}
+                           icon={<IoMdLogOut />}
+                        />
+                     )}
+                     {isAuth(cookies.Token) && (
+                        <SidebarLink
+                           name="Logout"
+                           isActive={activeLink === "logout"}
+                           onClick={handleLogout}
+                           icon={<IoMdLogOut />}
+                        />
+                     )}
                   </div>
                </div>
-               {token ? <div className="sidebar__account">
-                  <img src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`} alt="sidebar image" className="sidebar__perfil" />
+               {isAuth(cookies.Token) ? (
+                  <div className="sidebar__account">
+                     {user.avatar && <img
+                        src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
+                        alt={user.name}
+                        className="sidebar__perfil"
+                     />}
 
-                  <div className="sidebar__names">
-                     <h3 className="sidebar__name">{user.nickName}</h3>
-                     <span className="sidebar__email">{user.email}</span>
+                     <div className="sidebar__names">
+                        <h3 className="sidebar__name">{user.nickName}</h3>
+                        <span className="sidebar__email">{user.email}</span>
+                     </div>
                   </div>
-
-               </div> : "FakNews"}
+               ) : (
+                  "FakNews"
+               )}
             </nav>
          </div>
       </div>

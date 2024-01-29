@@ -1,7 +1,10 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useCookies } from 'react-cookie';
+import { useNavigate } from "react-router-dom";
+import isAuth from "../../isAuth";
 
-const ModifyProfile = () => {
+const ModifyProfile = ({ user }) => {
   const [name, setName] = useState("");
   const [firstName, setfirstName] = useState("");
   const [nickName, setnickName] = useState("");
@@ -12,29 +15,47 @@ const ModifyProfile = () => {
   // const [DOB, setDOB] = useState("");
 /*manejador del botón editar formulario*/
   const [button, setButton] = useState("button");
+  const [cookies] = useCookies(['Token']);
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if (!isAuth(cookies.Token)){
+      navigate("/login")
+    }
+  },[cookies.Token]) 
 
   const sendModifies = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("name", name);
-      formData.append("firstName", firstName);
-      formData.append("nickName", nickName);
-      formData.append("email", email);
-      formData.append("BIO", BIO);
-      formData.append("password", password);
+      if (name.trim() !== "") {
+        formData.append("name", name);
+      }
+      if (firstName.trim() !== "") {
+        formData.append("firstName", firstName);
+      }
+      if (nickName.trim() !== "") {
+        formData.append("nickName", nickName);
+      }
+      if (email.trim() !== "") {
+        formData.append("email", email);
+      }
+      if (BIO.trim() !== "") {
+        formData.append("BIO", BIO);
+      }
+      if (password.trim() !== "") {
+        formData.append("password", password);
+      }
       // formData.append("avatar", avatar);
       // formData.append("DOB", DOB);
-
-      const token = localStorage.getItem("token");
-      if (!token){throw new Error( "Debes loguearte correctamente para realizar modificaciones")}
 
       await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/user`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          "Authorization": `Bearer ${token}`,
+          "Authorization": `Bearer ${cookies.Token}`,
         },
       });
+      setButton("form");
     } catch {
       console.error("error");
     }
@@ -63,7 +84,7 @@ const ModifyProfile = () => {
               onChange={(e) => setName(e.target.value)}
               id="nombre"
               name="nombre"
-              placeholder="Nombre"
+              placeholder={user.name}
               
             />
             <input
@@ -71,7 +92,7 @@ const ModifyProfile = () => {
               onChange={(e) => setfirstName(e.target.value)}
               id="apellidos"
               name="apellidos"
-              placeholder="Apellidos"
+              placeholder={user.firstName}
              
             />
             <input
@@ -79,7 +100,7 @@ const ModifyProfile = () => {
               onChange={(e) => setemail(e.target.value)}
               id="correo"
               name="correo"
-              placeholder="Correo"
+              placeholder={user.email}
              
             />
             <input
@@ -87,7 +108,7 @@ const ModifyProfile = () => {
               onChange={(e) => setBIO(e.target.value)}
               id="bio"
               name="bio"
-              placeholder="Biografía"
+              placeholder={user.BIO}
               
             />
             <input
@@ -95,7 +116,7 @@ const ModifyProfile = () => {
               onChange={(e) => setnickName(e.target.value)}
               id="usuario"
               name="usuario"
-              placeholder="Usuario"
+              placeholder={user.nickName}
              
             />
             <input
@@ -103,15 +124,10 @@ const ModifyProfile = () => {
               onChange={(e) => setpassword(e.target.value)}
               id="clave"
               name="clave"
-              placeholder="Contraseña"
+              placeholder="*****"
               
             />
-          
-       
-
-          <button type="submit" onClick={changeBtnForm}>
-            Enviar
-          </button>
+          <button type="submit">Enviar</button>
           <button onClick={changeBtnForm}>Cancelar</button>
         </form>
       )}

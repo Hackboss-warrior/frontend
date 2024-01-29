@@ -14,7 +14,7 @@ const About = () => {
         const response = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/about`
         );
-        console.log(response, "response");
+
         setUserCount(response.data.totalUsers);
 
         setPotsCount(response.data.totalPosts);

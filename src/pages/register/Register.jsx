@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
+import whiteLogo from "../../assets/fakNews-white-logo-no-bg.svg";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -56,90 +57,96 @@ const Register = () => {
   };
 
   return (
-    <form className="boxregister" onSubmit={saveProduct}>
-      {errorAlert}
-      <div className="contenedor-inputs">
-        <input
-          type="text"
-          onChange={(e) => setName(e.target.value)}
-          id="nombre"
-          name="nombre"
-          placeholder="Nombre"
-          className="input-48"
-          required
-        />
-        <input
-          type="text"
-          onChange={(e) => setfirstName(e.target.value)}
-          id="apellidos"
-          name="apellidos"
-          placeholder="Apellidos"
-          className="input-48"
-          required
-        />
-        <input
-          type="email"
-          onChange={(e) => setemail(e.target.value)}
-          id="correo"
-          name="correo"
-          placeholder="Correo"
-          className="input-100"
-          required
-        />
-        <input
-          type="text"
-          onChange={(e) => setBIO(e.target.value)}
-          id="bio"
-          name="bio"
-          placeholder="Biografía"
-          className="input-100"
-          required
-        />
-        <input
-          type="text"
-          onChange={(e) => setnickName(e.target.value)}
-          id="usuario"
-          name="usuario"
-          placeholder="Usuario"
-          className="input-48"
-          required
-        />
-        <input
-          type="password"
-          onChange={(e) => setpassword(e.target.value)}
-          id="clave"
-          name="clave"
-          placeholder="Contraseña"
-          className="input-48"
-          required
-        />
-        <input
-          type="date"
-          onChange={(e) => setDOB(e.target.value)}
-          min={oldDate}
-          max={currentDate}
-          id="dob"
-          name="dob"
-          className="input-100"
-          required
-        />
-        <input
-          type="file"
-          onChange={(e) =>
-            setavatar(e.target.files.length > 0 ? e.target.files[0] : null)
-          }
-          id="avatar"
-          name="avatar"
-          className="input-100"
-        />
-        <button type="submit" className="btn-enviar">
-          Save
-        </button>
-        <p>
-          Ya tienes una cuenta? <Link to="/login"> Ingresa aquí</Link>
-        </p>
-      </div>
-    </form>
+    <main className="registerMainContent">
+      <h1>Bienvenido/a</h1>
+      <form className="boxregister" onSubmit={saveProduct}>
+        {errorAlert}
+        <div className="contenedor-inputs">
+          <input
+            type="text"
+            onChange={(e) => setName(e.target.value)}
+            id="nombre"
+            name="nombre"
+            placeholder="Nombre"
+            className="input-48"
+            required
+          />
+          <input
+            type="text"
+            onChange={(e) => setfirstName(e.target.value)}
+            id="apellidos"
+            name="apellidos"
+            placeholder="Apellidos"
+            className="input-48"
+            required
+          />
+          <input
+            type="email"
+            onChange={(e) => setemail(e.target.value)}
+            id="correo"
+            name="correo"
+            placeholder="Correo"
+            className="input-100"
+            required
+          />
+          <input
+            type="text"
+            onChange={(e) => setBIO(e.target.value)}
+            id="bio"
+            name="bio"
+            placeholder="Biografía"
+            className="input-100"
+            required
+          />
+          <input
+            type="text"
+            onChange={(e) => setnickName(e.target.value)}
+            id="usuario"
+            name="usuario"
+            placeholder="Usuario"
+            className="input-48"
+            required
+          />
+          <input
+            type="password"
+            onChange={(e) => setpassword(e.target.value)}
+            id="clave"
+            name="clave"
+            placeholder="Contraseña"
+            className="input-48"
+            required
+          />
+          <input
+            type="date"
+            onChange={(e) => setDOB(e.target.value)}
+            min={oldDate}
+            max={currentDate}
+            id="dob"
+            name="dob"
+            className="input-100"
+            required
+          />
+          <input
+            type="file"
+            onChange={(e) =>
+              setavatar(e.target.files.length > 0 ? e.target.files[0] : null)
+            }
+            id="avatar"
+            name="avatar"
+            className="input-100"
+          />
+          <div className="formFooter">
+            <button type="submit" className="btn-enviar">
+              Regístrame
+            </button>
+            <p>
+              Ya tienes una cuenta? <Link to="/login"> Haz click aquí</Link>
+            </p>
+          </div>
+        </div>
+      </form>
+      <img src={whiteLogo} className="registerLogo" alt="fakNews logo" />
+    </main>
   );
 };
 
