@@ -7,19 +7,21 @@ import {
 
 import PropTypes from "prop-types";
 import axios from "axios";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from 'react-cookie';
+import isAuth from "../isAuth";
+import isId from "../isId";
 
 const Interactions = ({ post, likes, setLikes }) => {
-  const [cookies, updateCookies] = useCookies(['Token']);
-  const token = cookies.Token;
-  const storagedUserId = cookies.Id;
+  const [cookies] = useCookies(['Token']);
   const navigate = useNavigate();
-
+  
   const sendLike = async (postId) => {
     //Con esta línea de código nos aseguramos que si el usuario no esta logueado la página le rediriga a login
-    !token && navigate("/login");
+    if (!isAuth(cookies.Token)){
+      navigate("/login")
+      return
+    }
 
     try {
       await axios.post(
@@ -31,7 +33,7 @@ const Interactions = ({ post, likes, setLikes }) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${cookies.Token}`,
           },
         }
       );
@@ -48,7 +50,10 @@ const Interactions = ({ post, likes, setLikes }) => {
 
   const sendDisLike = async (postId) => {
     //Con esta línea de código nos aseguramos que si el usuario no esta logueado la página le rediriga a login
-    !token && navigate("/login");
+    if (!isAuth(cookies.Token)){
+      navigate("/login")
+      return
+    }
 
     try {
       await axios.post(
@@ -60,7 +65,7 @@ const Interactions = ({ post, likes, setLikes }) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${cookies.Token}`,
           },
         }
       );
@@ -78,7 +83,7 @@ const Interactions = ({ post, likes, setLikes }) => {
       <button className="postLikes" onClick={() => sendLike(post.id)}>
         {likes.some(
           (like) =>
-            like.userId === Number(storagedUserId) &&
+            like.userId === Number(isId(cookies.Token)) &&
             post.id === like.postId &&
             like.interaction === 1
         ) ? (
@@ -97,7 +102,7 @@ const Interactions = ({ post, likes, setLikes }) => {
       <button className="postDisLikes" onClick={() => sendDisLike(post.id)}>
         {!likes.some(
           (like) =>
-            like.userId === Number(storagedUserId) &&
+            like.userId === Number(isId(cookies.Token)) &&
             post.id === like.postId &&
             like.interaction === 0
         ) ? (

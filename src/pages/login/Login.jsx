@@ -11,7 +11,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
-  //const [, setToken] = useState("");
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(['Token']);
 
@@ -36,15 +35,6 @@ const Login = () => {
       );
 
       setCookie('Token', res.data.token);
-      window.localStorage.setItem("Token", res.data.token)
-
-      const decoded = jwtDecode(res.data.token);
-      
-      setCookie('Id', decoded.jwtPayLoad.id);
-      window.localStorage.setItem("Id", decoded.jwtPayLoad.id)
-
-      //setToken(localStorage.setItem("token", res.data.token));
-
       navigate("/");
     } catch (error) {
       setErrorAlert(<div>fakNews: {error.response.data.error}</div>);

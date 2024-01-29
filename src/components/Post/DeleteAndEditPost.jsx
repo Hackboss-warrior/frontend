@@ -2,20 +2,19 @@ import axios from "axios";
 import { MdModeEditOutline } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import PropTypes from "prop-types";
-import { useCookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import isId from "../../isId";
 
 const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
-  const [cookies, updateCookies] = useCookies(["Token"]);
-  const token = cookies.Token;
-  const storagedUserId = cookies.Id;
+  const [cookies] = useCookies(["Token"]);
   const navigate = useNavigate();
 
   const deletePost = async (postId) => {
     try {
       await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/post/${postId}`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${cookies.Token}`,
         },
       });
       if (currentPage === "list") {
@@ -37,8 +36,8 @@ const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
   const editPost = async () => {};
   return (
     <>
-      {Number(storagedUserId) === post.userId ||
-      Number(storagedUserId) === post.idUserTable ? (
+      {Number(isId(cookies.Token)) === post.userId ||
+      Number(isId(cookies.Token)) === post.idUserTable ? (
         <div className="editDeltBtn">
           <button className="editPostBtn" onClick={() => editPost(post.id)}>
             <MdModeEditOutline />
