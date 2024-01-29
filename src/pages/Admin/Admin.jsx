@@ -1,24 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useCookies } from 'react-cookie';
+import { useNavigate } from "react-router-dom";
 import './Admin.css';
 
 function Admin() {
     const [userData, setUserData] = useState(null);
-    const [Token, setMiLocalStorage] = useState(localStorage.getItem('Token') || '');
+    const [cookies] = useCookies(['Token']);
 
-  const handleLocalStorageChange = (e) => {
-    setMiLocalStorage(e.newValue);
-    fetchUserData();
-    window.location.reload()
-  };
+    useEffect(() => {
+ 
+        fetchUserData();
 
-  useEffect(() => {
-    window.addEventListener('storage', handleLocalStorageChange);
-    fetchUserData();
-    return () => {
-      window.removeEventListener('storage', handleLocalStorageChange);
-    };
-  }, [Token]); 
+    }, [cookies.Token]);
 
     const fetchUserData = async () => {
         try {
@@ -26,7 +20,7 @@ function Admin() {
                 `${import.meta.env.VITE_BACKEND_URL}/user`,
                 {
                     headers: {
-                        Authorization: `Bearer ${Token}`,
+                        Authorization: `Bearer ${cookies.Token}`,
                     },
                 }
             );
@@ -46,7 +40,7 @@ function Admin() {
                     { role: newRole },
                     {
                         headers: {
-                            Authorization: `Bearer ${Token}`,
+                            Authorization: `Bearer ${cookies.Token}`,
                         },
                     }
                 );
@@ -112,7 +106,7 @@ function Admin() {
                             </tbody>
                         </table>
                     ) : (
-                        <p>Loading...</p>
+                        <p>Cargando...</p>
                     )}
                 </div>
             </main>
