@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useCookies } from 'react-cookie';
+import { useNavigate } from "react-router-dom";
 import './Admin.css';
+import isAuth from "../../isAuth";
 
 function Admin() {
     const [userData, setUserData] = useState(null);
-    const [Token, setMiLocalStorage] = useState(localStorage.getItem('Token') || '');
+    const [cookies] = useCookies(['Token']);
+    const navigate = useNavigate();
 
-  const handleLocalStorageChange = (e) => {
-    setMiLocalStorage(e.newValue);
-    fetchUserData();
-    window.location.reload()
-  };
 
-  useEffect(() => {
-    window.addEventListener('storage', handleLocalStorageChange);
-    fetchUserData();
-    return () => {
-      window.removeEventListener('storage', handleLocalStorageChange);
-    };
-  }, [Token]); 
+    useEffect(()=>{
+        fetchUserData();
+        if (!isAuth(cookies.Token)){
+          navigate("/login")
+        }
+      },[cookies.Token]) 
 
     const fetchUserData = async () => {
         try {
@@ -26,7 +24,7 @@ function Admin() {
                 `${import.meta.env.VITE_BACKEND_URL}/user`,
                 {
                     headers: {
-                        Authorization: `Bearer ${Token}`,
+                        Authorization: `Bearer ${cookies.Token}`,
                     },
                 }
             );
@@ -46,7 +44,7 @@ function Admin() {
                     { role: newRole },
                     {
                         headers: {
-                            Authorization: `Bearer ${Token}`,
+                            Authorization: `Bearer ${cookies.Token}`,
                         },
                     }
                 );
@@ -112,7 +110,7 @@ function Admin() {
                             </tbody>
                         </table>
                     ) : (
-                        <p>Loading...</p>
+                        <p>Cargando...</p>
                     )}
                 </div>
             </main>

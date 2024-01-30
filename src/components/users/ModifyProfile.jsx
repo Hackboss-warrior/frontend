@@ -1,7 +1,10 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useCookies } from 'react-cookie';
+import { useNavigate } from "react-router-dom";
+import isAuth from "../../isAuth";
 
-const ModifyProfile = () => {
+const ModifyProfile = ({ user }) => {
   const [name, setName] = useState("");
   const [firstName, setfirstName] = useState("");
   const [nickName, setnickName] = useState("");
@@ -10,31 +13,51 @@ const ModifyProfile = () => {
   const [password, setpassword] = useState("");
   // const [avatar, setavatar] = useState("");
   // const [DOB, setDOB] = useState("");
-/*manejador del botón editar formulario*/
+  /*manejador del botón editar formulario*/
   const [button, setButton] = useState("button");
+  const [cookies] = useCookies(['Token']);
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if (!isAuth(cookies.Token)){
+      navigate("/login")
+    }
+  },[cookies.Token]) 
 
   const sendModifies = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("name", name);
-      formData.append("firstName", firstName);
-      formData.append("nickName", nickName);
-      formData.append("email", email);
-      formData.append("BIO", BIO);
-      formData.append("password", password);
+      if (name.trim() !== "") {
+        formData.append("name", name);
+      }
+      if (firstName.trim() !== "") {
+        formData.append("firstName", firstName);
+      }
+      if (nickName.trim() !== "") {
+        formData.append("nickName", nickName);
+      }
+      if (email.trim() !== "") {
+        formData.append("email", email);
+      }
+      if (BIO.trim() !== "") {
+        formData.append("BIO", BIO);
+      }
+      if (password.trim() !== "") {
+        formData.append("password", password);
+      }
       // formData.append("avatar", avatar);
       // formData.append("DOB", DOB);
 
-      const token = localStorage.getItem("token");
-      if (!token){throw new Error( "Debes loguearte correctamente para realizar modificaciones")}
 
       await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/user`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          "Authorization": `Bearer ${token}`,
+          "Authorization": `Bearer ${cookies.Token}`,
+
         },
       });
+      setButton("form");
     } catch {
       console.error("error");
     }
@@ -48,57 +71,29 @@ const ModifyProfile = () => {
     }
   };
 
-  
   return (
     <div>
-      <h1>Editar Perfil</h1>
       {button === "button" ? (
-        <button onClick={changeBtnForm}>Editar Perfil</button>
+        <button className="ButtonForm" onClick={changeBtnForm}>
+          Editar Perfil
+        </button>
       ) : (
-        <form onSubmit={sendModifies}>
-          <legend>formulariuo</legend>
-          
+
+        <form className="FormProfile" onSubmit={sendModifies}>
+          <legend>Edita tu Perfíl</legend>
+
+          <section className="FormSectionProfile">
             <input
-              type="text"
-              onChange={(e) => setName(e.target.value)}
-              id="nombre"
-              name="nombre"
-              placeholder="Nombre"
-              
-            />
-            <input
-              type="text"
-              onChange={(e) => setfirstName(e.target.value)}
-              id="apellidos"
-              name="apellidos"
-              placeholder="Apellidos"
-             
-            />
-            <input
-              type="email"
-              onChange={(e) => setemail(e.target.value)}
-              id="correo"
-              name="correo"
-              placeholder="Correo"
-             
-            />
-            <input
-              type="text"
-              onChange={(e) => setBIO(e.target.value)}
-              id="bio"
-              name="bio"
-              placeholder="Biografía"
-              
-            />
-            <input
+              className="inputFormProfile"
               type="text"
               onChange={(e) => setnickName(e.target.value)}
               id="usuario"
               name="usuario"
-              placeholder="Usuario"
-             
+              placeholder={user.nickName}
+
             />
             <input
+              className="inputFormProfile"
               type="password"
               onChange={(e) => setpassword(e.target.value)}
               id="clave"
@@ -106,17 +101,55 @@ const ModifyProfile = () => {
               placeholder="Contraseña"
               
             />
-          
-       
 
-          <button type="submit" onClick={changeBtnForm}>
+          </section>
+        <section className="FormSectionProfile">
+          <input
+            className="inputFormProfile"
+            type="text"
+            onChange={(e) => setName(e.target.value)}
+            id="nombre"
+            name="nombre"
+            placeholder={user.name}
+          />
+          <input
+            className="inputFormProfile"
+            type="text"
+            onChange={(e) => setfirstName(e.target.value)}
+            id="apellidos"
+            name="apellidos"
+            placeholder={user.firstName}
+          />
+          <input
+            className="inputFormProfile"
+            type="email"
+            onChange={(e) => setemail(e.target.value)}
+            id="correo"
+            name="correo"
+            placeholder={user.email}
+          />
+          </section>
+
+          <input
+            className="inputFormProfile Biografia"
+            type="text"
+            onChange={(e) => setBIO(e.target.value)}
+            id="bio"
+            name="bio"
+            placeholder={user.BIO}
+          />
+        <section className="buttonsFrom">
+          <button className="ButtonForm" type="submit" onClick={changeBtnForm}>
             Enviar
           </button>
-          <button onClick={changeBtnForm}>Cancelar</button>
+          <button className="ButtonForm" onClick={changeBtnForm}>
+            Cancelar
+          </button>
+          </section>
+
         </form>
-      )}
-    </div>
-  );
+)}
+    </div> );
 };
 
 export default ModifyProfile;

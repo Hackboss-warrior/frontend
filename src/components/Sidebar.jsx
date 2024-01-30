@@ -39,6 +39,7 @@ const Sidebar = ({ handleSectionChange }) => {
          "/login": "login",
          "/about": "about",
          "/admin": "admin",
+         "/createpost": "createpost",
       };
       setActiveLink(linkMap[path] || "home");
       localStorage.setItem("activeLink", linkMap[path]);
@@ -93,8 +94,8 @@ const Sidebar = ({ handleSectionChange }) => {
                      />
                      {isAuth(cookies.Token) && (<SidebarLink
                         name="Crear Post"
-                        isActive={activeLink === "about"}
-                        onClick={() => handleLinkClick("about", "/about")}
+                        isActive={activeLink === "createpost"}
+                        onClick={() => handleLinkClick("createpost", "/createpost")}
                         icon={<FcStatistics />}
                      />)}
                      {isAuth(cookies.Token) && (<SidebarLink

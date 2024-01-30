@@ -3,9 +3,12 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import dateFormat from "../utils/dateFormat";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import isAuth from "../isAuth";
+import { TbRosetteNumber1 } from "react-icons/tb";
 
 const Comments = ({ comments, postId, setComments }) => {
-  const [Token, setMiLocalStorage] = useState(localStorage.getItem('Token') || '')
+  const [cookies] = useCookies(['Token']);
   const [commentValue, setCommentValue] = useState("");
   const [replyValues, setReplyValues] = useState({});  // Nuevo estado para respuestas
   const [errorMsg, setErrorMsg] = useState("");
@@ -28,7 +31,7 @@ const Comments = ({ comments, postId, setComments }) => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${Token}`,
+            Authorization: `Bearer ${cookies.Token}`,
           },
         }
       );
@@ -45,8 +48,11 @@ const Comments = ({ comments, postId, setComments }) => {
   const insertComment = async (e) => {
     e.preventDefault();
 
-    // Con esta línea envíamos al usuario no logueado a la página de login
-    !Token && navigate("/login");
+
+    if (!isAuth(cookies.Token)){
+      navigate("/login")
+      return
+    }
 
     const formData = new FormData();
     formData.append("comment", e.target.comment.value);
@@ -58,7 +64,7 @@ const Comments = ({ comments, postId, setComments }) => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${Token}`,
+            Authorization: `Bearer ${cookies.Token}`,
           },
         }
       );

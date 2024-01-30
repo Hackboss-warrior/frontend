@@ -1,59 +1,82 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./Profile.css"
+import "./Profile.css";
 import dateFormat from "../../utils/dateFormat";
 import ModifyProfile from "../../components/users/ModifyProfile";
+
+import { useCookies } from "react-cookie";
+import isAuth from "../../isAuth";
+import { useNavigate } from "react-router-dom";
+
+import Favorites from "../../components/Favorites";
+
 const Profile = () => {
   const [user, setUser] = useState([]);
-
-  const token = localStorage.getItem("token");
+  const [cookies] = useCookies(["Token"]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async() => {
-      try {
-      
-        const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/profile`, { headers: { 'Authorization': `Bearer ${token}` } }
-        );
-    console.log(response.data,"RESPONSE");
-
-        setUser(response.data); 
-      } 
-      catch (err) {
-        console.error("Fallo:", err);
-      }
-    }
-
     fetchData();
-  }, [token]);
-  
-  
+    if (!isAuth(cookies.Token)) {
+      navigate("/login");
+    }
+  }, [cookies.Token]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/profile`,
+        { headers: { Authorization: `Bearer ${cookies.Token}` } }
+      );
+
+      setUser(response.data);
+    } catch (err) {
+      console.error("Fallo:", err);
+    }
+  };
+
   return (
     <>
-    <div className="cuerpoProfile">
-      <h1>My perfil</h1>
-      <section className="NicknameEmailAvatar">
-      <div className="NicknamEmail"><h2>{user.nickName}</h2>
-      <p>{user.email}</p></div>
-      
-      {user.avatar && <img
-          src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
-          alt={user.name}
-        />}
-        </section>
-        <div className="separador"></div>
-      <div className="presentacionPersonal">
-      <h3>{user.name + " "+ user.firstName}</h3>
-      <p>{dateFormat(user.DOB)}</p>
-      <p>{user.BIO}</p>
+      <h1 className="titleProfil">My perfil</h1>
+      <div className="cuerpoProfile">
+        <section className="NicknameAvatar">
+          <h1 className="Nickname">{user.nickName}</h1>
 
+          <img
+            className="avatarProfile"
+            src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
+            alt={user.name}
+          />
+        </section>
+
+        <section className="presentacionPersonal">
+          <div className="presentacionPersonalPares">
+            <p className="presentacionPersonalP">Nombre completo: </p>
+            <h3>{user.name + " " + user.firstName}</h3>
+          </div>
+
+          <div className="presentacionPersonalPares">
+            <p className="presentacionPersonalP">Email: </p>
+            <p> {user.email}</p>
+          </div>
+
+          <div className="presentacionPersonalPares">
+            <p className="presentacionPersonalP">fecha de nacimiento:</p>
+            <p> {dateFormat(user.DOB)}</p>
+          </div>
+
+          <div className="presentacionPersonalPares">
+            <p className="presentacionPersonalP">Biografía: </p>
+            <p>{user.BIO}</p>
+          </div>
+        </section>
+
+        <Favorites />
+
+        <ModifyProfile user={user} />
       </div>
-      <ModifyProfile/>
-    </div>  
     </>
-    
   );
 };
 
 export default Profile;
-

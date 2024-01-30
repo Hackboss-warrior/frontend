@@ -1,9 +1,12 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreatePost.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useCookies } from 'react-cookie';
+import isAuth from "../../isAuth";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -14,10 +17,14 @@ const CreatePost = () => {
 
   // --------- Manejadores de eventos. No se manda al backend ---------
   const [errorAlert, setErrorAlert] = useState("");
-
+  const [cookies] = useCookies(['Token']);
   const navigate = useNavigate();
 
-  const token = localStorage.getItem("Token");
+  useEffect(()=>{
+    if (!isAuth(cookies.Token)){
+      navigate("/login")
+    }
+  },[cookies.Token])
 
   const createNewPost = async (e) => {
     e.preventDefault();
@@ -31,7 +38,7 @@ const CreatePost = () => {
       await axios.post(`${import.meta.env.VITE_BACKEND_URL}/posts`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${cookies.Token}`,
         },
       });
 
@@ -104,8 +111,29 @@ const CreatePost = () => {
             Crear
           </button>
         </div>
+
       </form>
-      <ToastContainer />
+
+        <input
+          type="file"
+          onChange={(e) =>
+            setImage(e.target.files.length > 0 ? e.target.files[0] : null)
+          }
+          id="image"
+          name="image"
+          className="input-100"
+        />
+        <img
+          src={image ? URL.createObjectURL(image) : ""}
+          alt="Preview"
+          style={{ maxWidth: "100%", maxHeight: "100%" }}
+        />
+        <button type="submit" className="btn-enviar">
+          Crear
+        </button>
+      </div>
+    </form>
+    <ToastContainer />
     </>
   );
 };

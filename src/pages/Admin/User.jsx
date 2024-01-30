@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './Admin.css';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from "react-router-dom";
+import isAuth from "../../isAuth";
 
 const User = () => {
   const [userData, setUserData] = useState(null);
-  const [Token, setMiLocalStorage] = useState(localStorage.getItem('Token') || '');
+  const [cookies] = useCookies(['Token']);
+  const navigate = useNavigate();
 
-  const handleLocalStorageChange = (e) => {
-    setMiLocalStorage(e.newValue);
+  useEffect(()=>{
     fetchUserData();
-  };
- 
-  useEffect(() => {
-    window.addEventListener('storage', handleLocalStorageChange);
-    fetchUserData();
-    return () => {
-      window.removeEventListener('storage', handleLocalStorageChange);
-    };
-  }, [Token]); 
+    if (!isAuth(cookies.Token)){
+      navigate("/login")
+    }
+  },[cookies.Token]) 
 
   const fetchUserData = async () => {
     try {
@@ -25,7 +23,7 @@ const User = () => {
         `${import.meta.env.VITE_BACKEND_URL}/user`,
         {
           headers: {
-            Authorization: `Bearer ${Token}`,
+            Authorization: `Bearer ${cookies.Token}`,
           },
         }
       );
@@ -43,7 +41,7 @@ const User = () => {
     if (shouldDelete) {
       await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/user/${userId}`, {
         headers: {
-          Authorization: `Bearer ${Token}`,
+          Authorization: `Bearer ${cookies.Token}`,
         },
       });
 

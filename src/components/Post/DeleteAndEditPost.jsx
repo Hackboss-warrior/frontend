@@ -2,18 +2,19 @@ import axios from "axios";
 import { MdModeEditOutline } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import PropTypes from "prop-types";
-import { useCookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import isId from "../../isId";
+
 
 const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
-  const [cookies, updateCookies] = useCookies(["Token"]);
-  const token = cookies.Token;
-  const storagedUserId = cookies.Id;
+  const [cookies] = useCookies(["Token"]);
   const navigate = useNavigate();
 
   const deletePost = async (postId) => {
+
     const shouldDelete = window.confirm(
       "¿Estás seguro de que quieres eliminar este post?"
     );
@@ -26,6 +27,7 @@ const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
               Authorization: `Bearer ${token}`,
             },
           }
+    
         );
 
         if (currentPage === "list") {
@@ -48,6 +50,7 @@ const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
   const editPost = async () => {};
   return (
     <>
+
       <ToastContainer />
       <>
         {Number(storagedUserId) === post.userId ||

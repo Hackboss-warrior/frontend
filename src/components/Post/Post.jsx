@@ -8,7 +8,6 @@ import Comments from "./Comments";
 //Componentes importados
 import { FaCommentAlt } from "react-icons/fa";
 import logo from "../../assets/faknews-logo.svg";
-import { useCookies } from "react-cookie";
 
 import DeleteAndEditPost from "./DeleteAndEditPost";
 
