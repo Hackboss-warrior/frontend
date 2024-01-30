@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Post.css";
 import dateFormat from "../../utils/dateFormat";
 //Componentes importados
-import Interactions from "../Interactions";
-import Comments from "../Comments";
+import Interactions from "./Interactions";
+import Comments from "./Comments";
 //Componentes importados
 import { FaCommentAlt } from "react-icons/fa";
 import logo from "../../assets/faknews-logo.svg";
