@@ -22,7 +22,7 @@ const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
           `${import.meta.env.VITE_BACKEND_URL}/post/${postId}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${cookies.Token}`,
             },
           }
         );

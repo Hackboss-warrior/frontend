@@ -5,24 +5,25 @@ import dateFormat from "../utils/dateFormat";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import isAuth from "../isAuth";
-import { TbRosetteNumber1 } from "react-icons/tb";
+
+import DeleteComment from "./DeleteComment";
 
 const Comments = ({ comments, postId, setComments }) => {
-  const [cookies] = useCookies(['Token']);
+  const [cookies] = useCookies(["Token"]);
   const [commentValue, setCommentValue] = useState("");
-  const [replyValues, setReplyValues] = useState({});  // Nuevo estado para respuestas
+  const [replyValues, setReplyValues] = useState({}); // Nuevo estado para respuestas
   const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
 
   const insertAnswers = async (e, commentId) => {
     e.preventDefault();
-    const replyValue = replyValues[commentId] || '';
+    const replyValue = replyValues[commentId] || "";
     console.log(replyValue);
-    console.log(commentId)
+    console.log(commentId);
 
     const formData = new FormData();
-    formData.append('commentId', commentId);
-    formData.append('answer', replyValue);
+    formData.append("commentId", commentId);
+    formData.append("answer", replyValue);
 
     try {
       const responsecomments = await axios.post(
@@ -35,7 +36,6 @@ const Comments = ({ comments, postId, setComments }) => {
           },
         }
       );
-
     } catch (error) {
       console.error(error);
       setErrorMsg(error.response.data.error);
@@ -43,22 +43,21 @@ const Comments = ({ comments, postId, setComments }) => {
         setErrorMsg(null);
       }, 5000);
     }
-  }
+  };
 
   const insertComment = async (e) => {
     e.preventDefault();
 
-
-    if (!isAuth(cookies.Token)){
-      navigate("/login")
-      return
+    if (!isAuth(cookies.Token)) {
+      navigate("/login");
+      return;
     }
 
     const formData = new FormData();
     formData.append("comment", e.target.comment.value);
 
     try {
-      const responsecomments = await axios.post(
+      const res = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/post/${postId}`,
         formData,
         {
@@ -71,8 +70,7 @@ const Comments = ({ comments, postId, setComments }) => {
 
       setCommentValue("");
 
-      setComments(responsecomments.data);
-
+      setComments(res.data);
     } catch (error) {
       console.error(error);
       setErrorMsg(error.response.data.error);
@@ -117,8 +115,11 @@ const Comments = ({ comments, postId, setComments }) => {
               </div>
               <p className="commentDate">{dateFormat(cmt.createdAt)}</p>
             </div>
-            <p className="commentContent">{cmt.comment}</p>
-            <form className="commentsForm" onSubmit={(e) => insertAnswers(e, cmt.id)}>
+            <div className="commentTextAndDelBtn">
+              <p className="commentContent">{cmt.comment}</p>
+              <DeleteComment cmt={cmt} setComments={setComments} />
+            </div>
+            {/* <form className="commentsForm" onSubmit={(e) => insertAnswers(e, cmt.id)}>
               <input
                 type="text"
                 onChange={(e) => setReplyValues({ ...replyValues, [cmt.id]: e.target.value })}
@@ -128,7 +129,7 @@ const Comments = ({ comments, postId, setComments }) => {
                 required
               />
               <button type="submit">Responder</button>
-            </form>
+            </form> */}
           </div>
         ))}
     </div>
