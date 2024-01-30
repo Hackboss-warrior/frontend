@@ -8,13 +8,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import isId from "../../isId";
 
-
 const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
   const [cookies] = useCookies(["Token"]);
   const navigate = useNavigate();
 
   const deletePost = async (postId) => {
-
     const shouldDelete = window.confirm(
       "¿Estás seguro de que quieres eliminar este post?"
     );
@@ -27,7 +25,6 @@ const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
               Authorization: `Bearer ${token}`,
             },
           }
-    
         );
 
         if (currentPage === "list") {
@@ -50,11 +47,10 @@ const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
   const editPost = async () => {};
   return (
     <>
-
       <ToastContainer />
       <>
-        {Number(storagedUserId) === post.userId ||
-        Number(storagedUserId) === post.idUserTable ? (
+        {isId(cookies.Token) === post.userId ||
+        isId(cookies.Token) === post.idUserTable ? (
           <div className="editDeltBtn">
             <button className="editPostBtn" onClick={() => editPost(post.id)}>
               <MdModeEditOutline />

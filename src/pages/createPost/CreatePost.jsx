@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreatePost.css";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useCookies } from 'react-cookie';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useCookies } from "react-cookie";
 import isAuth from "../../isAuth";
 
 const CreatePost = () => {
@@ -17,14 +17,14 @@ const CreatePost = () => {
 
   // --------- Manejadores de eventos. No se manda al backend ---------
   const [errorAlert, setErrorAlert] = useState("");
-  const [cookies] = useCookies(['Token']);
+  const [cookies] = useCookies(["Token"]);
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    if (!isAuth(cookies.Token)){
-      navigate("/login")
+  useEffect(() => {
+    if (!isAuth(cookies.Token)) {
+      navigate("/login");
     }
-  },[cookies.Token])
+  }, [cookies.Token]);
 
   const createNewPost = async (e) => {
     e.preventDefault();
@@ -55,6 +55,7 @@ const CreatePost = () => {
 
   return (
     <>
+      <ToastContainer />
       <form className="boxregister" onSubmit={createNewPost}>
         {errorAlert}
         <div className="contenedor-inputs">
@@ -98,21 +99,7 @@ const CreatePost = () => {
               <option value="NSFW">NSFW</option>
             </select>
           </div>
-          <input
-            type="file"
-            onChange={(e) =>
-              setImage(e.target.files.length > 0 ? e.target.files[0] : null)
-            }
-            id="image"
-            name="image"
-            className="input-100"
-          />
-          <button type="submit" className="btn-enviar">
-            Crear
-          </button>
         </div>
-
-      </form>
 
         <input
           type="file"
@@ -131,9 +118,7 @@ const CreatePost = () => {
         <button type="submit" className="btn-enviar">
           Crear
         </button>
-      </div>
-    </form>
-    <ToastContainer />
+      </form>
     </>
   );
 };
