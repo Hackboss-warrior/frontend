@@ -24,12 +24,6 @@ const DeleteComment = ({ cmt, setComments }) => {
           }
         );
 
-        /* Rompe por un conflicto entre la página de detalle de comentarios y la página de posts, revisar que pasa con estos
-        const resComments = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/post/${postId}`
-        );
-
-        setComments(resComments[1]); */
       } catch (error) {
         console.error(error);
       }
