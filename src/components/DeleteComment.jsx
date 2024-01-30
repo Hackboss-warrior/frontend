@@ -3,11 +3,9 @@ import { useCookies } from "react-cookie";
 import PropTypes from "prop-types";
 import isId from "../isId";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 const DeleteComment = ({ cmt, setComments }) => {
   const [cookies] = useCookies(["Token"]);
-  const { postId } = useParams();
 
   const deleteComment = async (cmtId) => {
     const shouldDelete = window.confirm(
@@ -23,7 +21,6 @@ const DeleteComment = ({ cmt, setComments }) => {
             },
           }
         );
-
       } catch (error) {
         console.error(error);
       }
