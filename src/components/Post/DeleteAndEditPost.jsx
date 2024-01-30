@@ -12,25 +12,34 @@ const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
   const navigate = useNavigate();
 
   const deletePost = async (postId) => {
-    try {
-      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/post/${postId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (currentPage === "list") {
-        const resPosts = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/posts`
+    const shouldDelete = window.confirm(
+      "¿Estás seguro de que quieres eliminar este post?"
+    );
+    if (shouldDelete) {
+      try {
+        await axios.delete(
+          `${import.meta.env.VITE_BACKEND_URL}/post/${postId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
 
-        setPosts(resPosts.data[0]);
-      } else {
-        navigate("/");
-      }
+        if (currentPage === "list") {
+          const resPosts = await axios.get(
+            `${import.meta.env.VITE_BACKEND_URL}/posts`
+          );
 
-      //Informar con react Toastify de que el post se ha eliminado correctamente o de que no se ha podido eliminar.
-    } catch (error) {
-      console.error(error);
+          setPosts(resPosts.data[0]);
+        } else {
+          navigate("/");
+        }
+
+        //Informar con react Toastify de que el post se ha eliminado correctamente o de que no se ha podido eliminar.
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 

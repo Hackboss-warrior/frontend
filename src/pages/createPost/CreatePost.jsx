@@ -2,8 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreatePost.css";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -48,65 +48,64 @@ const CreatePost = () => {
 
   return (
     <>
-    <form className="boxregister" onSubmit={createNewPost}>
-      {errorAlert}
-      <div className="contenedor-inputs">
-        <input
-          type="text"
-          onChange={(e) => setTitle(e.target.value)}
-          id="title"
-          name="title"
-          placeholder="Title"
-          className="input-48"
-          required
-        />
-        <input
-          type="text"
-          onChange={(e) => setTopic(e.target.value)}
-          id="topic"
-          name="topic"
-          placeholder="Subtitulo"
-          className="input-48"
-          required
-        />
-        <input
-          type="text"
-          onChange={(e) => setbody(e.target.value)}
-          id="body"
-          name="body"
-          placeholder="Cuerpo de la noticia"
-          className="input-100"
-          required
-        />
-        <div className="TrioTags">
-        <select onChange={(e) => setTag(e.target.value)}>       
-          <option value="Políti">Política</option>
-          <option value="Economía">Economía</option>
-          <option value="Tecnología">Tecnología</option>
-          <option value="Ciencia">Ciencia</option>
-          <option value="Salud">Salud</option>
-          <option value="Cultura">Cultura</option>
-          <option value="Deportes">Deportes</option>
-          <option value="Entretenimiento">Entretenimiento</option>
-          <option value="NSFW">NSFW</option>
-        </select>
-
+      <form className="boxregister" onSubmit={createNewPost}>
+        {errorAlert}
+        <div className="contenedor-inputs">
+          <input
+            type="text"
+            onChange={(e) => setTitle(e.target.value)}
+            id="title"
+            name="title"
+            placeholder="Title"
+            className="input-48"
+            required
+          />
+          <input
+            type="text"
+            onChange={(e) => setTopic(e.target.value)}
+            id="topic"
+            name="topic"
+            placeholder="Subtitulo"
+            className="input-48"
+            required
+          />
+          <input
+            type="text"
+            onChange={(e) => setbody(e.target.value)}
+            id="body"
+            name="body"
+            placeholder="Cuerpo de la noticia"
+            className="input-100"
+            required
+          />
+          <div className="TrioTags">
+            <select onChange={(e) => setTag(e.target.value)}>
+              <option value="Política">Política</option>
+              <option value="Economía">Economía</option>
+              <option value="Tecnología">Tecnología</option>
+              <option value="Ciencia">Ciencia</option>
+              <option value="Salud">Salud</option>
+              <option value="Cultura">Cultura</option>
+              <option value="Deportes">Deportes</option>
+              <option value="Entretenimiento">Entretenimiento</option>
+              <option value="NSFW">NSFW</option>
+            </select>
+          </div>
+          <input
+            type="file"
+            onChange={(e) =>
+              setImage(e.target.files.length > 0 ? e.target.files[0] : null)
+            }
+            id="image"
+            name="image"
+            className="input-100"
+          />
+          <button type="submit" className="btn-enviar">
+            Crear
+          </button>
         </div>
-        <input
-          type="file"
-          onChange={(e) =>
-            setImage(e.target.files.length > 0 ? e.target.files[0] : null)
-          }
-          id="image"
-          name="image"
-          className="input-100"
-        />
-        <button type="submit" className="btn-enviar">
-          Crear
-        </button>
-      </div>
-    </form>
-    <ToastContainer />
+      </form>
+      <ToastContainer />
     </>
   );
 };
