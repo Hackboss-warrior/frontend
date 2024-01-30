@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Post.css";
 import dateFormat from "../../utils/dateFormat";
 //Componentes importados
-import Interactions from "./Interactions";
-import Comments from "./Comments";
+import Interactions from "../Interactions";
+import Comments from "../Comments";
 //Componentes importados
 import { FaCommentAlt } from "react-icons/fa";
 import logo from "../../assets/faknews-logo.svg";
@@ -89,8 +89,8 @@ const Post = ({
       {currentPage !== "list" && (
         <Comments
           comments={comments}
-          postId={post.id}
           setComments={setComments}
+          postId={post.id}
         />
       )}
     </article>
@@ -100,7 +100,7 @@ const Post = ({
 Post.propTypes = {
   post: PropTypes.object.isRequired,
   likes: PropTypes.array,
-  comments: PropTypes.array.isRequired,
+  comments: PropTypes.array,
   setComments: PropTypes.func.isRequired,
   currentPage: PropTypes.string,
   posts: PropTypes.array,

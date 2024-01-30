@@ -185,7 +185,7 @@ main .post {
   font-family: "Lato", sans-serif;
 }
 
-/* CSS para el componente de comentarios */
+/* CSS COMMENTS */
 
 .comments h3 {
   font-size: 1.8rem;
@@ -272,4 +272,128 @@ main .post {
 .commentsForm button:hover {
   transform: scale(1.1);
   border: 1px solid #fff;
+}
+
+.delCmtBtn {
+  font-family: "Montserrat", sans-serif;
+  box-shadow: var(--box-shadow);
+  height: 40px;
+  width: 60px;
+  border-radius: 10px;
+  background-color: var(--main-red-color);
+}
+
+/* RESPONSIVE */
+
+/* MOBILE*/
+@media only screen and (max-width: 600px) {
+  main .post {
+    width: 90%; /* Adjust as needed */
+  }
+
+  .post {
+    padding: 20px;
+    margin: 30px 0;
+  }
+
+  .postTitle {
+    font-size: 2rem;
+  }
+
+  .postImg,
+  .defaultPostImg {
+    width: 100%;
+  }
+
+  .postUserAndDate {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .postCreatedAt,
+  .postUserInfo,
+  .interactCommentsButtons,
+  .editDeltBtn,
+  .commentsForm {
+    flex-direction: column;
+  }
+
+  .editPostBtn,
+  .delPostBtn,
+  .postLikes,
+  .postDisLikes,
+  .commentsNumber {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .editPostBtn {
+    font-size: 1.2rem;
+  }
+
+  .commentBox,
+  .commentUserInfoDate {
+    flex-direction: column;
+  }
+
+  .commentUserInfo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .commentContent {
+    margin-left: 0;
+  }
+
+  .commentsForm input {
+    height: auto;
+  }
+}
+
+/* TABLET */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .post {
+    padding: 30px;
+    margin: 40px 0;
+  }
+
+  .postTitle {
+    font-size: 2.5rem;
+  }
+
+  .postImg,
+  .defaultPostImg {
+    width: 100%;
+  }
+
+  .postCreatedAt,
+  .postUserInfo,
+  .interactCommentsButtons,
+  .editDeltBtn,
+  .commentsForm {
+    flex-direction: row;
+  }
+
+  .editPostBtn,
+  .delPostBtn,
+  .postLikes,
+  .postDisLikes,
+  .commentsNumber {
+    width: auto;
+    margin-bottom: 20px;
+  }
+
+  .commentBox,
+  .commentUserInfoDate {
+    flex-direction: row;
+  }
+
+  .commentUserInfo {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .commentContent {
+    margin-left: 15px;
+  }
 }
