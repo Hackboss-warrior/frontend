@@ -4,6 +4,8 @@ import { FaTrash } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
   const [cookies, updateCookies] = useCookies(["Token"]);
@@ -35,10 +37,10 @@ const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
         } else {
           navigate("/");
         }
-
+        toast.success("¡Su publicación ha sido eliminado correctamente!");
         //Informar con react Toastify de que el post se ha eliminado correctamente o de que no se ha podido eliminar.
       } catch (error) {
-        console.error(error);
+        toast.error("Se ha producido un error al eliminar la publicación");
       }
     }
   };
@@ -46,19 +48,22 @@ const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
   const editPost = async () => {};
   return (
     <>
-      {Number(storagedUserId) === post.userId ||
-      Number(storagedUserId) === post.idUserTable ? (
-        <div className="editDeltBtn">
-          <button className="editPostBtn" onClick={() => editPost(post.id)}>
-            <MdModeEditOutline />
-          </button>
-          <button className="delPostBtn" onClick={() => deletePost(post.id)}>
-            <FaTrash />
-          </button>
-        </div>
-      ) : (
-        <></>
-      )}
+      <ToastContainer />
+      <>
+        {Number(storagedUserId) === post.userId ||
+        Number(storagedUserId) === post.idUserTable ? (
+          <div className="editDeltBtn">
+            <button className="editPostBtn" onClick={() => editPost(post.id)}>
+              <MdModeEditOutline />
+            </button>
+            <button className="delPostBtn" onClick={() => deletePost(post.id)}>
+              <FaTrash />
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
+      </>
     </>
   );
 };

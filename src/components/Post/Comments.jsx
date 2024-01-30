@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import dateFormat from "../../utils/dateFormat";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Comments = ({ comments, postId, setComments }) => {
   const [Token, setMiLocalStorage] = useState(
@@ -64,27 +66,25 @@ const Comments = ({ comments, postId, setComments }) => {
         }
       );
 
+      toast.success("¡Su comentario se ha publicado!");
       setCommentValue("");
 
       setComments(responsecomments.data);
     } catch (error) {
-      console.error(error);
-      setErrorMsg(error.response.data.error);
-      setTimeout(() => {
-        setErrorMsg(null);
-      }, 5000);
+      toast.error(
+        "¡Se ha producido un error en la publicación de su comentario!"
+      );
     }
   };
 
   return (
     <div className="comments">
+      <ToastContainer />
       <h3>Comentarios</h3>
-      {/* Cambiar por react toastify */}
-      {errorMsg}
-      {/* Cambiar por react toastify */}
+
       <form className="commentsForm" onSubmit={insertComment}>
         <input
-          type="tex"
+          type="text"
           onChange={(e) => setCommentValue(e.target.value)}
           value={commentValue}
           id="comment"
@@ -96,6 +96,7 @@ const Comments = ({ comments, postId, setComments }) => {
         <button type="submit">Comentar</button>
       </form>
 
+      {console.log(comments)}
       {comments
         .filter((comment) => comment.postId === postId)
         .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
@@ -112,7 +113,7 @@ const Comments = ({ comments, postId, setComments }) => {
               <p className="commentDate">{dateFormat(cmt.createdAt)}</p>
             </div>
             <p className="commentContent">{cmt.comment}</p>
-            <form
+            {/*  <form
               className="commentsForm"
               onSubmit={(e) => insertAnswers(e, cmt.id)}
             >
@@ -127,7 +128,7 @@ const Comments = ({ comments, postId, setComments }) => {
                 required
               />
               <button type="submit">Responder</button>
-            </form>
+            </form> */}
           </div>
         ))}
     </div>

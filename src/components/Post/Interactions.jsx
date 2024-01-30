@@ -17,7 +17,7 @@ const Interactions = ({ post, likes, setLikes }) => {
   const navigate = useNavigate();
 
   const sendLike = async (postId) => {
-    //Con esta línea de código nos aseguramos que si el usuario no esta logueado la página le rediriga a login
+    //Con esta línea de código nos aseguramos que si el usuario no esta logueado la página le redirija a login
     !token && navigate("/login");
 
     try {
@@ -42,7 +42,7 @@ const Interactions = ({ post, likes, setLikes }) => {
   };
 
   const sendDisLike = async (postId) => {
-    //Con esta línea de código nos aseguramos que si el usuario no esta logueado la página le rediriga a login
+    //Con esta línea de código nos aseguramos que si el usuario no esta logueado la página le redirija a login
     !token && navigate("/login");
 
     try {
@@ -59,7 +59,7 @@ const Interactions = ({ post, likes, setLikes }) => {
           },
         }
       );
-      console.log(res.data);
+
       setLikes(res.data);
     } catch (error) {
       console.error(error);
