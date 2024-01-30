@@ -8,10 +8,10 @@ import { useCookies } from "react-cookie";
 import isAuth from "../../isAuth";
 import { useNavigate } from "react-router-dom";
 
-import Favorites from "../../components/Favorites";
+// import Favorites from "../../components/Favorites";
 
 const Profile = () => {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
   const [cookies] = useCookies(["Token"]);
   const navigate = useNavigate();
 
@@ -30,11 +30,12 @@ const Profile = () => {
       );
 
       setUser(response.data);
+    
     } catch (err) {
       console.error("Fallo:", err);
     }
   };
-
+  console.log(user);
   return (
     <>
       <h1 className="titleProfil">My perfil</h1>
@@ -71,7 +72,7 @@ const Profile = () => {
           </div>
         </section>
 
-        <Favorites />
+        {/* <Favorites /> */}
 
         <ModifyProfile user={user} />
       </div>
