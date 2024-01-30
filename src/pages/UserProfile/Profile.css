@@ -1,31 +1,127 @@
+.mainPage{
+    --main-red-color: #a9191f;
+  --dark-grey-color: #2d2d2d;
+  --light-grey-color: #b8b8b8;
+  font-family: "Lato", sans-serif;
+  }
+  .titleProfil{
+    color: #2d2d2d;
+    border-bottom: 4px solid #a9191f;
+     margin-bottom: 40px;}
 .cuerpoProfile{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+ background-color: #2d2d2d;
+    border-radius: 10%;
 }
 
-.NicknameEmailAvatar{
+.NicknameAvatar{
     display: flex;
-    
-    justify-content: space-around;
+    justify-content: space-between;
+   
+   padding: 30px;
+   width: 100%;
+   gap: 40px;
 }
-.NicknamEmail{
+.Nickname{
     
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: #a9191f;
 
 }
-.presentacionPersonal{
-   
-    margin-left: 20px;
+.avatarProfile{
+    background-color: #b8b8b8;
+    border-radius: 40%;
 }
-.separador{
-    margin: 15px;
-    background-color: red;
-    width: 60%;
-    height: 10px;
-    border-radius: 50%;
+.presentacionPersonal{
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    color: white;
+
+   padding: 30px;
+   width: 100%;
+   gap: 0.75rem;
+}
+.presentacionPersonalPares{
+    display: flex;
+    flex-direction: column;    
+}
+.presentacionPersonalP{
+color: #b8b8b8;
+}
+
+
+/* ////////////////////////////////////////////////////// */
+/* ////////// */ /*ModifyProfile */  /*///////////////// */
+
+
+.FormProfile{
+    display: flex;
+    justify-content: space-around;
+   flex-direction: column;
+   align-items: center;
+  
+    gap: 1rem;
+  
+  
+    margin: 40px; 
+    padding: 1rem;
+  width: 60vw;
+  
+    border: 5px solid var(--main-red-color);
+   
+     border-radius: 40%;
+   background-color: #2d2d2d;
+   color:white;
+}
+
+legend {
+    font-size: 2rem;
+    border-bottom: 3px solid#a9191f;
+}
+
+
+.FormSectionProfile {
+    
+    display: flex;
+    justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  
+   
+    width: 100%;}
+
+.inputFormProfile{
+background-color:#b8b8b8;
+width :40% ;
+}
+
+.inputFormProfile::placeholder{
+color:white;
+font-size: 0.80rem;
+text-align: center;}
+.Biografia{
+    width: 85%;
+}
+.buttonsFrom{
+    display: flex;
+    gap: 2rem  ;
+}
+.ButtonForm{
+    background:var(--main-red-color);
+    color: white;
+    margin: auto;
+    padding: 10px 40px;
+    cursor: pointer;
+    font-size: 20px;
+    
 }
