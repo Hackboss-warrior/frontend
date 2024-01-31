@@ -311,6 +311,13 @@ img {
     width: 300px;
     transition: width .4s;
   }
+
+  .pages .sidebar {
+    padding-left: 300px;
+    padding-top: 6rem;
+    transition: padding 0.4s;
+  }
+
   .sidebar__container {
     padding-bottom: 4rem;
     overflow: hidden;
@@ -356,6 +363,18 @@ img {
     transition: padding .4s;
   }
 
+  .pages  {
+    padding-left: 300px;
+    padding-top: 6rem;
+    transition: padding 0.4s;
+  }
+
+  .show-pages  {
+    padding-left: 100px;
+    padding-top: 6rem;
+    transition: padding 0.4s;
+  }
+
   /* Reduce sidebar */
   .show-sidebar {
     width: 120px;
@@ -383,7 +402,6 @@ img {
     padding-left: 300px;
   }
 
-  /* Add padding main */
   .main-pd {
     padding-left: 120px;
   }
@@ -392,4 +410,8 @@ img {
 
 table, td, th {
   border: 1px solid black;
+}
+
+@media screen and (min-width: 1024px) {
+  
 }

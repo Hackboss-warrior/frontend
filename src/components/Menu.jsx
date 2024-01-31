@@ -5,6 +5,7 @@ import Sidebar from './Sidebar.jsx';
 import { AiOutlineMenu } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import fakNews from '../assets/faknews-logo.svg';
+import '../pages/Admin/Admin.css'
 
 function Menu() {
   const [activeSection, setActiveSection] = useState('home');
@@ -21,10 +22,11 @@ function Menu() {
 
   const handleToggleSidebar = () => {
     sidebar.classList.toggle('show-sidebar')
+    pages.classList.toggle('show-pages')
   };
 
   return (
-    <div className='Hola'>
+    <>
       <Sidebar handleSectionChange={handleSectionChange} />
       <header className="header">
         <div className="header__container container">
@@ -37,7 +39,7 @@ function Menu() {
           </a>
         </div>
       </header>
-    </div>
+    </>
   );
 }
 

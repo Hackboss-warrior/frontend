@@ -22,11 +22,6 @@ const Sidebar = ({ handleSectionChange }) => {
    const [user, setUser] = useState([]);
    const [cookies, removeCookie] = useCookies(['Token']);
 
-   //  useEffect(() => {
-   //    const storedActiveLink = localStorage.getItem('activeLink');
-   //    setActiveLink(storedActiveLink || 'home');
-   //  }, []);
-
    useEffect(() => {
       const path = location.pathname;
 
