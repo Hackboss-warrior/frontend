@@ -48,7 +48,7 @@ const Post = ({
           <img
             className="postImg"
             src={`${import.meta.env.VITE_BACKEND_URL}/${files}`}
-            alt={"Imagen de la publicación"}
+            alt="Imagen de la publicación"
           />
         ) : (
           <img src={logo} className="defaultPostImg" alt="fakNews logo" />
@@ -87,7 +87,7 @@ Post.propTypes = {
   nickName: PropTypes.string,
   createdAt: PropTypes.string,
   files: PropTypes.string,
-  topic: PropTypes.string,
+  topic: PropTypes.object,
   body: PropTypes.string,
   tag: PropTypes.string,
   interactions: PropTypes.object,

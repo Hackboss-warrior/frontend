@@ -43,7 +43,7 @@ const ListPosts = () => {
             nickName={post.nickName}
             createdAt={post.createdAt}
             files={post.files}
-            topic={<h2>{post.topic}</h2>}
+            topic={<h3>{post.topic}</h3>}
             body={post.body}
             tag={post.tag}
             interactions={
