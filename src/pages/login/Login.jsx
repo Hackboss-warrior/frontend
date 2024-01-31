@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import whiteLogo from "../../assets/fakNews-white-logo-no-bg.svg";
 import { useCookies } from 'react-cookie';
-import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const [nickName, setnickName] = useState("");
@@ -12,6 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
   const navigate = useNavigate();
+  //Usar localStorage
   const [cookies, setCookie] = useCookies(['Token']);
 
   const logUser = async (e) => {

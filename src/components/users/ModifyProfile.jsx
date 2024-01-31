@@ -28,28 +28,28 @@ const ModifyProfile = ({ user }) => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      if (name.trim() !== "") {
+      if (name) {
         formData.append("name", name);
       }
-      if (firstName.trim() !== "") {
+      if (firstName) {
         formData.append("firstName", firstName);
       }
-      if (nickName.trim() !== "") {
+      if (nickName) {
         formData.append("nickName", nickName);
       }
-      if (email.trim() !== "") {
+      if (email) {
         formData.append("email", email);
       }
-      if (BIO.trim() !== "") {
+      if (BIO) {
         formData.append("BIO", BIO);
       }
-      if (password.trim() !== "") {
+      if (password) {
         formData.append("password", password);
       }
       // formData.append("avatar", avatar);
       // formData.append("DOB", DOB);
 
-
+      console.log(Object.fromEntries(formData))
       await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/user`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -139,7 +139,7 @@ const ModifyProfile = ({ user }) => {
             placeholder={user.BIO}
           />
         <section className="buttonsFrom">
-          <button className="ButtonForm" type="submit" onClick={changeBtnForm}>
+          <button className="ButtonForm" type="submit">
             Enviar
           </button>
           <button className="ButtonForm" onClick={changeBtnForm}>
