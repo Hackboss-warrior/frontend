@@ -139,7 +139,7 @@ const Register = () => {
             <button type="submit" className="btn-enviar">
               Regístrame
             </button>
-            <p>
+            <p className="formLogin">
               Ya tienes una cuenta? <Link to="/login"> Haz click aquí</Link>
             </p>
           </div>

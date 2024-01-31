@@ -131,3 +131,40 @@ input {
 .registerLogo {
   width: 30%;
 }
+
+@media screen and (max-width: 500px) {
+
+  .registerMainContent h1 {
+    font-family: "Montserrat", sans-serif;
+    color: #fff;
+    font-size: 3rem;
+  }
+
+  .boxregister {
+    background-color: var(--dark-grey-color);
+    max-width: 356px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    margin: auto auto;
+    padding: 8px;
+  }
+
+  .formFooter {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    gap: 10;
+  }
+
+  .btn-enviar {
+    background: var(--main-red-color);
+    color: #fff;
+    margin: auto;
+    padding: 10px 90px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 10px;
+  }
+  
+}

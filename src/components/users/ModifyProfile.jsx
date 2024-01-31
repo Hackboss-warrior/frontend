@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useCookies } from 'react-cookie';
 import { useNavigate } from "react-router-dom";
 import isAuth from "../../isAuth";
-
+import PropTypes from "prop-types";
 const ModifyProfile = ({ user }) => {
   const [name, setName] = useState("");
   const [firstName, setfirstName] = useState("");
@@ -151,5 +151,14 @@ const ModifyProfile = ({ user }) => {
 )}
     </div> );
 };
+
+ModifyProfile.propTypes = {
+  user: PropTypes.object.isRequired,
+};
+
+
+
+
+
 
 export default ModifyProfile;

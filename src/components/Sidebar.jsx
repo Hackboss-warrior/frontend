@@ -12,7 +12,6 @@ import { TbUsersGroup } from "react-icons/tb";
 import { BsFileEarmarkPost } from "react-icons/bs";
 import fakNews from "../assets/faknews-logo.svg";
 import { useCookies } from 'react-cookie';
-import { jwtDecode } from "jwt-decode";
 import isAdmin from "../isAdmin";
 import isAuth from "../isAuth";
 
@@ -21,11 +20,6 @@ const Sidebar = ({ handleSectionChange }) => {
    const navigate = useNavigate();
    const [user, setUser] = useState([]);
    const [cookies, removeCookie] = useCookies(['Token']);
-
-   //  useEffect(() => {
-   //    const storedActiveLink = localStorage.getItem('activeLink');
-   //    setActiveLink(storedActiveLink || 'home');
-   //  }, []);
 
    useEffect(() => {
       const path = location.pathname;
@@ -40,6 +34,7 @@ const Sidebar = ({ handleSectionChange }) => {
          "/about": "about",
          "/admin": "admin",
          "/createpost": "createpost",
+         "/favorites": "favorites",
       };
       setActiveLink(linkMap[path] || "home");
       localStorage.setItem("activeLink", linkMap[path]);
@@ -72,7 +67,6 @@ const Sidebar = ({ handleSectionChange }) => {
    const handleLogout = () => {
       removeCookie("Token")
       removeCookie("Id")
-      localStorage.removeItem("token")
       navigate("/");
    };
 
@@ -100,8 +94,8 @@ const Sidebar = ({ handleSectionChange }) => {
                      />)}
                      {isAuth(cookies.Token) && (<SidebarLink
                         name="Favoritos"
-                        isActive={activeLink === "about"}
-                        onClick={() => handleLinkClick("about", "/about")}
+                        isActive={activeLink === "favorites"}
+                        onClick={() => handleLinkClick("favorites", "/favorites")}
                         icon={<FcStatistics />}
                      />)}
                      <SidebarLink

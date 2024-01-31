@@ -35,7 +35,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <CookiesProvider>
       <Router>
         <Menu />
-        <div className="pages">
+        <div className="pages" id="pages">
           <Routes>
             <Route path="/" element={<ListPosts />} />
             <Route path="/register" element={<Register />} />

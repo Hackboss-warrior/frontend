@@ -12,6 +12,7 @@ import DeleteAndEditPost from "./DeleteAndEditPost";
 import AddFavoritePost from "../AddFavoritePost";
 //Componentes importados
 
+
 const Post = ({
   post,
   comments,
