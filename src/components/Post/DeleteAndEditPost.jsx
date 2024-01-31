@@ -44,7 +44,6 @@ const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
     }
   };
 
-  const editPost = async () => {};
   return (
     <>
       <ToastContainer />
@@ -52,7 +51,10 @@ const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
         {isId(cookies.Token) === post.userId ||
         isId(cookies.Token) === post.idUserTable ? (
           <div className="editDeltBtn">
-            <button className="editPostBtn" onClick={() => editPost(post.id)}>
+            <button
+              className="editListPostBtn"
+              onClick={() => navigate(`/editPost/${post.id}`)}
+            >
               <MdModeEditOutline />
             </button>
             <button className="delPostBtn" onClick={() => deletePost(post.id)}>

@@ -1,0 +1,17 @@
+.saveEditBtnSection {
+  display: flex;
+  justify-content: end;
+  margin-top: 20px;
+}
+
+.saveEditBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+  height: 50px;
+  width: 100px;
+  border-radius: 10px;
+  background-color: var(--main-red-color);
+  font-size: 1.5rem;
+}
