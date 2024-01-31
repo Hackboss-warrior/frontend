@@ -1,5 +1,6 @@
 // En el componente Admin
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 import '../pages/Admin/Admin.css';
 import Sidebar from './Sidebar.jsx';
 import { AiOutlineMenu } from "react-icons/ai";
@@ -8,12 +9,8 @@ import fakNews from '../assets/faknews-logo.svg';
 import '../pages/Admin/Admin.css'
 
 function Menu() {
-  const [activeSection, setActiveSection] = useState('home');
-  const [sidebarVisible, setSidebarVisible] = useState(false);
-  const [content, setContent] = useState('');
-  const [errorAlert, setErrorAlert] = useState("");
-  const [userData, setUserData] = useState(null);
-  const navigate = useNavigate();
+  const [title, setTitle] = useState('');
+  const [searchResults, setSearchResults] = useState(null);
 
   const handleSectionChange = (section) => {
     setActiveSection(section);
@@ -25,6 +22,27 @@ function Menu() {
     pages.classList.toggle('show-pages')
   };
 
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/posts/${title}`);
+      console.log(response.data)
+    
+      
+      setSearchResults(response.data);
+
+    } catch (error) {
+      console.error('Error en la solicitud:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (title) {
+      handleSearch();
+    } else {
+      setSearchResults(null);
+    }
+  }, [title]);
+
   return (
     <>
       <Sidebar handleSectionChange={handleSectionChange} />
@@ -33,6 +51,13 @@ function Menu() {
           <div className="header__toggle" id="header-toggle" onClick={handleToggleSidebar}>
             <AiOutlineMenu />
           </div>
+
+          <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Buscar por título"
+      />
 
           <a href="#" className="header__logo">
             <img src={fakNews} alt="" />

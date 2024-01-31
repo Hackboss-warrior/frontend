@@ -11,7 +11,6 @@ import logo from "../../assets/faknews-logo.svg";
 import { useEffect } from "react";
 
 import DeleteAndEditPost from "./DeleteAndEditPost";
-import axios from "axios";
 
 const Post = ({
   post,
