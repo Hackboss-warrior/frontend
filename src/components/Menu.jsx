@@ -4,7 +4,6 @@ import axios from "axios";
 import '../pages/Admin/Admin.css';
 import Sidebar from './Sidebar.jsx';
 import { AiOutlineMenu } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
 import fakNews from '../assets/faknews-logo.svg';
 import '../pages/Admin/Admin.css'
 
@@ -26,8 +25,8 @@ function Menu() {
     try {
       const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/posts/${title}`);
       console.log(response.data)
-    
-      
+
+
       setSearchResults(response.data);
 
     } catch (error) {
@@ -53,11 +52,11 @@ function Menu() {
           </div>
 
           <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Buscar por título"
-      />
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Buscar por título"
+          />
 
           <a href="#" className="header__logo">
             <img src={fakNews} alt="" />

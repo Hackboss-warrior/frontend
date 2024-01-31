@@ -40,7 +40,7 @@ const About = () => {
           sin censura, somos la inyección de realidad que necesitas. ¡Prepárate
           para el desmadre informativo que solo nosotros te ofrecemos!
         </p>
-        
+
         <p>Nuestra mayor pasión es destrozar la realidad hasta que solo queden risas y la triste verdad para que tu puedas tomar tus puñeteras conclusiones mientras honras a Roca.</p>
         <p>
           Conoce a nuestros pícaros developers, el dúo dinámico y su genio
@@ -54,24 +54,24 @@ const About = () => {
       </section>
 
       <section className="acounting">
-        <h2 className="acountingH2">Alctualmente contamos con:</h2>
-<artucle className="accountCards">
-        <div className="acountCard">
-         
-          <h2 className="acountH3">{userCount} </h2> <p>Usuarios registrados</p>
-        </div>
+        <h2 className="acountingH2">Actualmente contamos con:</h2>
+        <article className="accountCards">
+          <div className="acountCard">
 
-        <div className="acountCard">
-          
-          <h2 className="acountH3">{postsCount} </h2>
-          <p>Publicaciones mordaces</p>
-        </div>
-        <div className="acountCard">
-          
-          <h2 className="acountH3">{commentsCount} </h2>
-          <p>Rios de pura polémica</p>
-        </div>
-        </artucle>
+            <h2 className="acountH3">{userCount} </h2> <p>Usuarios registrados</p>
+          </div>
+
+          <div className="acountCard">
+
+            <h2 className="acountH3">{postsCount} </h2>
+            <p>Publicaciones mordaces</p>
+          </div>
+          <div className="acountCard">
+
+            <h2 className="acountH3">{commentsCount} </h2>
+            <p>Rios de pura polémica</p>
+          </div>
+        </article>
 
       </section>
     </>

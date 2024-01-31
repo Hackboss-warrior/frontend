@@ -61,3 +61,39 @@
 .loginLogo {
   width: 50%;
 }
+
+
+@media screen and (max-width: 500px) {
+  
+  .input-container {
+    width: 90vw;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    background-color: var(--dark-grey-color);
+  }
+
+  .loginForm input {
+    width: 75vw;
+  }
+  .login-button {
+    width: 75vw;
+    height: 51px;
+    background-color: var(--main-red-color);
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+  }
+
+  .loginMainContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+}

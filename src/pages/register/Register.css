@@ -133,6 +133,13 @@ input {
 }
 
 @media screen and (max-width: 500px) {
+
+  .registerMainContent h1 {
+    font-family: "Montserrat", sans-serif;
+    color: #fff;
+    font-size: 3rem;
+  }
+
   .boxregister {
     background-color: var(--dark-grey-color);
     max-width: 356px;
@@ -159,10 +166,5 @@ input {
     font-size: 20px;
     border-radius: 10px;
   }
-  
-}
-
-
-@media screen and (min-width: 1024px) {
   
 }

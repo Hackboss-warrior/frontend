@@ -151,9 +151,9 @@ const ModifyProfile = ({ user }) => {
 )}
     </div> );
 };
+
 ModifyProfile.propTypes = {
   user: PropTypes.object.isRequired,
-  
 };
 
 

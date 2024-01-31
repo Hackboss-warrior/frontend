@@ -88,6 +88,7 @@ const CreatePost = () => {
           />
           <div className="TrioTags">
             <select onChange={(e) => setTag(e.target.value)}>
+              <option value="Otros" defaultChecked>Selecciona una opción</option>
               <option value="Política">Política</option>
               <option value="Economía">Economía</option>
               <option value="Tecnología">Tecnología</option>
@@ -110,11 +111,11 @@ const CreatePost = () => {
           name="image"
           className="input-100"
         />
-        <img
+        {image && (<img
           src={image ? URL.createObjectURL(image) : ""}
           alt="Preview"
           style={{ maxWidth: "100%", maxHeight: "100%" }}
-        />
+        />)}
         <button type="submit" className="btn-enviar">
           Crear
         </button>
