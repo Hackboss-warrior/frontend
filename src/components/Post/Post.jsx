@@ -85,8 +85,10 @@ const Post = ({
           ) : (
             <h2 className="postTopic"> {post.topic}</h2>
           )}
+
           <p className="postBody">{post.body}</p>
         </div>
+        <p className="postTag">{post.tag}</p>
       </div>
       {currentPage !== "list" && (
         <Comments

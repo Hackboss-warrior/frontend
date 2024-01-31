@@ -9,10 +9,6 @@
   width: 1000px;
 }
 
-.postMainContent {
-  padding-bottom: 20px;
-}
-
 .postTitle {
   color: #fff;
   font-family: "Montserrat", sans-serif;
@@ -29,7 +25,7 @@
 
 .defaultPostImg {
   width: 920px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .interactCommentsButtons {
@@ -69,7 +65,7 @@
   display: flex;
   gap: 20px;
 }
-.editPostBtn,
+.editListPostBtn,
 .delPostBtn {
   display: flex;
   gap: 10px;
@@ -85,12 +81,12 @@
   background-color: var(--main-red-color);
 }
 
-.editPostBtn {
+.editListPostBtn {
   font-size: 1.4rem;
 }
 
 .delPostBtn:hover,
-.editPostBtn:hover {
+.editListPostBtn:hover {
   border: 1px solid #fff;
 }
 
@@ -158,6 +154,16 @@
   font-family: "Lato", sans-serif;
 }
 
+.postTag {
+  font-style: italic;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  background-color: var(--main-red-color);
+  width: 18%;
+  margin-top: 20px;
+}
 /* CSS COMMENTS */
 
 .comments h3 {
@@ -292,7 +298,7 @@
     flex-direction: column;
   }
 
-  .editPostBtn,
+  .editListPostBtn,
   .delPostBtn,
   .postLikes,
   .postDisLikes,
@@ -301,7 +307,7 @@
     margin-bottom: 10px;
   }
 
-  .editPostBtn {
+  .editListPostBtn {
     font-size: 1.2rem;
   }
 
@@ -349,7 +355,7 @@
     flex-direction: row;
   }
 
-  .editPostBtn,
+  .editListPostBtn,
   .delPostBtn,
   .postLikes,
   .postDisLikes,
