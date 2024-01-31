@@ -14,7 +14,6 @@ const AddFavoritePost = ({ post }) => {
   const navigate = useNavigate();
 
   const addFavoriteHandler = async (postId) => {
-    console.log(postId);
     if (!isAuth(cookies.Token)) {
       navigate("/login");
       return;
@@ -42,14 +41,16 @@ const AddFavoritePost = ({ post }) => {
   };
 
   return (
-    <button
-      className="favoriteBtn"
-      onClick={() => {
-        addFavoriteHandler(post.id);
-      }}
-    >
-      {fav}
-    </button>
+    <div className="favContainer">
+      <button
+        className="favoriteBtn"
+        onClick={() => {
+          addFavoriteHandler(post.id);
+        }}
+      >
+        {fav}
+      </button>
+    </div>
   );
 };
 

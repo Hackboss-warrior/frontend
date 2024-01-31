@@ -197,6 +197,10 @@
 .comments {
   text-align: left;
   padding: 20px;
+  background-color: var(--dark-grey-color);
+  border-radius: 25px;
+  box-shadow: var(--box-shadow);
+  margin-bottom: 50px;
 }
 
 .commentBox {

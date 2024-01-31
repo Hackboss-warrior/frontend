@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import "./listPosts.css";
 import Post from "../../components/Post/Post";
 import { v4 as uuidv4 } from "uuid";
+import Interactions from "../../components/Interactions";
+import AddFavoritePost from "../../components/AddFavoritePost";
+import DeleteAndEditPost from "../../components/Post/DeleteAndEditPost";
 
 const ListPosts = () => {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
-  const [currentPage] = useState("list");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,23 +32,34 @@ const ListPosts = () => {
 
   return (
     <>
-      <main className="posts">
-        {posts
-          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-          .map((post) => (
-            <Post
-              key={uuidv4()}
-              post={post}
-              setPosts={setPosts}
-              posts={posts}
-              comments={comments}
-              setComments={setComments}
-              currentPage={currentPage}
-              likes={likes}
-              setLikes={setLikes}
-            />
-          ))}
-      </main>
+      {posts
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .map((post) => (
+          <Post
+            key={uuidv4()}
+            title={<h2 className="postTitle">{post.title}</h2>}
+            postId={post.id}
+            avatar={post.avatar}
+            nickName={post.nickName}
+            createdAt={post.createdAt}
+            files={post.files}
+            topic={<h2>{post.topic}</h2>}
+            body={post.body}
+            tag={post.tag}
+            interactions={
+              <Interactions post={post} likes={likes} setLikes={setLikes} />
+            }
+            addFavorites={<AddFavoritePost post={post} />}
+            deletePost={
+              <DeleteAndEditPost
+                post={post}
+                posts={posts}
+                setPosts={setPosts}
+              />
+            }
+            comments={comments}
+          />
+        ))}
     </>
   );
 };

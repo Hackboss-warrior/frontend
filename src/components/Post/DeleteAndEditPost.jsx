@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import isId from "../../isId";
 
-const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
+const DeleteAndEditPost = ({ post, setPosts, posts }) => {
   const [cookies] = useCookies(["Token"]);
   const navigate = useNavigate();
 
@@ -27,16 +27,9 @@ const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
           }
         );
 
-        if (currentPage === "list") {
-          const resPosts = await axios.get(
-            `${import.meta.env.VITE_BACKEND_URL}/posts`
-          );
+        setPosts(posts.filter((pst) => pst.id !== postId));
 
-          setPosts(resPosts.data[0]);
-        } else {
-          navigate("/");
-        }
-        toast.success("¡Su publicación ha sido eliminado correctamente!");
+        toast.success("¡Su publicación ha sido eliminada correctamente!");
         //Informar con react Toastify de que el post se ha eliminado correctamente o de que no se ha podido eliminar.
       } catch (error) {
         toast.error("Se ha producido un error al eliminar la publicación");
@@ -47,30 +40,30 @@ const DeleteAndEditPost = ({ post, setPosts, currentPage }) => {
   return (
     <>
       <ToastContainer />
-      <>
-        {isId(cookies.Token) === post.userId ||
-        isId(cookies.Token) === post.idUserTable ? (
-          <div className="editDeltBtn">
-            <button
-              className="editListPostBtn"
-              onClick={() => navigate(`/editPost/${post.id}`)}
-            >
-              <MdModeEditOutline />
-            </button>
-            <button className="delPostBtn" onClick={() => deletePost(post.id)}>
-              <FaTrash />
-            </button>
-          </div>
-        ) : (
-          <></>
-        )}
-      </>
+
+      {isId(cookies.Token) === post.userId ||
+      isId(cookies.Token) === post.idUserTable ? (
+        <div className="editDeltBtn">
+          <button
+            className="editListPostBtn"
+            onClick={() => navigate(`/editPost/${post.id}`)}
+          >
+            <MdModeEditOutline />
+          </button>
+          <button className="delPostBtn" onClick={() => deletePost(post.id)}>
+            <FaTrash />
+          </button>
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
 
 DeleteAndEditPost.propTypes = {
   post: PropTypes.object.isRequired,
+  posts: PropTypes.array,
   currentPage: PropTypes.string,
   setPosts: PropTypes.func,
 };

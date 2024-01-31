@@ -5,115 +5,95 @@ import dateFormat from "../../utils/dateFormat";
 import { FaCommentAlt } from "react-icons/fa";
 import logo from "../../assets/faknews-logo.svg";
 
-//Componentes importados
-import Interactions from "../Interactions";
-import Comments from "../Comments";
-import DeleteAndEditPost from "./DeleteAndEditPost";
-import AddFavoritePost from "../AddFavoritePost";
-//Componentes importados
-
-
 const Post = ({
-  post,
+  title,
+  postId,
+  avatar,
+  nickName,
+  createdAt,
+  files,
+  topic,
+  body,
+  tag,
+  interactions,
+  addFavorites,
+  deletePost,
   comments,
-  setComments,
-  currentPage,
-  likes,
-  setPosts,
-  setLikes,
 }) => {
   const navigate = useNavigate();
 
   return (
     <article className="post">
-      <div className="postMainContent">
-        <div className="favContainer">
-          <AddFavoritePost post={post} />
-        </div>
-        {currentPage === "list" ? (
-          <Link to={`${import.meta.env.VITE_FRONTEND_URL}/post/${post.id}`}>
-            <h2 className="postTitle">{post.title}</h2>
-          </Link>
-        ) : (
-          <h1 className="postTitle">{post.title}</h1>
-        )}
+      {addFavorites}
 
-        <div className="postUserAndDate">
-          <div className="postUserInfo">
-            {post.avatar && (
-              <img
-                className="userAvatar"
-                src={`${import.meta.env.VITE_BACKEND_URL}/${post.avatar}`}
-                alt={`Avatar del usuario: ${post.nickName}`}
-              />
-            )}
-            <p className="nickName"> {post.nickName}</p>
-          </div>
-          <p className="postCreatedAt">{dateFormat(post.createdAt)}</p>
-        </div>
-        <Link to={`${import.meta.env.VITE_FRONTEND_URL}/post/${post.id}`}>
-          {post.files ? (
+      <Link to={`${import.meta.env.VITE_FRONTEND_URL}/post/${postId}`}>
+        {title}
+      </Link>
+
+      <div className="postUserAndDate">
+        <div className="postUserInfo">
+          {avatar && (
             <img
-              className="postImg"
-              src={`${import.meta.env.VITE_BACKEND_URL}/${post.files}`}
-              alt={post.topic}
+              className="userAvatar"
+              src={`${import.meta.env.VITE_BACKEND_URL}/${avatar}`}
+              alt={`Avatar del usuario: ${nickName}`}
             />
-          ) : (
-            <img src={logo} className="defaultPostImg" alt="fakNews logo" />
           )}
-        </Link>
-        <div className="interactCommentsButtons">
-          <div className="interactComments">
-            <Interactions post={post} likes={likes} setLikes={setLikes} />
-
-            <button
-              className="commentsNumber"
-              onClick={() => {
-                navigate(`/post/${post.id}/#commentBox`);
-              }}
-            >
-              <FaCommentAlt />
-              {comments.filter((comment) => comment.postId === post.id).length}
-            </button>
-          </div>
-          <DeleteAndEditPost
-            post={post}
-            setPosts={setPosts}
-            currentPage={currentPage}
-          />
+          <p className="nickName">{nickName}</p>
         </div>
-
-        <div className="postContent">
-          {currentPage === "list" ? (
-            <h3 className="postTopic"> {post.topic}</h3>
-          ) : (
-            <h2 className="postTopic"> {post.topic}</h2>
-          )}
-
-          <p className="postBody">{post.body}</p>
-        </div>
-        <p className="postTag">{post.tag}</p>
+        <p className="postCreatedAt">{dateFormat(createdAt)}</p>
       </div>
-      {currentPage !== "list" && (
-        <Comments
-          comments={comments}
-          setComments={setComments}
-          postId={post.id}
-        />
-      )}
+      <Link to={`${import.meta.env.VITE_FRONTEND_URL}/post/${postId}`}>
+        {files ? (
+          <img
+            className="postImg"
+            src={`${import.meta.env.VITE_BACKEND_URL}/${files}`}
+            alt={"Imagen de la publicación"}
+          />
+        ) : (
+          <img src={logo} className="defaultPostImg" alt="fakNews logo" />
+        )}
+      </Link>
+      <div className="interactCommentsButtons">
+        <div className="interactComments">
+          {interactions}
+
+          <button
+            className="commentsNumber"
+            onClick={() => {
+              navigate(`/post/${postId}/#commentBox`);
+            }}
+          >
+            <FaCommentAlt />
+            {comments.filter((comment) => comment.postId === postId).length}
+          </button>
+        </div>
+        {deletePost}
+      </div>
+
+      <div className="postContent">
+        <h3 className="postTopic">{topic}</h3>
+        <p className="postBody">{body}</p>
+      </div>
+      <p className="postTag">{tag}</p>
     </article>
   );
 };
 
 Post.propTypes = {
-  post: PropTypes.object.isRequired,
-  likes: PropTypes.array,
+  title: PropTypes.object.isRequired,
+  postId: PropTypes.number,
+  avatar: PropTypes.string,
+  nickName: PropTypes.string,
+  createdAt: PropTypes.string,
+  files: PropTypes.string,
+  topic: PropTypes.string,
+  body: PropTypes.string,
+  tag: PropTypes.string,
+  interactions: PropTypes.object,
+  addFavorites: PropTypes.object,
+  deletePost: PropTypes.object,
   comments: PropTypes.array,
-  setComments: PropTypes.func.isRequired,
-  currentPage: PropTypes.string,
-  posts: PropTypes.array,
-  setPosts: PropTypes.func,
-  setLikes: PropTypes.func.isRequired,
 };
 
 export default Post;

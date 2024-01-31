@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import isId from "../isId";
 import axios from "axios";
 
-const DeleteComment = ({ cmt, setComments }) => {
+const DeleteComment = ({ cmt, setComments, comments }) => {
   const [cookies] = useCookies(["Token"]);
 
   const deleteComment = async (cmtId) => {
@@ -21,6 +21,8 @@ const DeleteComment = ({ cmt, setComments }) => {
             },
           }
         );
+
+        setComments(comments.filter((comment) => comment.id !== cmtId));
       } catch (error) {
         console.error(error);
       }
@@ -40,6 +42,7 @@ const DeleteComment = ({ cmt, setComments }) => {
 DeleteComment.propTypes = {
   cmt: PropTypes.object.isRequired,
   setComments: PropTypes.func,
+  comments: PropTypes.array,
 };
 
 export default DeleteComment;
