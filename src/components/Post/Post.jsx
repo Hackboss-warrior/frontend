@@ -2,16 +2,15 @@ import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 import "./Post.css";
 import dateFormat from "../../utils/dateFormat";
+import { FaCommentAlt } from "react-icons/fa";
+import logo from "../../assets/faknews-logo.svg";
+
 //Componentes importados
 import Interactions from "../Interactions";
 import Comments from "../Comments";
-//Componentes importados
-import { FaCommentAlt } from "react-icons/fa";
-import logo from "../../assets/faknews-logo.svg";
-import { useEffect } from "react";
-
 import DeleteAndEditPost from "./DeleteAndEditPost";
-import axios from "axios";
+import AddFavoritePost from "../AddFavoritePost";
+//Componentes importados
 
 const Post = ({
   post,
@@ -27,6 +26,9 @@ const Post = ({
   return (
     <article className="post">
       <div className="postMainContent">
+        <div className="favContainer">
+          <AddFavoritePost post={post} />
+        </div>
         {currentPage === "list" ? (
           <Link to={`${import.meta.env.VITE_FRONTEND_URL}/post/${post.id}`}>
             <h2 className="postTitle">{post.title}</h2>
@@ -34,6 +36,7 @@ const Post = ({
         ) : (
           <h1 className="postTitle">{post.title}</h1>
         )}
+
         <div className="postUserAndDate">
           <div className="postUserInfo">
             {post.avatar && (

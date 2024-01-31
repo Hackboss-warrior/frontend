@@ -9,6 +9,26 @@
   width: 1000px;
 }
 
+.favContainer {
+  display: flex;
+  justify-content: end;
+}
+
+.favoriteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+  height: 40px;
+  width: 80px;
+  border-radius: 5px;
+  background-color: var(--main-red-color);
+}
+
+.favoriteBtn:hover {
+  border: 1px solid #fff;
+}
+
 .postTitle {
   color: #fff;
   font-family: "Montserrat", sans-serif;
