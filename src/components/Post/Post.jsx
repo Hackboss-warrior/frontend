@@ -97,6 +97,7 @@ Post.propTypes = {
   addFavorites: PropTypes.object,
   deletePost: PropTypes.object,
   comments: PropTypes.array,
+  savePostEdit: PropTypes.object,
 };
 
 export default Post;
