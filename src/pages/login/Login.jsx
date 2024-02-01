@@ -3,8 +3,10 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import whiteLogo from "../../assets/fakNews-white-logo-no-bg.svg";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 import { jwtDecode } from "jwt-decode";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [nickName, setnickName] = useState("");
@@ -12,11 +14,10 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
   const navigate = useNavigate();
-  const [cookies, setCookie] = useCookies(['Token']);
+  const [cookies, setCookie] = useCookies(["Token"]);
 
   const logUser = async (e) => {
     e.preventDefault();
-    
 
     const formData = new FormData();
     formData.append("nickName", nickName);
@@ -33,59 +34,57 @@ const Login = () => {
           },
         }
       );
-
-      setCookie('Token', res.data.token);
+      toast.success("¡Bienvenido/a!");
+      setCookie("Token", res.data.token);
       navigate("/");
     } catch (error) {
-      setErrorAlert(<div>fakNews: {error.response.data.error}</div>);
-      setTimeout(() => {
-        setErrorAlert(null);
-      }, 5000);
+      toast.error("Revisa los datos introducidos");
     }
   };
 
   return (
-    <main className="loginMainContent">
-      <h1>Accede a tu perfil</h1>
+    <>
+      <ToastContainer />
+      <main className="loginMainContent">
+        <h1>Accede a tu perfil</h1>
 
-      <div className="input-container">
-        <form className="loginForm" onSubmit={logUser}>
-          {errorAlert}
-
-          <input
-            type="text"
-            onChange={(e) =>
-              setnickName(e.target.value) || setEmail(e.target.value)
-            }
-            id="user"
-            name="user"
-            placeholder="Nickname o Email"
-            className="loginNickname"
-            required
-          />
-
-          <div>
+        <div className="input-container">
+          <form className="loginForm" onSubmit={logUser}>
             <input
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-              id="password"
-              name="password"
-              placeholder="Contraseña"
-              className="loginPassword"
+              type="text"
+              onChange={(e) =>
+                setnickName(e.target.value) || setEmail(e.target.value)
+              }
+              id="user"
+              name="user"
+              placeholder="Nickname o Email"
+              className="loginNickname"
               required
             />
-          </div>
 
-          <button type="submit" className="login-button">
-            Login
-          </button>
-        </form>
-        <p>
-          ¿Aún no tienes cuenta? <Link to="/register"> Registrate aquí</Link>
-        </p>
-      </div>
-      <img src={whiteLogo} className="loginLogo" alt="fakNews logo" />
-    </main>
+            <div>
+              <input
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+                id="password"
+                name="password"
+                placeholder="Contraseña"
+                className="loginPassword"
+                required
+              />
+            </div>
+
+            <button type="submit" className="login-button">
+              Login
+            </button>
+          </form>
+          <p>
+            ¿Aún no tienes cuenta? <Link to="/register"> Registrate aquí</Link>
+          </p>
+        </div>
+        <img src={whiteLogo} className="loginLogo" alt="fakNews logo" />
+      </main>
+    </>
   );
 };
 

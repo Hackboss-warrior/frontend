@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 
-import { useState } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
