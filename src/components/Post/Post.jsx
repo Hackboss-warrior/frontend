@@ -19,6 +19,7 @@ const Post = ({
   addFavorites,
   deletePost,
   comments,
+  savePostEdit,
 }) => {
   const navigate = useNavigate();
 
@@ -57,16 +58,17 @@ const Post = ({
       <div className="interactCommentsButtons">
         <div className="interactComments">
           {interactions}
-
-          <button
-            className="commentsNumber"
-            onClick={() => {
-              navigate(`/post/${postId}/#commentBox`);
-            }}
-          >
-            <FaCommentAlt />
-            {comments.filter((comment) => comment.postId === postId).length}
-          </button>
+          {comments && (
+            <button
+              className="commentsNumber"
+              onClick={() => {
+                navigate(`/post/${postId}/#commentBox`);
+              }}
+            >
+              <FaCommentAlt />
+              {comments.filter((comment) => comment.postId === postId).length}
+            </button>
+          )}
         </div>
         {deletePost}
       </div>
@@ -76,6 +78,7 @@ const Post = ({
         <p className="postBody">{body}</p>
       </div>
       <p className="postTag">{tag}</p>
+      {savePostEdit}
     </article>
   );
 };
