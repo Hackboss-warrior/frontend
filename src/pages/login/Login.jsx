@@ -8,13 +8,16 @@ import { jwtDecode } from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 const Login = () => {
   const [nickName, setnickName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
   const navigate = useNavigate();
+
   const [cookies, setCookie] = useCookies(["Token"]);
+
 
   const logUser = async (e) => {
     e.preventDefault();

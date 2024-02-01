@@ -66,7 +66,6 @@ const Sidebar = ({ handleSectionChange }) => {
 
    const handleLogout = () => {
       removeCookie("Token")
-      removeCookie("Id")
       navigate("/");
    };
 
