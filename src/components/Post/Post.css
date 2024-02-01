@@ -197,6 +197,10 @@
 .comments {
   text-align: left;
   padding: 20px;
+  background-color: var(--dark-grey-color);
+  border-radius: 25px;
+  box-shadow: var(--box-shadow);
+  margin-bottom: 50px;
 }
 
 .commentBox {
@@ -280,6 +284,8 @@
   width: 60px;
   border-radius: 10px;
   background-color: var(--main-red-color);
+  display: block;
+  margin: 0 0 0 auto;
 }
 
 /* RESPONSIVE */

@@ -117,7 +117,11 @@ const Comments = ({ comments, postId, setComments }) => {
             </div>
             <div className="commentTextAndDelBtn">
               <p className="commentContent">{cmt.comment}</p>
-              <DeleteComment cmt={cmt} setComments={setComments} />
+              <DeleteComment
+                cmt={cmt}
+                setComments={setComments}
+                comments={comments}
+              />
             </div>
             {/* <form className="commentsForm" onSubmit={(e) => insertAnswers(e, cmt.id)}>
               <input
