@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./Contact.css";
 import axios from "axios";
 
+import "react-toastify/dist/ReactToastify.css";
+
 const Contact = () => {
   const [subject, setSubject] = useState("");
   const [email, setEmail] = useState("");
@@ -28,6 +30,7 @@ const Contact = () => {
       if (!response) {
         throw new Error("sin respuesta");
       }
+      
       setRespuesta(response.data);
     } catch (error) {
       console.error("No se ha enviado correctamente");
@@ -91,11 +94,12 @@ const Contact = () => {
             <label htmlFor="expo">Exponga aqui su consulta</label>
             <input
             className="inputFormContac gruesoConsulta"
+            
               type="text"
               id="body"
               name="body"
               onChange={(e) => setBody(e.target.value)}
-              placeholder="Exponga su consulta... "
+              placeholder="Exponga su consulta...(max 600 caracteres) "
            
               required
             />

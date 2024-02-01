@@ -1,127 +1,143 @@
-.mainPage{
-    --main-red-color: #a9191f;
+.mainPage {
+
+  --main-red-color: #a9191f;
   --dark-grey-color: #2d2d2d;
   --light-grey-color: #b8b8b8;
-  font-family: "Lato", sans-serif;
-  }
-  .titleProfil{
-    color: #2d2d2d;
-    border-bottom: 4px solid #a9191f;
-     margin-bottom: 40px;}
-.cuerpoProfile{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-
- background-color: #2d2d2d;
-    border-radius: 10%;
-}
-
-.NicknameAvatar{
-    display: flex;
-    justify-content: space-between;
-   
-   padding: 30px;
-   width: 100%;
-   gap: 40px;
-}
-.Nickname{
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #a9191f;
-
-}
-.avatarProfile{
-    background-color: #b8b8b8;
-    border-radius: 40%;
-}
-.presentacionPersonal{
+  border-radius: 25px;
+  box-shadow: var(--box-shadow);
+  padding: 40px;
+  margin: 50px 0px;
+  text-align: center;
+  background-color: var(--dark-grey-color);
+  color: white;
+  width: 70vw;
   
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
-    color: white;
-
-   padding: 30px;
-   width: 100%;
-   gap: 0.75rem;
 }
-.presentacionPersonalPares{
-    display: flex;
-    flex-direction: column;    
-}
-.presentacionPersonalP{
-color: #b8b8b8;
+.titleProfil {
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid#a9191f;
 }
 
+.NicknameAvatar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px;
+  width: 100%;
+  gap: 20px;
+}
+.Nickname {
+  font-family: "Montserrat", sans-serif;
+  
+  color: white;
+  background-color: #2d2d2d;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+.avatarProfile {
+  background-color: #a9191f;
+  border-radius: 30px;
+  width: 400px;
+  box-shadow: var(--box-shadow);
+}
+.presentacionPersonal {
+  display: flex;
+justify-content: left;  
+  color: white;
+  padding: 30px 30px 0 30px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+.PresentacionUser{
+  background-color: #a9191f;
+  border-radius: 25px;
+  box-shadow: var(--box-shadow);
+}
+.presentacionPersonal2 {
+  display: flex;
+  justify-content: left;
+  color: white;
+  width: 100%;
+}
+
+.presentacionPersonalPares {
+  display: flex;
+  flex-direction: column;
+
+  text-align: left;
+}
+.presentacionPersonalP {
+  color: #b8b8b8;
+}
 
 /* ////////////////////////////////////////////////////// */
-/* ////////// */ /*ModifyProfile */  /*///////////////// */
-
-
-.FormProfile{
+/* ////////// */ /*ModifyProfile */ /*///////////////// */
+.formContainter{
     display: flex;
-    justify-content: space-around;
-   flex-direction: column;
-   align-items: center;
-  
+    flex-direction: column;
+    align-items: center;
     gap: 1rem;
-  
-  
-    margin: 40px; 
+    margin: 40px;
     padding: 1rem;
-  width: 60vw;
-  
-    border: 5px solid var(--main-red-color);
-   
-     border-radius: 40%;
-   background-color: #2d2d2d;
-   color:white;
+    width: 90%;
+    box-shadow: var(--box-shadow);
+    
+    border-radius: 25px;
+    background-color: #2d2d2d;
+    color: white;}
+.FormProfile {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+ 
 }
 
 legend {
-    font-size: 2rem;
-    border-bottom: 3px solid#a9191f;
+  font-size: 2rem;
+  border-bottom: 3px solid#a9191f;
 }
-
 
 .FormSectionProfile {
-    
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: left;
   align-items: center;
-  gap: 20px;
-  
-   
-    width: 100%;}
+  gap: 1rem;
 
-.inputFormProfile{
-background-color:#b8b8b8;
-width :40% ;
+  width: 100%;
 }
 
-.inputFormProfile::placeholder{
-color:white;
-font-size: 0.80rem;
-text-align: center;}
-.Biografia{
-    width: 85%;
+.inputFormProfile {
+  background-color: #b8b8b8;
+ 
 }
-.buttonsFrom{
-    display: flex;
-    gap: 2rem  ;
+
+.inputFormProfile::placeholder {
+  color: white;
+  font-size: 0.8rem;
+  text-align: center;
 }
-.ButtonForm{
-    background:var(--main-red-color);
-    color: white;
-    margin: auto;
-    padding: 10px 40px;
-    cursor: pointer;
-    font-size: 20px;
-    
+
+.Biografia {
+  width:100%;
+  height: 5rem;
+}
+.buttonsFrom {
+  display: flex;
+  gap: 2rem;
+}
+.ButtonForm {
+  background: var(--main-red-color);
+  color: white;
+  margin: auto;
+  padding: 10px 40px;
+  cursor: pointer;
+  font-size: 20px;
 }

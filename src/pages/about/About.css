@@ -1,59 +1,106 @@
-.mainAbout{
+.mainAbout {
   --main-red-color: #a9191f;
---dark-grey-color: #2d2d2d;
---light-grey-color: #b8b8b8;
-font-family: "Lato", sans-serif;
+  --dark-grey-color: #2d2d2d;
+  --light-grey-color: #b8b8b8;
+  font-family: "Lato", sans-serif;
+  border-radius: 25px;
+  box-shadow: var(--box-shadow);
+  padding-top: 40px;
+  margin-top: 50px;
+  text-align: center;
+  background-color: var(--dark-grey-color);
+  color: #fff;
+  max-width: 1000px;
 }
-.titlePageAbout{color: #2d2d2d;
-border-bottom: 3px solid #a9191f;}
+.titlePageAbout {
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  border-bottom: 5px solid#a9191f;
+}
 
-.presentation{
-   
-    display: flex;
+.presentation {
+  display: flex;
   flex-direction: column;
-
   gap: 1rem;
-
-
-  margin: 40px; 
+  margin: 40px;
   padding: 1rem;
-width: 60vw;
+  width: 90%;
 
-  border-bottom: 5px solid #a9191f;
-  border-left:5px solid #a9191f; ;
-   border-radius: 10%;
- background-color: #2d2d2d;
- color: white;
-
+  border-radius: 25px;
+  background-color: #2d2d2d;
+  color: white;
 }
-.acounting{
-    display: flex;
-    flex-direction: column;
-  
+.acounting {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 .acountingH2 {
-    color: #a9191f;
+  color: white;
+  padding: 0 40px 20px 40px;
+
+  margin: 0 100px 40px 100px;
+  border-bottom: 3px solid #a9191f;
 }
-.accountCards{
-display: flex;
-justify-content: space-around;
+.accountCards {
+  display: flex;
+  justify-content: space-around;
 }
-.acountCard{
-    display: flex;  
-    flex-direction: column  ;
+.acountCard {
+  display: flex;
+  flex-direction: column;
+
+  padding: 20px;
+  width: 200px;
+  height: 200px;
+  background-color: #2d2d2d;
+  color: white;
+  text-align: center;
+  border: 3px solid white;
+  box-shadow: var(--box-shadow);
+  border-radius: 60px;
+}
+.acountCard:hover {
+  border: 3px solid red;
+}
+.acountH3 {
+  color: white;
+  font-size: 3rem;
+  /* background-color:#a9191f ; */
+  padding: 1rem 1rem 0 1rem;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+  .mainAbout {
+    padding: 40px ;
+  }
+
+  .titlePageAbout {
+    font-size: 2rem;
+    padding: 1rem;
+  }
+
+  .presentation {
+    font-size: 0.9rem;
+  }
+  .acounting {
     align-items: center;
-   justify-content: center;
-   gap: 20px;
-    width: 200px;
-    height: 250px;
-    background-color: #2d2d2d;
-    color: white;
-    text-align: center;
-    border-bottom: 4px solid #a9191f;
-  border-left:4px solid #a9191f; ;
-   border-radius: 40%;
+  }
+  .acountingH2 {
+    font-size: 1.5rem;
+  }
+
+  .accountCards {
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+  }
+
+  .acountCard {
+    width: 100%;
+    margin: 10px 0;
+  }
 }
-.acountH3{color: #a9191f;
-background-color: #b8b8b8;
-padding: 1rem;
-border-radius: 50%;}

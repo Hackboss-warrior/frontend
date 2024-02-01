@@ -30,53 +30,60 @@ const Profile = () => {
       );
 
       setUser(response.data);
-    
     } catch (err) {
       console.error("Fallo:", err);
     }
   };
   console.log(user);
   return (
-    <>
+    <div className="mainPage">
       <h1 className="titleProfil">My perfil</h1>
-      <div className="cuerpoProfile">
-        <section className="NicknameAvatar">
-          <h1 className="Nickname">{user.nickName}</h1>
 
+      <div className="presentacionPersonal">
+        <section className="NicknameAvatar">
+          <h2 className="Nickname">{user.nickName}</h2>
           <img
             className="avatarProfile"
             src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
             alt={user.name}
           />
         </section>
+        <div className="PresentacionUser">
+          <section className="presentacionPersonal2">
+            <article>
+              <div className="presentacionPersonalPares">
+                <p className="presentacionPersonalP">Usuario: </p>
+                <p> {user.nickName}</p>
+              </div>
 
-        <section className="presentacionPersonal">
-          <div className="presentacionPersonalPares">
-            <p className="presentacionPersonalP">Nombre completo: </p>
-            <h3>{user.name + " " + user.firstName}</h3>
-          </div>
+              <div className="presentacionPersonalPares">
+                <p className="presentacionPersonalP">Email: </p>
+                <p> {user.email}</p>
+              </div>
+            </article>
+            <article>
+              <div className="presentacionPersonalPares">
+                <p className="presentacionPersonalP">Nombre completo: </p>
+                <h3>{user.name + " " + user.firstName}</h3>
+              </div>
 
-          <div className="presentacionPersonalPares">
-            <p className="presentacionPersonalP">Email: </p>
-            <p> {user.email}</p>
-          </div>
-
-          <div className="presentacionPersonalPares">
-            <p className="presentacionPersonalP">fecha de nacimiento:</p>
-            <p> {dateFormat(user.DOB)}</p>
-          </div>
-
-          <div className="presentacionPersonalPares">
-            <p className="presentacionPersonalP">Biografía: </p>
-            <p>{user.BIO}</p>
-          </div>
-        </section>
-
-        {/* <Favorites /> */}
-
-        <ModifyProfile user={user} />
+              <div className="presentacionPersonalPares">
+                <p className="presentacionPersonalP">fecha de nacimiento:</p>
+                <p> {dateFormat(user.DOB)}</p>
+              </div>
+            </article>
+          </section>
+          <section>
+            <div className="presentacionPersonalPares">
+              <p className="presentacionPersonalP">Biografía: </p>
+              <p>{user.BIO}</p>
+            </div>
+          </section>
+        </div>
       </div>
-    </>
+
+      <ModifyProfile user={user} />
+    </div>
   );
 };
 

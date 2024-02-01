@@ -29,7 +29,7 @@ const About = () => {
   }, []);
 
   return (
-    <>
+    <div className="mainAbout">
       <h1 className="titlePageAbout"> Repartiendo desde 2023</h1>
 
       <section className="presentation">
@@ -41,7 +41,9 @@ const About = () => {
           para el desmadre informativo que solo nosotros te ofrecemos!
         </p>
 
+
         <p>Nuestra mayor pasión es destrozar la realidad hasta que solo queden risas y la triste verdad para que tu puedas tomar tus puñeteras conclusiones mientras honras a Roca.</p>
+
         <p>
           Conoce a nuestros pícaros developers, el dúo dinámico y su genio
           diminuto. Dos colosos del código que creen que miden en líneas de
@@ -58,23 +60,20 @@ const About = () => {
         <article className="accountCards">
           <div className="acountCard">
 
-            <h2 className="acountH3">{userCount} </h2> <p>Usuarios registrados</p>
+            <h2 className="acountH3">{userCount} </h2>{" "}
+            <p>Usuarios registrados</p>
           </div>
-
           <div className="acountCard">
-
             <h2 className="acountH3">{postsCount} </h2>
             <p>Publicaciones mordaces</p>
           </div>
           <div className="acountCard">
-
             <h2 className="acountH3">{commentsCount} </h2>
             <p>Rios de pura polémica</p>
           </div>
         </article>
-
       </section>
-    </>
+    </div>
   );
 };
 

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-
-import Post from "./Post/Post";
+import Post from "../../components/Post/Post";
 import { v4 as uuidv4 } from "uuid";
 
 
@@ -16,10 +15,10 @@ const Favorites = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/favorites`,
+          `${import.meta.env.VITE_BACKEND_URL}/myfavorites`,
           { headers: { Authorization: `Bearer ${token}` } }
           );
-          console.log(response.data, "RESPONSE");
+          console.log(response, "RESPONSE");
       
 
         setPosts(response.data);
@@ -35,7 +34,7 @@ const Favorites = () => {
   return (
     <>
       <main className="posts">
- 
+ <h1>Mis Favoritos</h1>
         {posts.map((post) => (
           <Post
             key={uuidv4()}

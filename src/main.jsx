@@ -13,6 +13,7 @@ import Menu from "./components/Menu";
 import About from "./pages/about/About";
 import Admin from "./pages/Admin/Admin";
 import User from "./pages/Admin/User";
+import Favorites from "./pages/favorites/Favorites"
 import CreatePost from "./pages/createPost/CreatePost";
 import { CookiesProvider } from "react-cookie";
 import isAdmin from "./isAdmin";
@@ -44,6 +45,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/post/:postId" element={<DetailPost />} />
             <Route path="/editPost/:postId" element={<EditPost />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/favorites" element={<Favorites />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/users" element={<User />} />
