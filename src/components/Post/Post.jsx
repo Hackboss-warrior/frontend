@@ -72,7 +72,7 @@ const Post = ({
       </div>
 
       <div className="postContent">
-        <h3 className="postTopic">{topic}</h3>
+        {topic}
         <p className="postBody">{body}</p>
       </div>
       <p className="postTag">{tag}</p>

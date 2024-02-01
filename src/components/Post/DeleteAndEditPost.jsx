@@ -11,6 +11,7 @@ import isId from "../../isId";
 const DeleteAndEditPost = ({ post, setPosts, posts }) => {
   const [cookies] = useCookies(["Token"]);
   const navigate = useNavigate();
+  const activeLink = localStorage.getItem("activeLink");
 
   const deletePost = async (postId) => {
     const shouldDelete = window.confirm(
@@ -27,10 +28,11 @@ const DeleteAndEditPost = ({ post, setPosts, posts }) => {
           }
         );
 
-        setPosts(posts.filter((pst) => pst.id !== postId));
+        activeLink === "undefined"
+          ? navigate("/")
+          : setPosts(posts.filter((pst) => pst.id !== postId));
 
         toast.success("¡Su publicación ha sido eliminada correctamente!");
-        //Informar con react Toastify de que el post se ha eliminado correctamente o de que no se ha podido eliminar.
       } catch (error) {
         toast.error("Se ha producido un error al eliminar la publicación");
       }

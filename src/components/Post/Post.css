@@ -284,6 +284,8 @@
   width: 60px;
   border-radius: 10px;
   background-color: var(--main-red-color);
+  display: block;
+  margin: 0 0 0 auto;
 }
 
 /* RESPONSIVE */

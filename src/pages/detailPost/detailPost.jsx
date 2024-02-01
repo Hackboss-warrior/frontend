@@ -13,6 +13,7 @@ const DetailPost = () => {
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
+  const [favs, setFavs] = useState([]);
   const { postId } = useParams();
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const DetailPost = () => {
         setPost(res.data[0]);
         setComments(res.data[1]);
         setLikes(res.data[2]);
+        setFavs(res.data[3]);
       } catch (error) {
         console.error(error);
       }
@@ -38,25 +40,25 @@ const DetailPost = () => {
       <Post
         key={uuidv4()}
         post={post}
-        title={<h1 className="postTitle">{post.title}</h1>}
+        title={<h1 className="">{post.title}</h1>}
         postId={post.id}
         avatar={post.avatar}
         nickName={post.nickName}
+        createdAt={post.createdAt}
+        files={post.files}
+        topic={<h2 className="postTopic">{post.topic}</h2>}
+        body={post.body}
+        tag={post.tag}
         interactions={
           <Interactions post={post} likes={likes} setLikes={setLikes} />
         }
-        addFavorites={<AddFavoritePost post={post} />}
+        addFavorites={
+          <AddFavoritePost post={post} favs={favs} setFavs={setFavs} />
+        }
         deletePost={<DeleteAndEditPost post={post} />}
-        createdAt={post.createdAt}
-        files={post.files}
-        topic={<h2>{post.topic}</h2>}
-        body={post.body}
-        tag={post.tag}
         comments={comments}
-        setComments={setComments}
-        likes={likes}
-        setLikes={setLikes}
       />
+
       <Comments
         comments={comments}
         setComments={setComments}

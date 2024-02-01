@@ -7,9 +7,9 @@ import { useCookies } from "react-cookie";
 import isAuth from "../isAuth";
 
 import axios from "axios";
+import isId from "../isId";
 
-const AddFavoritePost = ({ post }) => {
-  const [fav, setFav] = useState(<FaRegStar />);
+const AddFavoritePost = ({ post, favs, setFavs }) => {
   const [cookies] = useCookies(["Token"]);
   const navigate = useNavigate();
 
@@ -30,11 +30,7 @@ const AddFavoritePost = ({ post }) => {
           },
         }
       );
-
-      // Funciona, almacena en favoritos y borra.
-      //Falta que cambien bien los botones a la hora de enviar el favorito, es decir cuando esté marcado que se mantenga y cuando no que pinte el otro. Se puede condicionar utilizando el res.data y cambiándolo en el back [echarle un ojo]
-      console.log(res);
-      setFav(<FaStar />);
+      setFavs(res.data);
     } catch (error) {
       console.error(error);
     }
@@ -48,7 +44,13 @@ const AddFavoritePost = ({ post }) => {
           addFavoriteHandler(post.id);
         }}
       >
-        {fav}
+        {favs.some(
+          (fav) => fav.userId === isId(cookies.Token) && post.id === fav.postId
+        ) ? (
+          <FaStar />
+        ) : (
+          <FaRegStar />
+        )}
       </button>
     </div>
   );
@@ -56,6 +58,8 @@ const AddFavoritePost = ({ post }) => {
 
 AddFavoritePost.propTypes = {
   post: PropTypes.object.isRequired,
+  favs: PropTypes.array.isRequired,
+  setFavs: PropTypes.func.isRequired,
 };
 
 export default AddFavoritePost;

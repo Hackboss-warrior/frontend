@@ -11,6 +11,7 @@ const ListPosts = () => {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
+  const [favs, setFavs] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +23,7 @@ const ListPosts = () => {
         setPosts(res.data[0]);
         setComments(res.data[1]);
         setLikes(res.data[2]);
+        setFavs(res.data[3]);
       } catch (error) {
         console.error(error);
       }
@@ -43,13 +45,15 @@ const ListPosts = () => {
             nickName={post.nickName}
             createdAt={post.createdAt}
             files={post.files}
-            topic={<h3>{post.topic}</h3>}
+            topic={<h3 className="postTopic">{post.topic}</h3>}
             body={post.body}
             tag={post.tag}
             interactions={
               <Interactions post={post} likes={likes} setLikes={setLikes} />
             }
-            addFavorites={<AddFavoritePost post={post} />}
+            addFavorites={
+              <AddFavoritePost post={post} favs={favs} setFavs={setFavs} />
+            }
             deletePost={
               <DeleteAndEditPost
                 post={post}
