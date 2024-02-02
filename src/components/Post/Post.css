@@ -290,117 +290,179 @@
 
 /* RESPONSIVE */
 
-/* MOBILE*/
+/* TABLET */
 
-@media only screen and (max-width: 600px) {
-  main .post {
-    width: 90%; /* Adjust as needed */
+/* Responsividad específica para tablets */
+@media screen and (max-width: 768px) {
+  .post {
+    width: 90%;
+    max-width: 600px; /* Ajusta este valor según sea necesario */
+    padding: 15px;
+    margin: 20px auto;
   }
 
-  .post {
-    padding: 20px;
-    margin: 30px 0;
+  .favoriteBtn {
+    height: 25px;
+    width: 50px;
   }
 
   .postTitle {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .postImg,
   .defaultPostImg {
-    width: 100%;
-  }
-
-  .postUserAndDate {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .postCreatedAt,
-  .postUserInfo,
-  .interactCommentsButtons,
-  .editDeltBtn,
-  .commentsForm {
-    flex-direction: column;
-  }
-
-  .editListPostBtn,
-  .delPostBtn,
-  .postLikes,
-  .postDisLikes,
-  .commentsNumber {
     width: 100%;
     margin-bottom: 10px;
   }
 
-  .editListPostBtn {
+  .interactCommentsButtons,
+  .interactComments,
+  .postLikes,
+  .postDisLikes,
+  .commentsNumber {
+    font-size: 1rem;
+  }
+
+  .editDeltBtn,
+  .editListPostBtn,
+  .delPostBtn {
+    height: 30px;
+    width: 60px;
+  }
+
+  .favoriteBtn,
+  .editDeltBtn,
+  .editListPostBtn,
+  .delPostBtn,
+  .commentsForm button {
+    width: 100%; /* Hace que los botones se ajusten al ancho del contenedor */
+    max-width: 150px; /* Ajusta este valor según sea necesario */
+    margin: 10px 0;
+  }
+  .userAvatar {
+    max-height: 25px;
+    max-width: 25px;
+  }
+
+  .postUserAndDate,
+  .postUserInfo,
+  .postCreatedAt {
+    gap: 10px;
+    padding-bottom: 10px;
+  }
+
+  .nickName,
+  .postTopic {
+    font-size: 1rem;
+  }
+
+  .postContent {
+    padding: 10px;
+  }
+
+  .postBody {
+    margin: 0;
+  }
+
+  .postTag {
+    font-size: 0.8rem;
+  }
+
+  .comments h3 {
     font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding: 10px 0;
   }
 
-  .commentBox,
-  .commentUserInfoDate {
-    flex-direction: column;
+  .comments {
+    padding: 10px;
+    margin-bottom: 20px;
   }
 
-  .commentUserInfo {
-    flex-direction: column;
-    align-items: flex-start;
+  .commentBox {
+    margin: 15px 10px;
+    padding: 10px;
+  }
+
+  .commentUserInfoDate,
+  .commentUserInfo,
+  .commentDate {
+    gap: 10px;
+    padding: 10px;
   }
 
   .commentContent {
-    margin-left: 0;
+    font-size: 0.9rem;
+  }
+
+  .commentsForm {
+    margin: 15px 10px;
+    padding: 15px;
   }
 
   .commentsForm input {
-    height: auto;
+    height: 80px;
+    width: 100%;
+    max-width: 100%; /
+  }
+
+  .commentsForm button {
+    width: 120px;
   }
 }
 
-/* TABLET */
-
-@media only screen and (min-width: 601px) and (max-width: 1024px) {
+/* MOBILE */
+/* Responsividad específica para dispositivos móviles */
+@media screen and (max-width: 480px) {
   .post {
-    padding: 30px;
-    margin: 40px 0;
+    width: 90%;
+    padding: 10px;
+    margin: 20px auto;
+  }
+
+  .favoriteBtn,
+  .editDeltBtn,
+  .editListPostBtn,
+  .delPostBtn,
+  .commentsForm button {
+    width: 100%;
+    max-width: 150px;
+    margin: 10px 0;
+  }
+
+  .commentsForm input {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .userAvatar {
+    max-height: 20px;
+    max-width: 20px;
+  }
+
+  .nickName,
+  .postTopic {
+    font-size: 1rem;
   }
 
   .postTitle {
-    font-size: 2.5rem;
+    font-size: 1.2rem;
+  }
+
+  .comments h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    padding: 10px 0;
+  }
+
+  .commentContent {
+    font-size: 0.8rem;
   }
 
   .postImg,
   .defaultPostImg {
     width: 100%;
-  }
-
-  .postCreatedAt,
-  .postUserInfo,
-  .interactCommentsButtons,
-  .editDeltBtn,
-  .commentsForm {
-    flex-direction: row;
-  }
-
-  .editListPostBtn,
-  .delPostBtn,
-  .postLikes,
-  .postDisLikes,
-  .commentsNumber {
-    width: auto;
-    margin-bottom: 20px;
-  }
-
-  .commentBox,
-  .commentUserInfoDate {
-    flex-direction: row;
-  }
-
-  .commentUserInfo {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .commentContent {
-    margin-left: 15px;
+    margin-bottom: 10px;
   }
 }
