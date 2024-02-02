@@ -16,6 +16,7 @@ import User from "./pages/Admin/User";
 import Favorites from "./pages/favorites/Favorites"
 import CreatePost from "./pages/createPost/CreatePost";
 import { CookiesProvider } from "react-cookie";
+import { CustomTokenContextProvider } from "./utils/TokenContext";
 import isAdmin from "./isAdmin";
 import EditPost from "./pages/editPost/editPost";
 
@@ -33,8 +34,8 @@ const PrivateRoute = () => {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <CookiesProvider>
-      <Router>
+    <Router>
+      <CustomTokenContextProvider>
         <Menu />
         <div className="pages" id="pages">
           <Routes>
@@ -54,7 +55,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/*" element={<Error />} />
           </Routes>
         </div>
-      </Router>
-    </CookiesProvider>
+      </CustomTokenContextProvider>
+    </Router>
   </React.StrictMode>
 );

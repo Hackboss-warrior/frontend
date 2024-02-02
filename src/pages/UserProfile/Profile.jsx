@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import "./Profile.css";
 import dateFormat from "../../utils/dateFormat";
 import ModifyProfile from "../../components/users/ModifyProfile";
-
+import { TokenContext } from "../../utils/TokenContext";
 import { useCookies } from "react-cookie";
 import isAuth from "../../isAuth";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 const Profile = () => {
   const [user, setUser] = useState({});
   const [cookies] = useCookies(["Token"]);
+  const { token, loggedUser } = useContext(TokenContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const Profile = () => {
       console.error("Fallo:", err);
     }
   };
-  console.log(user);
+  
   return (
     <div className="mainPage">
       <h1 className="titleProfil">My perfil</h1>
@@ -81,7 +82,6 @@ const Profile = () => {
           </section>
         </div>
       </div>
-
       <ModifyProfile user={user} />
     </div>
   );

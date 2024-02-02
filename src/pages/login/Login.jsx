@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import whiteLogo from "../../assets/fakNews-white-logo-no-bg.svg";
 import { useCookies } from "react-cookie";
-import { jwtDecode } from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
+import { TokenContext } from "../../utils/TokenContext";
 import "react-toastify/dist/ReactToastify.css";
 
 
@@ -13,9 +13,8 @@ const Login = () => {
   const [nickName, setnickName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorAlert, setErrorAlert] = useState("");
   const navigate = useNavigate();
-
+  const { setToken } = useContext(TokenContext);
   const [cookies, setCookie] = useCookies(["Token"]);
 
 
@@ -38,6 +37,7 @@ const Login = () => {
         }
       );
       toast.success("¡Bienvenido/a!");
+      setToken(res.data.token)
       setCookie("Token", res.data.token);
       navigate("/");
     } catch (error) {
