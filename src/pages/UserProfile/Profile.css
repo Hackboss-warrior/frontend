@@ -1,5 +1,4 @@
 .mainPage {
-
   --main-red-color: #a9191f;
   --dark-grey-color: #2d2d2d;
   --light-grey-color: #b8b8b8;
@@ -11,7 +10,6 @@
   background-color: var(--dark-grey-color);
   color: white;
   width: 70vw;
-  
 }
 .titleProfil {
   color: #fff;
@@ -27,13 +25,14 @@
   justify-content: center;
   align-items: center;
 
-  padding: 30px;
+  padding: 30px 30px 0 0;
+
   width: 100%;
   gap: 20px;
 }
 .Nickname {
   font-family: "Montserrat", sans-serif;
-  
+  padding: 0 1rem 0 1rem;
   color: white;
   background-color: #2d2d2d;
   border-radius: 10px;
@@ -47,20 +46,21 @@
 }
 .presentacionPersonal {
   display: flex;
-justify-content: left;  
+  justify-content: left;
   color: white;
-  padding: 30px 30px 0 30px;
+
   width: 100%;
   margin-bottom: 40px;
 }
-.PresentacionUser{
+.PresentacionUser {
   background-color: #a9191f;
   border-radius: 25px;
   box-shadow: var(--box-shadow);
 }
 .presentacionPersonal2 {
   display: flex;
-  justify-content: left;
+  justify-content: end;
+  flex-direction: column;
   color: white;
   width: 100%;
 }
@@ -75,21 +75,21 @@ justify-content: left;
   color: #b8b8b8;
 }
 
-/* ////////////////////////////////////////////////////// */
-/* ////////// */ /*ModifyProfile */ /*///////////////// */
-.formContainter{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin: 40px;
-    padding: 1rem;
-    width: 90%;
-    box-shadow: var(--box-shadow);
-    
-    border-radius: 25px;
-    background-color: #2d2d2d;
-    color: white;}
+/* ///////////////// */ /*ModifyProfile */ /*///////////////// */
+.formContainter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 40px;
+  padding: 1rem;
+  width: 90%;
+  box-shadow: var(--box-shadow);
+
+  border-radius: 25px;
+  background-color: #2d2d2d;
+  color: white;
+}
 .FormProfile {
   display: flex;
   justify-content: space-around;
@@ -97,7 +97,6 @@ justify-content: left;
   align-items: center;
   gap: 1rem;
   width: 100%;
- 
 }
 
 legend {
@@ -110,13 +109,12 @@ legend {
   justify-content: left;
   align-items: center;
   gap: 1rem;
-
   width: 100%;
 }
 
 .inputFormProfile {
   background-color: #b8b8b8;
- 
+  width: 33%;
 }
 
 .inputFormProfile::placeholder {
@@ -126,8 +124,9 @@ legend {
 }
 
 .Biografia {
-  width:100%;
+  width: 100%;
   height: 5rem;
+  margin-bottom: 1rem;
 }
 .buttonsFrom {
   display: flex;

@@ -36,6 +36,7 @@ const Profile = () => {
     }
   };
   
+  console.log(user, "user");
   return (
     <div className="mainPage">
       <h1 className="titleProfil">My perfil</h1>
@@ -49,39 +50,35 @@ const Profile = () => {
             alt={user.name}
           />
         </section>
-        <div className="PresentacionUser">
-          <section className="presentacionPersonal2">
-            <article>
-              <div className="presentacionPersonalPares">
-                <p className="presentacionPersonalP">Usuario: </p>
-                <p> {user.nickName}</p>
-              </div>
 
-              <div className="presentacionPersonalPares">
-                <p className="presentacionPersonalP">Email: </p>
-                <p> {user.email}</p>
-              </div>
-            </article>
-            <article>
-              <div className="presentacionPersonalPares">
-                <p className="presentacionPersonalP">Nombre completo: </p>
-                <h3>{user.name + " " + user.firstName}</h3>
-              </div>
+        <section className="presentacionPersonal2">
+          <div className="presentacionPersonalPares">
+            <p className="presentacionPersonalP">Usuario: </p>
+            <p> {user.nickName}</p>
+          </div>
 
-              <div className="presentacionPersonalPares">
-                <p className="presentacionPersonalP">fecha de nacimiento:</p>
-                <p> {dateFormat(user.DOB)}</p>
-              </div>
-            </article>
-          </section>
-          <section>
-            <div className="presentacionPersonalPares">
-              <p className="presentacionPersonalP">Biografía: </p>
-              <p>{user.BIO}</p>
-            </div>
-          </section>
-        </div>
+          <div className="presentacionPersonalPares">
+            <p className="presentacionPersonalP">Email: </p>
+            <p> {user.email}</p>
+          </div>
+
+          <div className="presentacionPersonalPares">
+            <p className="presentacionPersonalP">Nombre completo: </p>
+            <h3>{user.name + " " + user.firstName}</h3>
+          </div>
+
+          <div className="presentacionPersonalPares">
+            <p className="presentacionPersonalP">fecha de nacimiento:</p>
+            <p> {dateFormat(user.DOB)}</p>
+          </div>
+        </section>
       </div>
+      <section>
+        <div className="presentacionPersonalPares Biografia">
+          <p className="presentacionPersonalP ">Biografía: </p>
+          <p>{user.BIO}</p>
+        </div>
+      </section>
       <ModifyProfile user={user} />
     </div>
   );

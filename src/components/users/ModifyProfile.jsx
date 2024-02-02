@@ -13,13 +13,12 @@ const ModifyProfile = ({ user }) => {
   const [email, setemail] = useState("");
   const [BIO, setBIO] = useState("");
   const [password, setpassword] = useState("");
-  
-  // const [avatar, setavatar] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [DOB, setDOB] = useState("");
 
   /*manejador del botón editar formulario*/
   const [button, setButton] = useState("button");
-  const [respuesta,setrespuesta] = useState("")
+  const [respuesta, setrespuesta] = useState("");
   const [cookies] = useCookies(["Token"]);
   const navigate = useNavigate();
   //control de edad
@@ -57,24 +56,26 @@ const ModifyProfile = ({ user }) => {
       if (password) {
         formData.append("password", password);
       }
-      // formData.append("avatar", avatar);
+      if (avatar) {
+        formData.append("avatar", avatar);
+      }
       if (DOB) {
         formData.append("DOB", DOB);
       }
 
-
-      console.log(Object.fromEntries(formData))
-        const  response = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/user`, formData, {
-
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${cookies.Token}`,
-        },
-      
-            });
+      console.log(Object.fromEntries(formData));
+      const response = await axios.patch(
+        `${import.meta.env.VITE_BACKEND_URL}/user`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${cookies.Token}`,
+          },
+        }
+      );
       setButton("form");
- 
-      setrespuesta(response.data)
+      setrespuesta(response.data);
       if (respuesta) {
         setTimeout(() => {
           navigate("/profile");
@@ -83,11 +84,7 @@ const ModifyProfile = ({ user }) => {
     } catch {
       console.error("error");
     }
- 
-};
-
- 
-
+  };
 
   const changeBtnForm = () => {
     if (button === "button") {
@@ -96,98 +93,109 @@ const ModifyProfile = ({ user }) => {
       setButton("button");
     }
   };
-  
+
   return (
-    <div className="formContainter">
+    <>
       {button === "button" ? (
         <button className="ButtonForm" onClick={changeBtnForm}>
           Editar Perfil
         </button>
       ) : (
-        <form className="FormProfile" onSubmit={sendModifies}>
-          <legend>Edita tu Perfíl</legend>
+        <div className="formContainter">
+          <form className="FormProfile" onSubmit={sendModifies}>
+            <legend>Edita tu Perfíl</legend>
 
-          <section className="FormSectionProfile">
-            <input
-              className="inputFormProfile"
-              type="text"
-              onChange={(e) => setnickName(e.target.value)}
-              id="usuario"
-              name="usuario"
-              placeholder={user.nickName}
-            />
-            <input
-              className="inputFormProfile"
-              type="email"
-              onChange={(e) => setemail(e.target.value)}
-              id="correo"
-              name="correo"
-              placeholder={user.email}
-            />
-            <input
-              className="inputFormProfile"
-              type="password"
-              onChange={(e) => setpassword(e.target.value)}
-              id="clave"
-              name="clave"
-              placeholder="Contraseña"
-            />
-          </section>
-          <section className="FormSectionProfile">
-            <input
-              className="inputFormProfile"
-              type="text"
-              onChange={(e) => setName(e.target.value)}
-              id="nombre"
-              name="nombre"
-              placeholder={user.name}
-            />
-            <input
-              className="inputFormProfile"
-              type="text"
-              onChange={(e) => setfirstName(e.target.value)}
-              id="apellidos"
-              name="apellidos"
-              placeholder={user.firstName}
-            />
-            <input
-              className="inputFormProfile"
-              type="date"
-              onChange={(e) => setDOB(e.target.value)}
-              id="DOB"
-              name="DOB"
-              placeholder={dateFormat(user.DOB)}
-              min={oldDate}
-              max={currentDate}
-            />
-          </section>
+            <section className="FormSectionProfile">
+              <input
+                className="inputFormProfile"
+                type="text"
+                onChange={(e) => setnickName(e.target.value)}
+                id="usuario"
+                name="usuario"
+                placeholder={user.nickName}
+              />
+              <input
+                className="inputFormProfile"
+                type="email"
+                onChange={(e) => setemail(e.target.value)}
+                id="correo"
+                name="correo"
+                placeholder={user.email}
+              />
 
-          <section className="FormSectionProfile">
+              <input
+                className="inputFormProfile"
+                type="password"
+                onChange={(e) => setpassword(e.target.value)}
+                id="clave"
+                name="clave"
+                placeholder="Contraseña"
+              />
+            </section>
+            <section className="FormSectionProfile">
+              <input
+                className="inputFormProfile"
+                type="text"
+                onChange={(e) => setName(e.target.value)}
+                id="nombre"
+                name="nombre"
+                placeholder={user.name}
+              />
+              <input
+                className="inputFormProfile"
+                type="text"
+                onChange={(e) => setfirstName(e.target.value)}
+                id="apellidos"
+                name="apellidos"
+                placeholder={user.firstName}
+              />
+              <input
+                className="inputFormProfile"
+                type="date"
+                onChange={(e) => setDOB(e.target.value)}
+                id="DOB"
+                name="DOB"
+                placeholder={dateFormat(user.DOB)}
+                min={oldDate}
+                max={currentDate}
+              />
+            </section>
+
+            <section className="FormSectionProfile">
+              <input
+                className="inputFormProfile Biografia"
+                type="text"
+                onChange={(e) => setBIO(e.target.value)}
+                id="bio"
+                name="bio"
+                placeholder={user.BIO}
+              />
+            </section>
             <input
-              className="inputFormProfile Biografia"
-              type="text"
-              onChange={(e) => setBIO(e.target.value)}
-              id="bio"
-              name="bio"
-              placeholder={user.BIO}
+              className="inputFormProfile"
+              type="file"
+              onChange={(e) =>
+                setAvatar(e.target.files.length > 0 ? e.target.files[0] : null)
+              }
+              id="avatar"
+              name="avatar"
             />
-          </section>
-          
-          <section className="buttonsFrom">
-            <button className="ButtonForm sendButton" type="submit">
-              Enviar
-            </button>
-            <button
-              className="ButtonForm"
-              type="submit"
-              onClick={changeBtnForm}
-            >
-              Cancelar
-            </button>
-          </section>
-        </form>
+            <section className="buttonsFrom">
+              <button className="ButtonForm sendButton" type="submit">
+                Enviar
+              </button>
+              <button
+                className="ButtonForm"
+                type="submit"
+                onClick={changeBtnForm}
+              >
+                Cancelar
+              </button>
+            </section>
+          </form>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
