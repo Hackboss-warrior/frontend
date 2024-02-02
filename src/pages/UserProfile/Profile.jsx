@@ -7,6 +7,8 @@ import { TokenContext } from "../../utils/TokenContext";
 import { useCookies } from "react-cookie";
 import isAuth from "../../isAuth";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // import Favorites from "../../components/Favorites";
 
@@ -33,12 +35,15 @@ const Profile = () => {
       setUser(response.data);
     } catch (err) {
       console.error("Fallo:", err);
+      toast.error("ha sucedido un percance, estamos trabajando en ello");
     }
   };
   
   console.log(user, "user");
   return (
+    
     <div className="mainPage">
+       <ToastContainer />
       <h1 className="titleProfil">My perfil</h1>
 
       <div className="presentacionPersonal">
@@ -63,8 +68,12 @@ const Profile = () => {
           </div>
 
           <div className="presentacionPersonalPares">
-            <p className="presentacionPersonalP">Nombre completo: </p>
-            <h3>{user.name + " " + user.firstName}</h3>
+            <p className="presentacionPersonalP">Nombre: </p>
+            <p>{user.name }</p>
+          </div>
+          <div className="presentacionPersonalPares">
+            <p className="presentacionPersonalP">Apelllidos: </p>
+            <p>{user.firstName}</p>
           </div>
 
           <div className="presentacionPersonalPares">
@@ -79,7 +88,7 @@ const Profile = () => {
           <p>{user.BIO}</p>
         </div>
       </section>
-      <ModifyProfile user={user} />
+      <ModifyProfile user={user} setUser={setUser}/>
     </div>
   );
 };

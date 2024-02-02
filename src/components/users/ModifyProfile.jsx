@@ -5,8 +5,17 @@ import { useNavigate } from "react-router-dom";
 import isAuth from "../../isAuth";
 import PropTypes from "prop-types";
 import dateFormat from "../../utils/dateFormat";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const ModifyProfile = ({ user }) => {
+// import { TokenContext } from "../../utils/TokenContext";
+
+
+const ModifyProfile = ({ user, setUser }) => {
+
+
+
+
   const [name, setName] = useState("");
   const [firstName, setfirstName] = useState("");
   const [nickName, setnickName] = useState("");
@@ -18,9 +27,9 @@ const ModifyProfile = ({ user }) => {
 
   /*manejador del botón editar formulario*/
   const [button, setButton] = useState("button");
-  const [respuesta, setrespuesta] = useState("");
   const [cookies] = useCookies(["Token"]);
   const navigate = useNavigate();
+  const [isHovered, setIsHovered] = useState(false);
   //control de edad
   const currentDate = new Date().toISOString().split("T")[0];
 
@@ -62,8 +71,8 @@ const ModifyProfile = ({ user }) => {
       if (DOB) {
         formData.append("DOB", DOB);
       }
-
-      console.log(Object.fromEntries(formData));
+console.log({formData});
+      // console.log(Object.fromEntries(formData));
       const response = await axios.patch(
         `${import.meta.env.VITE_BACKEND_URL}/user`,
         formData,
@@ -74,15 +83,14 @@ const ModifyProfile = ({ user }) => {
           },
         }
       );
+      console.log("respuesta de user",response.data[0]);
       setButton("form");
-      setrespuesta(response.data);
-      if (respuesta) {
-        setTimeout(() => {
-          navigate("/profile");
-        }, 5000);
-      }
-    } catch {
-      console.error("error");
+      
+setUser(response.data[0])
+toast.success("Se han realizado cambios en su perfil");  
+    } catch (error){
+      console.error("Error al actualizar el perfil:", error);
+      toast.error("Revisa los datos introducidos");
     }
   };
 
@@ -96,6 +104,7 @@ const ModifyProfile = ({ user }) => {
 
   return (
     <>
+    <ToastContainer />
       {button === "button" ? (
         <button className="ButtonForm" onClick={changeBtnForm}>
           Editar Perfil
@@ -106,7 +115,8 @@ const ModifyProfile = ({ user }) => {
             <legend>Edita tu Perfíl</legend>
 
             <section className="FormSectionProfile">
-              <input
+              <input 
+             
                 className="inputFormProfile"
                 type="text"
                 onChange={(e) => setnickName(e.target.value)}
@@ -171,15 +181,49 @@ const ModifyProfile = ({ user }) => {
                 placeholder={user.BIO}
               />
             </section>
-            <input
-              className="inputFormProfile"
-              type="file"
-              onChange={(e) =>
-                setAvatar(e.target.files.length > 0 ? e.target.files[0] : null)
-              }
-              id="avatar"
-              name="avatar"
-            />
+
+
+
+
+
+
+
+
+
+
+
+
+         
+            <section
+  className="imagenContenedor"
+  onMouseEnter={() => setIsHovered(true)}
+  onMouseLeave={() => setIsHovered(false)}
+>
+  {isHovered ? (
+    <label htmlFor="avatar" className="AvatarHover">
+      Cambiar foto
+      <img
+        src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
+        alt={user.name}
+      />
+      <input
+        type="file"
+        onChange={(e) => setAvatar(e.target.files.length > 0 ? e.target.files[0] : null)}
+        id="avatar"
+        name="avatar"
+        accept="image/*"
+        style={{ display: 'none' }}
+      />
+    </label>
+  ) : (
+    <img
+      className="avatarProfile"
+      src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
+      alt={user.name}
+    />
+  )}
+</section>
+
             <section className="buttonsFrom">
               <button className="ButtonForm sendButton" type="submit">
                 Enviar
@@ -201,6 +245,7 @@ const ModifyProfile = ({ user }) => {
 
 ModifyProfile.propTypes = {
   user: PropTypes.object.isRequired,
+  setUser:PropTypes.func
 };
 
 export default ModifyProfile;
