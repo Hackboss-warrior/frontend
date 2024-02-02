@@ -44,6 +44,7 @@ const Favorites = () => {
 
   return (
     <>
+    <ToastContainer/>
       <main className="posts">
         <h1>Mis Favoritos</h1>
         {posts
