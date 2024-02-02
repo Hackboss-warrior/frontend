@@ -10,7 +10,7 @@ import AddFavoritePost from "../../components/AddFavoritePost";
 
 const Favorites = () => {
   const [posts, setPosts] = useState([]);
-
+  const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
   const [favs, setFavs] = useState([]);
   const [cookies] = useCookies(["Token"]);
@@ -24,9 +24,11 @@ const Favorites = () => {
           { headers: { Authorization: `Bearer ${cookies.Token}` } }
         );
 
+        console.log(response);
         setPosts(response.data[0]);
-        setLikes(response.data[1]);
-        setFavs(response.data[2]);
+        setComments(response.data[1]);
+        setLikes(response.data[2]);
+        setFavs(response.data[3]);
       } catch (error) {
         console.error(error);
       }
@@ -66,6 +68,7 @@ const Favorites = () => {
                   setPosts={setPosts}
                 />
               }
+              comments={comments}
             />
           ))}
       </main>
