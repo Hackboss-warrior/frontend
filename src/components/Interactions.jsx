@@ -81,9 +81,9 @@ const Interactions = ({ post, likes, setLikes }) => {
             post.id === like.postId &&
             like.interaction === 1
         ) ? (
-          <BiSolidUpvote />
+          <BiSolidUpvote className="clickLikeArrow" />
         ) : (
-          <BiUpvote />
+          <BiUpvote className="notClickLikeArrow" />
         )}
 
         {
