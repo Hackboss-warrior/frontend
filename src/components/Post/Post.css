@@ -52,9 +52,10 @@
 }
 
 .defaultPostImg {
-  width: 920px;
-  margin-bottom: 15px;
+  width: 100%;
+  margin-bottom: 20px;
 }
+
 
 .interactCommentsButtons {
   display: flex;
@@ -352,11 +353,7 @@
 
  
 
-  .postImg,
-  .defaultPostImg {
-    width: 100%;
-    margin-bottom: 10px;
-  }
+  
 
   .interactCommentsButtons,
   .interactComments,
@@ -502,9 +499,6 @@
     font-size: 0.8rem;
   }
 
-  .postImg,
-  .defaultPostImg {
-    width: 100%;
-    margin-bottom: 10px;
-  }
+  
+
 }

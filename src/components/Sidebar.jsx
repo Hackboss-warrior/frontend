@@ -4,7 +4,12 @@ import { useNavigate } from "react-router-dom";
 import "../pages/Admin/Admin.css";
 import SidebarLink from "./SidebarLink";
 import { FcStatistics } from "react-icons/fc";
-import { IoMdLogOut, IoMdInformationCircle, IoIosPerson } from "react-icons/io";
+import {
+  IoMdLogOut,
+  IoMdInformationCircle,
+  IoIosPerson,
+  IoMdSettings,
+} from "react-icons/io";
 import {
   FaHome,
   FaStar,
@@ -172,7 +177,7 @@ const Sidebar = ({ handleSectionChange }) => {
               <SidebarLink
                 name="Tecnología"
                 isActive={activeLink === "tecnologia"}
-                icon={<RiAdminFill />}
+                icon={<IoMdSettings />}
               />
               <SidebarLink
                 name="Ciencia"
