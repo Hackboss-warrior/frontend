@@ -1,12 +1,20 @@
 .post {
   border-radius: 25px;
   box-shadow: var(--box-shadow);
-  padding: 40px;
+  padding: 50px;
   margin: 50px 0px;
   text-align: center;
   background-color: var(--dark-grey-color);
   color: #fff;
   width: 1000px;
+  
+}
+.postHeader{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  gap: 20px;
 }
 
 .favContainer {
@@ -33,7 +41,7 @@
   color: #fff;
   font-family: "Montserrat", sans-serif;
   font-size: 3rem;
-  margin-bottom: 2rem;
+  margin-bottom: 20px;
 }
 
 .postImg {
@@ -59,8 +67,7 @@
   gap: 20px;
 }
 
-.postLikes,
-.postDisLikes,
+
 .commentsNumber {
   display: flex;
   gap: 10px;
@@ -76,9 +83,44 @@
   background-color: var(--dark-grey-color);
 }
 
-.commentsNumber:hover,
-.postLikes:hover,
-.postDisLikes:hover {
+.sendLike, .sendDisLike {
+  height: 25px;
+}
+
+.clickLikeArrow:hover,
+.notClickLikeArrow:hover,
+.notClickDislikeArrow:hover,
+.clickDisLikeArrow:hover{
+  cursor: pointer;
+}
+
+
+
+.postLikes{
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.4rem;
+  box-shadow: var(--box-shadow);
+  height: 50px;
+  width: 130px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  background-color: var(--dark-grey-color);
+}
+
+.clickLikeArrow, .clickDisLikeArrow {
+  color: var(--main-red-color);
+  font-size:1.5rem
+}
+
+.likesNumber {
+  margin-bottom: -2px;
+}
+.commentsNumber:hover
+ {
   border: 1px solid #fff;
 }
 .editDeltBtn {
@@ -130,7 +172,7 @@
   justify-content: space-between;
   gap: 40px;
   align-items: center;
-  padding-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .postUserInfo {
@@ -306,9 +348,7 @@
     width: 50px;
   }
 
-  .postTitle {
-    font-size: 1.5rem;
-  }
+ 
 
   .postImg,
   .defaultPostImg {
@@ -318,7 +358,6 @@
 
   .interactCommentsButtons,
   .interactComments,
-  .postLikes,
   .postDisLikes,
   .commentsNumber {
     font-size: 1rem;
@@ -345,11 +384,14 @@
     max-width: 25px;
   }
 
-  .postUserAndDate,
+  
   .postUserInfo,
   .postCreatedAt {
     gap: 10px;
     padding-bottom: 10px;
+  }
+  .postUserAndDate {
+    padding-bottom: -50px;
   }
 
   .nickName,
@@ -446,9 +488,7 @@
     font-size: 1rem;
   }
 
-  .postTitle {
-    font-size: 1.2rem;
-  }
+ 
 
   .comments h3 {
     font-size: 1.2rem;
