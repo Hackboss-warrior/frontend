@@ -9,7 +9,6 @@ import AddFavoritePost from "../../components/AddFavoritePost";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const Favorites = () => {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
@@ -26,13 +25,11 @@ const Favorites = () => {
           { headers: { Authorization: `Bearer ${cookies.Token}` } }
         );
 
-      
         setPosts(response.data[0]);
 
         setComments(response.data[1]);
         setLikes(response.data[2]);
         setFavs(response.data[3]);
-       
       } catch (error) {
         console.error(error);
         toast.error("Ha sucedido un imprevisto con su lista de Favoritos");
@@ -44,9 +41,10 @@ const Favorites = () => {
 
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
       <main className="posts">
         <h1>Mis Favoritos</h1>
+
         {posts
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .map((post) => (

@@ -118,6 +118,8 @@
 
 .likesNumber {
   margin-bottom: -2px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
 }
 .commentsNumber:hover
  {

@@ -38,13 +38,12 @@ const Profile = () => {
       toast.error("ha sucedido un percance, estamos trabajando en ello");
     }
   };
-  
+
   console.log(user, "user");
   return (
-    
     <div className="mainPage">
-       <ToastContainer />
-      <h1 className="titleProfil">My perfil</h1>
+      <ToastContainer />
+      <h1 className="titleProfil">Mi perfil</h1>
 
       <div className="presentacionPersonal">
         <section className="NicknameAvatar">
@@ -69,7 +68,7 @@ const Profile = () => {
 
           <div className="presentacionPersonalPares">
             <p className="presentacionPersonalP">Nombre: </p>
-            <p>{user.name }</p>
+            <p>{user.name}</p>
           </div>
           <div className="presentacionPersonalPares">
             <p className="presentacionPersonalP">Apelllidos: </p>
@@ -88,7 +87,7 @@ const Profile = () => {
           <p>{user.BIO}</p>
         </div>
       </section>
-      <ModifyProfile user={user} setUser={setUser}/>
+      <ModifyProfile user={user} setUser={setUser} />
     </div>
   );
 };

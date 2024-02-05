@@ -213,7 +213,7 @@ const Sidebar = ({ handleSectionChange }) => {
             <div className="sidebar__list">
               {isAuth(cookies.Token) && (
                 <SidebarLink
-                  name="Profile"
+                  name="Perfil"
                   isActive={activeLink === "profile"}
                   onClick={() => handleLinkClick("profile", "/profile")}
                   icon={<IoIosPerson />}
