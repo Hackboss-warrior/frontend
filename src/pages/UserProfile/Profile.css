@@ -144,7 +144,7 @@ legend {
   height: 200px;
   margin-bottom: 1.5rem;
   background-color: #a9191f;
-  border-radius: 10%;
+  border-radius: 30px;
 }
 
 .AvatarHover {
@@ -152,10 +152,13 @@ legend {
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease-in-out;
+
 }
 
-.imagenContenedor:hover .AvatarHover {
-  transform: scale(2);
+.imagenContenedor:hover, .AvatarHover {
+  transform: scale(1.1);
+  cursor:pointer;
+  margin-bottom: 3rem;
 }
 
 @media only screen and (max-width: 800px) {

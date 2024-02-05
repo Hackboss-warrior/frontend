@@ -15,7 +15,6 @@ const ModifyProfile = ({ user, setUser }) => {
 
 
 
-
   const [name, setName] = useState("");
   const [firstName, setfirstName] = useState("");
   const [nickName, setnickName] = useState("");
@@ -87,6 +86,8 @@ console.log({formData});
       setButton("form");
       
 setUser(response.data[0])
+setnickName(response.data[0].nickName)
+
 toast.success("Se han realizado cambios en su perfil");  
     } catch (error){
       console.error("Error al actualizar el perfil:", error);
@@ -123,6 +124,7 @@ toast.success("Se han realizado cambios en su perfil");
                 id="usuario"
                 name="usuario"
                 placeholder={user.nickName}
+                value={nickName}
               />
               <input
                 className="inputFormProfile"
@@ -182,18 +184,6 @@ toast.success("Se han realizado cambios en su perfil");
               />
             </section>
 
-
-
-
-
-
-
-
-
-
-
-
-         
             <section
   className="imagenContenedor"
   onMouseEnter={() => setIsHovered(true)}
@@ -213,6 +203,7 @@ toast.success("Se han realizado cambios en su perfil");
         name="avatar"
         accept="image/*"
         style={{ display: 'none' }}
+        className="AvatarHover"
       />
     </label>
   ) : (

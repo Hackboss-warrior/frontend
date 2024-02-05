@@ -6,17 +6,27 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Contact = () => {
-  const [subject, setSubject] = useState("");
-  const [email, setEmail] = useState("");
-  const [body, setBody] = useState("");
+
+  const [inputsubject, setInputSubject] = useState("");
+  const [inputemail, setInputEmail] = useState("");
+  const [inputbody, setInputBody] = useState("");
+
+
+
+
+
+
 
   const handleForm = async (e) => {
+    console.log(e);
+    e.preventDefault();
     try {
-      e.preventDefault();
+     
+
       const formData = new FormData();
-      formData.append("subject", subject);
-      formData.append("email", email);
-      formData.append("body", body);
+      formData.append("subject", e.target.subject.value);
+      formData.append("email", e.target.email.value);
+      formData.append("body",  e.target.body.value);
 
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/contact`,
@@ -29,7 +39,11 @@ const Contact = () => {
       );
       if (!response) {
         throw new Error("sin respuesta");
+
       }
+      setInputSubject("")
+      setInputEmail("")
+      setInputBody("")
 
       toast.success(response.data);
     } catch (error) {
@@ -69,8 +83,9 @@ const Contact = () => {
               type="text"
               id="subject"
               name="subject"
-              onChange={(e) => setSubject(e.target.value)}
+              onChange={(e) => setInputSubject(e.target.value)}
               placeholder="Escriba aqui el asunto a tratar..."
+              value={inputsubject}
               required
             />
           </div>
@@ -81,8 +96,9 @@ const Contact = () => {
               type="email"
               id="email"
               name="email"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setInputEmail(e.target.value)}
               placeholder="Escriba aqui su correo..."
+              value={inputemail}
               required
             />
           </div>
@@ -93,8 +109,9 @@ const Contact = () => {
               type="text"
               id="body"
               name="body"
-              onChange={(e) => setBody(e.target.value)}
+              onChange={(e) => setInputBody(e.target.value)}
               placeholder="Exponga su consulta...(max 600 caracteres) "
+              value={inputbody}
               required
             />
           </div>
