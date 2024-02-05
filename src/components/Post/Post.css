@@ -7,9 +7,8 @@
   background-color: var(--dark-grey-color);
   color: #fff;
   width: 1000px;
-  
 }
-.postHeader{
+.postHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -56,7 +55,6 @@
   margin-bottom: 20px;
 }
 
-
 .interactCommentsButtons {
   display: flex;
   flex-direction: row;
@@ -67,7 +65,6 @@
   display: flex;
   gap: 20px;
 }
-
 
 .commentsNumber {
   display: flex;
@@ -84,20 +81,19 @@
   background-color: var(--dark-grey-color);
 }
 
-.sendLike, .sendDisLike {
+.sendLike,
+.sendDisLike {
   height: 25px;
 }
 
 .clickLikeArrow:hover,
 .notClickLikeArrow:hover,
 .notClickDislikeArrow:hover,
-.clickDisLikeArrow:hover{
+.clickDisLikeArrow:hover {
   cursor: pointer;
 }
 
-
-
-.postLikes{
+.postLikes {
   display: flex;
   gap: 15px;
   justify-content: center;
@@ -112,9 +108,10 @@
   background-color: var(--dark-grey-color);
 }
 
-.clickLikeArrow, .clickDisLikeArrow {
+.clickLikeArrow,
+.clickDisLikeArrow {
   color: var(--main-red-color);
-  font-size:1.5rem
+  font-size: 1.5rem;
 }
 
 .likesNumber {
@@ -122,8 +119,7 @@
   font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
 }
-.commentsNumber:hover
- {
+.commentsNumber:hover {
   border: 1px solid #fff;
 }
 .editDeltBtn {
@@ -336,169 +332,3 @@
 /* RESPONSIVE */
 
 /* TABLET */
-
-/* Responsividad específica para tablets */
-@media screen and (max-width: 768px) {
-  .post {
-    width: 90%;
-    max-width: 600px; /* Ajusta este valor según sea necesario */
-    padding: 15px;
-    margin: 20px auto;
-  }
-
-  .favoriteBtn {
-    height: 25px;
-    width: 50px;
-  }
-
- 
-
-  
-
-  .interactCommentsButtons,
-  .interactComments,
-  .postDisLikes,
-  .commentsNumber {
-    font-size: 1rem;
-  }
-
-  .editDeltBtn,
-  .editListPostBtn,
-  .delPostBtn {
-    height: 30px;
-    width: 60px;
-  }
-
-  .favoriteBtn,
-  .editDeltBtn,
-  .editListPostBtn,
-  .delPostBtn,
-  .commentsForm button {
-    width: 100%; /* Hace que los botones se ajusten al ancho del contenedor */
-    max-width: 150px; /* Ajusta este valor según sea necesario */
-    margin: 10px 0;
-  }
-  .userAvatar {
-    max-height: 25px;
-    max-width: 25px;
-  }
-
-  
-  .postUserInfo,
-  .postCreatedAt {
-    gap: 10px;
-    padding-bottom: 10px;
-  }
-  .postUserAndDate {
-    padding-bottom: -50px;
-  }
-
-  .nickName,
-  .postTopic {
-    font-size: 1rem;
-  }
-
-  .postContent {
-    padding: 10px;
-  }
-
-  .postBody {
-    margin: 0;
-  }
-
-  .postTag {
-    font-size: 0.8rem;
-  }
-
-  .comments h3 {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    padding: 10px 0;
-  }
-
-  .comments {
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-
-  .commentBox {
-    margin: 15px 10px;
-    padding: 10px;
-  }
-
-  .commentUserInfoDate,
-  .commentUserInfo,
-  .commentDate {
-    gap: 10px;
-    padding: 10px;
-  }
-
-  .commentContent {
-    font-size: 0.9rem;
-  }
-
-  .commentsForm {
-    margin: 15px 10px;
-    padding: 15px;
-  }
-
-  .commentsForm input {
-    height: 80px;
-    width: 100%;
-    max-width: 100%; /
-  }
-
-  .commentsForm button {
-    width: 120px;
-  }
-}
-
-/* MOBILE */
-/* Responsividad específica para dispositivos móviles */
-@media screen and (max-width: 480px) {
-  .post {
-    width: 90%;
-    padding: 10px;
-    margin: 20px auto;
-  }
-
-  .favoriteBtn,
-  .editDeltBtn,
-  .editListPostBtn,
-  .delPostBtn,
-  .commentsForm button {
-    width: 100%;
-    max-width: 150px;
-    margin: 10px 0;
-  }
-
-  .commentsForm input {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .userAvatar {
-    max-height: 20px;
-    max-width: 20px;
-  }
-
-  .nickName,
-  .postTopic {
-    font-size: 1rem;
-  }
-
- 
-
-  .comments h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    padding: 10px 0;
-  }
-
-  .commentContent {
-    font-size: 0.8rem;
-  }
-
-  
-
-}
