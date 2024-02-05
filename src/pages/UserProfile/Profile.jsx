@@ -41,54 +41,56 @@ const Profile = () => {
 
   console.log(user, "user");
   return (
-    <div className="mainPage">
+    <>
       <ToastContainer />
-      <h1 className="titleProfil">Mi perfil</h1>
+      <div className="mainPage">
+        <h1 className="titleProfil">Mi perfil</h1>
 
-      <div className="presentacionPersonal">
-        <section className="NicknameAvatar">
-          <h2 className="Nickname">{user.nickName}</h2>
-          <img
-            className="avatarProfile"
-            src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
-            alt={user.name}
-          />
-        </section>
+        <div className="presentacionPersonal">
+          <section className="NicknameAvatar">
+            <h2 className="Nickname">{user.nickName}</h2>
+            <img
+              className="avatarProfile"
+              src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
+              alt={user.name}
+            />
+          </section>
 
-        <section className="presentacionPersonal2">
-          <div className="presentacionPersonalPares">
-            <p className="presentacionPersonalP">Usuario: </p>
-            <p> {user.nickName}</p>
-          </div>
+          <section className="presentacionPersonal2">
+            <div className="presentacionPersonalPares">
+              <p className="presentacionPersonalP">Usuario: </p>
+              <p> {user.nickName}</p>
+            </div>
 
-          <div className="presentacionPersonalPares">
-            <p className="presentacionPersonalP">Email: </p>
-            <p> {user.email}</p>
-          </div>
+            <div className="presentacionPersonalPares">
+              <p className="presentacionPersonalP">Email: </p>
+              <p> {user.email}</p>
+            </div>
 
-          <div className="presentacionPersonalPares">
-            <p className="presentacionPersonalP">Nombre: </p>
-            <p>{user.name}</p>
-          </div>
-          <div className="presentacionPersonalPares">
-            <p className="presentacionPersonalP">Apelllidos: </p>
-            <p>{user.firstName}</p>
-          </div>
+            <div className="presentacionPersonalPares">
+              <p className="presentacionPersonalP">Nombre: </p>
+              <p>{user.name}</p>
+            </div>
+            <div className="presentacionPersonalPares">
+              <p className="presentacionPersonalP">Apelllidos: </p>
+              <p>{user.firstName}</p>
+            </div>
 
-          <div className="presentacionPersonalPares">
-            <p className="presentacionPersonalP">fecha de nacimiento:</p>
-            <p> {dateFormat(user.DOB)}</p>
-          </div>
-        </section>
-      </div>
-      <section>
-        <div className="presentacionPersonalPares Biografia">
-          <p className="presentacionPersonalP ">Biografía: </p>
-          <p>{user.BIO}</p>
+            <div className="presentacionPersonalPares">
+              <p className="presentacionPersonalP">fecha de nacimiento:</p>
+              <p> {dateFormat(user.DOB)}</p>
+            </div>
+          </section>
         </div>
-      </section>
-      <ModifyProfile user={user} setUser={setUser} />
-    </div>
+        <section>
+          <div className="presentacionPersonalPares Biografia">
+            <p className="presentacionPersonalP ">Biografía: </p>
+            <p>{user.BIO}</p>
+          </div>
+        </section>
+        <ModifyProfile user={user} setUser={setUser} />
+      </div>
+    </>
   );
 };
 

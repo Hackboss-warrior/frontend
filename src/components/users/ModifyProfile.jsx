@@ -10,11 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 // import { TokenContext } from "../../utils/TokenContext";
 
-
 const ModifyProfile = ({ user, setUser }) => {
-
-
-
   const [name, setName] = useState("");
   const [firstName, setfirstName] = useState("");
   const [nickName, setnickName] = useState("");
@@ -70,7 +66,7 @@ const ModifyProfile = ({ user, setUser }) => {
       if (DOB) {
         formData.append("DOB", DOB);
       }
-console.log({formData});
+      console.log({ formData });
       // console.log(Object.fromEntries(formData));
       const response = await axios.patch(
         `${import.meta.env.VITE_BACKEND_URL}/user`,
@@ -82,14 +78,13 @@ console.log({formData});
           },
         }
       );
-      console.log("respuesta de user",response.data[0]);
+      console.log("respuesta de user", response.data[0]);
       setButton("form");
-      
-setUser(response.data[0])
-setnickName(response.data[0].nickName)
 
-toast.success("Se han realizado cambios en su perfil");  
-    } catch (error){
+      setUser(response.data[0]);
+
+      toast.success("Se han realizado cambios en su perfil");
+    } catch (error) {
       console.error("Error al actualizar el perfil:", error);
       toast.error("Revisa los datos introducidos");
     }
@@ -105,7 +100,6 @@ toast.success("Se han realizado cambios en su perfil");
 
   return (
     <>
-    <ToastContainer />
       {button === "button" ? (
         <button className="ButtonForm" onClick={changeBtnForm}>
           Editar Perfil
@@ -116,15 +110,13 @@ toast.success("Se han realizado cambios en su perfil");
             <legend>Edita tu Perfíl</legend>
 
             <section className="FormSectionProfile">
-              <input 
-             
+              <input
                 className="inputFormProfile"
                 type="text"
                 onChange={(e) => setnickName(e.target.value)}
                 id="usuario"
                 name="usuario"
                 placeholder={user.nickName}
-                value={nickName}
               />
               <input
                 className="inputFormProfile"
@@ -185,35 +177,39 @@ toast.success("Se han realizado cambios en su perfil");
             </section>
 
             <section
-  className="imagenContenedor"
-  onMouseEnter={() => setIsHovered(true)}
-  onMouseLeave={() => setIsHovered(false)}
->
-  {isHovered ? (
-    <label htmlFor="avatar" className="AvatarHover">
-      Cambiar foto
-      <img
-        src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
-        alt={user.name}
-      />
-      <input
-        type="file"
-        onChange={(e) => setAvatar(e.target.files.length > 0 ? e.target.files[0] : null)}
-        id="avatar"
-        name="avatar"
-        accept="image/*"
-        style={{ display: 'none' }}
-        className="AvatarHover"
-      />
-    </label>
-  ) : (
-    <img
-      className="avatarProfile"
-      src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
-      alt={user.name}
-    />
-  )}
-</section>
+              className="imagenContenedor"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              {isHovered ? (
+                <label htmlFor="avatar" className="AvatarHover">
+                  Cambiar foto
+                  <img
+                    src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
+                    alt={user.name}
+                  />
+                  <input
+                    type="file"
+                    onChange={(e) =>
+                      setAvatar(
+                        e.target.files.length > 0 ? e.target.files[0] : null
+                      )
+                    }
+                    id="avatar"
+                    name="avatar"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    className="AvatarHover"
+                  />
+                </label>
+              ) : (
+                <img
+                  className="avatarProfile"
+                  src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
+                  alt={user.name}
+                />
+              )}
+            </section>
 
             <section className="buttonsFrom">
               <button className="ButtonForm sendButton" type="submit">
@@ -236,7 +232,7 @@ toast.success("Se han realizado cambios en su perfil");
 
 ModifyProfile.propTypes = {
   user: PropTypes.object.isRequired,
-  setUser:PropTypes.func
+  setUser: PropTypes.func,
 };
 
 export default ModifyProfile;
