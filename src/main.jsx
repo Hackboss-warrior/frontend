@@ -17,6 +17,7 @@ import CreatePost from "./pages/createPost/CreatePost";
 import { CookiesProvider } from "react-cookie";
 import isAdmin from "./isAdmin";
 import EditPost from "./pages/editPost/editPost";
+import Favorites from "./components/Favorites";
 
 const PrivateRoute = () => {
   const cookies = document.cookie;
@@ -48,6 +49,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/about" element={<About />} />
             <Route path="/users" element={<User />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/favorites" element={<Favorites />} />
             {/* {PrivateRoute() ? (<Route path="/users" element={<User />} />) : <Route path="/*" element={<Error />} />} */}
             <Route path="/*" element={<Error />} />
           </Routes>
