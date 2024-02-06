@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import Post from "../../components/Post/Post";
 import { v4 as uuidv4 } from "uuid";
 import Interactions from "../../components/Interactions";
-import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddFavoritePost from "../../components/AddFavoritePost";
@@ -14,9 +13,9 @@ const Search = ({ title, tag }) => {
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
   const [favs, setFavs] = useState([]);
-  const [cookies] = useCookies(["Token"]);
+  
 
-  // const token = localStorage.getItem("token");
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,7 +25,7 @@ const Search = ({ title, tag }) => {
         });
         const response = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/search`,
-          { queryParams, headers: { Authorization: `Bearer ${cookies.Token}` } }
+          { queryParams }
         );
 
         setPosts(response.data[0]);
@@ -40,7 +39,7 @@ const Search = ({ title, tag }) => {
     };
 
     fetchData();
-  }, [cookies.Token, title, tag]);
+  }, [title, tag]);
 
   return (
     <>
