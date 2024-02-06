@@ -1,19 +1,18 @@
 import PropTypes from "prop-types";
-
+import { useContext } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import isAuth from "../isAuth";
-
+import { TokenContext } from "../utils/TokenContext";
+import isAuth from "../utils/isAuth";
 import axios from "axios";
-import isId from "../isId";
+import isId from "../utils/isId";
 
 const AddFavoritePost = ({ post, favs, setFavs }) => {
-  const [cookies] = useCookies(["Token"]);
+  const { token, loggedUser } = useContext(TokenContext);
   const navigate = useNavigate();
 
   const addFavoriteHandler = async (postId) => {
-    if (!isAuth(cookies.Token)) {
+    if (!isAuth(token)) {
       navigate("/login");
       return;
     }
@@ -25,7 +24,7 @@ const AddFavoritePost = ({ post, favs, setFavs }) => {
         {},
         {
           headers: {
-            Authorization: `Bearer ${cookies.Token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -35,7 +34,7 @@ const AddFavoritePost = ({ post, favs, setFavs }) => {
     }
   };
 
-  return !isAuth(cookies.Token) ? (
+  return !isAuth(token) ? (
     <></>
   ) : (
     <div className="favContainer">
@@ -46,7 +45,7 @@ const AddFavoritePost = ({ post, favs, setFavs }) => {
         }}
       >
         {favs.some(
-          (fav) => fav.userId === isId(cookies.Token) && post.id === fav.postId
+          (fav) => fav.userId === isId(token) && post.id === fav.postId
         ) ? (
           <FaStar />
         ) : (

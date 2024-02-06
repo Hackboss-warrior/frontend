@@ -1,12 +1,12 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Post from "../../components/Post/Post";
 import { v4 as uuidv4 } from "uuid";
 import Interactions from "../../components/Interactions";
 import DeleteAndEditPost from "../../components/Post/DeleteAndEditPost";
-import { useCookies } from "react-cookie";
 import AddFavoritePost from "../../components/AddFavoritePost";
 import { ToastContainer, toast } from "react-toastify";
+import { TokenContext } from "../../utils/TokenContext";
 import "react-toastify/dist/ReactToastify.css";
 
 const Favorites = () => {
@@ -14,15 +14,14 @@ const Favorites = () => {
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
   const [favs, setFavs] = useState([]);
-  const [cookies] = useCookies(["Token"]);
+  const {token, loggedUser } = useContext(TokenContext);
 
-  // const token = localStorage.getItem("token");
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/myfavorites`,
-          { headers: { Authorization: `Bearer ${cookies.Token}` } }
+          { headers: { Authorization: `Bearer ${token}` } }
         );
 
         setPosts(response.data[0]);
@@ -37,7 +36,7 @@ const Favorites = () => {
     };
 
     fetchData();
-  }, [cookies.Token]);
+  }, [token]);
 
   return (
     <>

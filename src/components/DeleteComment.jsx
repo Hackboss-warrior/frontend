@@ -1,12 +1,12 @@
 import { FaTrash } from "react-icons/fa";
-import { useCookies } from "react-cookie";
+import { useContext } from "react";
+import { TokenContext } from "../utils/TokenContext";
 import PropTypes from "prop-types";
-import isId from "../isId";
+import isId from "../utils/isId";
 import axios from "axios";
 
 const DeleteComment = ({ cmt, setComments, comments }) => {
-  const [cookies] = useCookies(["Token"]);
-
+  const { token, loggedUser } = useContext(TokenContext);
   const deleteComment = async (cmtId) => {
     const shouldDelete = window.confirm(
       "¿Estás seguro de que quieres eliminar este comentario?"
@@ -17,7 +17,7 @@ const DeleteComment = ({ cmt, setComments, comments }) => {
           `${import.meta.env.VITE_BACKEND_URL}/comments/${cmtId}`,
           {
             headers: {
-              Authorization: `Bearer ${cookies.Token}`,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -30,7 +30,7 @@ const DeleteComment = ({ cmt, setComments, comments }) => {
   };
   return (
     <>
-      {cmt.userId === isId(cookies.Token) && (
+      {cmt.userId === isId(token) && (
         <button className="delCmtBtn" onClick={() => deleteComment(cmt.id)}>
           <FaTrash />
         </button>

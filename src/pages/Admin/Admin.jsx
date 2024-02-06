@@ -3,7 +3,7 @@ import axios from "axios";
 import { useCookies } from 'react-cookie';
 import { useNavigate } from "react-router-dom";
 import './Admin.css';
-import isAuth from "../../isAuth";
+import isAuth from "../../utils/isAuth";
 
 function Admin() {
     const [userData, setUserData] = useState(null);

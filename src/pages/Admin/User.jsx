@@ -3,7 +3,7 @@ import axios from "axios";
 import './Admin.css';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from "react-router-dom";
-import isAuth from "../../isAuth";
+import isAuth from "../../utils/isAuth";
 
 const User = () => {
   const [userData, setUserData] = useState(null);

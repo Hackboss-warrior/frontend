@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { TokenContext } from "../utils/TokenContext";
 import { useNavigate } from "react-router-dom";
 import "../pages/Admin/Admin.css";
 import SidebarLink from "./SidebarLink";
-import { FcStatistics } from "react-icons/fc";
 import {
   IoMdLogOut,
   IoMdInformationCircle,
@@ -27,15 +27,14 @@ import { BsFileEarmarkPost, BsPencilSquare } from "react-icons/bs";
 import { MdScience, MdHealthAndSafety } from "react-icons/md";
 
 import fakNews from "../assets/faknews-logo.svg";
-import { useCookies } from "react-cookie";
-import isAdmin from "../isAdmin";
-import isAuth from "../isAuth";
+import isAdmin from "../utils/isAdmin";
+import isAuth from "../utils/isAuth";
 
 const Sidebar = ({ handleSectionChange }) => {
   const [activeLink, setActiveLink] = useState("home");
   const navigate = useNavigate();
   const [user, setUser] = useState([]);
-  const [cookies, removeCookie] = useCookies(["Token"]);
+  const { token, loggedUser } = useContext(TokenContext);
 
   useEffect(() => {
     const path = location.pathname;
@@ -57,12 +56,12 @@ const Sidebar = ({ handleSectionChange }) => {
   }, [location.pathname]);
 
   useEffect(() => {
-    if (isAuth(cookies.Token)) {
+    if (isAuth(token)) {
       const fetchData = async () => {
         try {
           const response = await axios.get(
             `${import.meta.env.VITE_BACKEND_URL}/profile`,
-            { headers: { Authorization: `Bearer ${cookies.Token}` } }
+            { headers: { Authorization: `Bearer ${token}` } }
           );
           setUser(response.data);
         } catch (err) {
@@ -71,7 +70,7 @@ const Sidebar = ({ handleSectionChange }) => {
       };
       fetchData();
     }
-  }, [cookies.Token]);
+  }, [token]);
 
   const handleLinkClick = (link, url) => {
     setActiveLink(link);
@@ -100,7 +99,7 @@ const Sidebar = ({ handleSectionChange }) => {
                 onClick={() => handleLinkClick("home", "/")}
                 icon={<FaHome />}
               />
-              {isAuth(cookies.Token) && (
+              {isAuth(token) && (
                 <SidebarLink
                   name="Crear Post"
                   isActive={activeLink === "createpost"}
@@ -108,7 +107,7 @@ const Sidebar = ({ handleSectionChange }) => {
                   icon={<BsPencilSquare />}
                 />
               )}
-              {isAuth(cookies.Token) && (
+              {isAuth(token) && (
                 <SidebarLink
                   name="Favoritos"
                   isActive={activeLink === "favorites"}
@@ -130,7 +129,7 @@ const Sidebar = ({ handleSectionChange }) => {
               />
             </div>
 
-            {isAdmin(cookies.Token) && (
+            {isAdmin(token) && (
               <div>
                 <h3 className="sidebar__title">
                   <span>Admin</span>
@@ -216,7 +215,7 @@ const Sidebar = ({ handleSectionChange }) => {
             </h3>
 
             <div className="sidebar__list">
-              {isAuth(cookies.Token) && (
+              {isAuth(token) && (
                 <SidebarLink
                   name="Perfil"
                   isActive={activeLink === "profile"}
@@ -224,7 +223,7 @@ const Sidebar = ({ handleSectionChange }) => {
                   icon={<IoIosPerson />}
                 />
               )}
-              {!isAuth(cookies.Token) && (
+              {!isAuth(token) && (
                 <SidebarLink
                   name="Login"
                   isActive={activeLink === "login"}
@@ -232,7 +231,7 @@ const Sidebar = ({ handleSectionChange }) => {
                   icon={<IoMdLogOut />}
                 />
               )}
-              {!isAuth(cookies.Token) && (
+              {!isAuth(token) && (
                 <SidebarLink
                   name="Register"
                   isActive={activeLink === "register"}
@@ -240,7 +239,7 @@ const Sidebar = ({ handleSectionChange }) => {
                   icon={<TbWritingSign />}
                 />
               )}
-              {isAuth(cookies.Token) && (
+              {isAuth(token) && (
                 <SidebarLink
                   name="Logout"
                   isActive={activeLink === "logout"}
@@ -250,7 +249,7 @@ const Sidebar = ({ handleSectionChange }) => {
               )}
             </div>
           </div>
-          {isAuth(cookies.Token) ? (
+          {isAuth(token) ? (
             <div className="sidebar__account">
               {user.avatar && (
                 <img

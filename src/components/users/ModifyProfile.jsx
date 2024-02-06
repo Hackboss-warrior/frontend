@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import isAuth from "../../isAuth";
+import isAuth from "../../utils/isAuth";
 import PropTypes from "prop-types";
 import dateFormat from "../../utils/dateFormat";
 import { ToastContainer, toast } from "react-toastify";

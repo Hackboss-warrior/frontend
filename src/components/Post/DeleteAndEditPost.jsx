@@ -2,14 +2,15 @@ import axios from "axios";
 import { MdModeEditOutline } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import PropTypes from "prop-types";
-import { Cookies, useCookies } from "react-cookie";
+import { useContext } from "react";
+import { TokenContext } from "../../utils/TokenContext";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import isId from "../../isId";
+import isId from "../../utils/isId";
 
 const DeleteAndEditPost = ({ post, setPosts, posts }) => {
-  const [cookies] = useCookies(["Token"]);
+  const { token, loggedUser } = useContext(TokenContext);
   const navigate = useNavigate();
   const activeLink = localStorage.getItem("activeLink");
 
@@ -23,7 +24,7 @@ const DeleteAndEditPost = ({ post, setPosts, posts }) => {
           `${import.meta.env.VITE_BACKEND_URL}/post/${postId}`,
           {
             headers: {
-              Authorization: `Bearer ${cookies.Token}`,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -43,8 +44,8 @@ const DeleteAndEditPost = ({ post, setPosts, posts }) => {
     <>
       <ToastContainer />
 
-      {isId(cookies.Token) === post.userId ||
-      isId(cookies.Token) === post.idUserTable ? (
+      {isId(token) === post.userId ||
+      isId(token) === post.idUserTable ? (
         <div className="editDeltBtn">
           <button
             className="editListPostBtn"

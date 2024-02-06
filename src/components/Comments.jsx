@@ -1,15 +1,15 @@
 import axios from "axios";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { TokenContext } from "../utils/TokenContext";
 import dateFormat from "../utils/dateFormat";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import isAuth from "../isAuth";
+import isAuth from "../utils/isAuth";
 
 import DeleteComment from "./DeleteComment";
 
 const Comments = ({ comments, postId, setComments }) => {
-  const [cookies] = useCookies(["Token"]);
+  const { token, loggedUser } = useContext(TokenContext);
   const [commentValue, setCommentValue] = useState("");
   const [replyValues, setReplyValues] = useState({}); // Nuevo estado para respuestas
   const [errorMsg, setErrorMsg] = useState("");
@@ -32,7 +32,7 @@ const Comments = ({ comments, postId, setComments }) => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${cookies.Token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -48,7 +48,7 @@ const Comments = ({ comments, postId, setComments }) => {
   const insertComment = async (e) => {
     e.preventDefault();
 
-    if (!isAuth(cookies.Token)) {
+    if (!isAuth(token)) {
       navigate("/login");
       return;
     }
@@ -63,7 +63,7 @@ const Comments = ({ comments, postId, setComments }) => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${cookies.Token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );

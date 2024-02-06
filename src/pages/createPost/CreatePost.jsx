@@ -1,12 +1,12 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreatePost.css";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useCookies } from "react-cookie";
-import isAuth from "../../isAuth";
+import { TokenContext } from "../../utils/TokenContext";
+import isAuth from "../../utils/isAuth";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -16,15 +16,16 @@ const CreatePost = () => {
   const [image, setImage] = useState("");
 
   // --------- Manejadores de eventos. No se manda al backend ---------
+  const { token, loggedUser } = useContext(TokenContext);
   const [errorAlert, setErrorAlert] = useState("");
   const [cookies] = useCookies(["Token"]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuth(cookies.Token)) {
+    if (!isAuth(token)) {
       navigate("/login");
     }
-  }, [cookies.Token]);
+  }, [token]);
 
   const createNewPost = async (e) => {
     e.preventDefault();
@@ -38,7 +39,7 @@ const CreatePost = () => {
       await axios.post(`${import.meta.env.VITE_BACKEND_URL}/posts`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${cookies.Token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
 

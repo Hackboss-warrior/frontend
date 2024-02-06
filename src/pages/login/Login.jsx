@@ -8,15 +8,12 @@ import { ToastContainer, toast } from "react-toastify";
 import { TokenContext } from "../../utils/TokenContext";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const Login = () => {
   const [nickName, setnickName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { setToken } = useContext(TokenContext);
-  const [cookies, setCookie] = useCookies(["Token"]);
-
 
   const logUser = async (e) => {
     e.preventDefault();
@@ -64,7 +61,6 @@ const Login = () => {
               className="loginNickname"
               required
             />
-
             <div>
               <input
                 type="password"
@@ -76,7 +72,6 @@ const Login = () => {
                 required
               />
             </div>
-
             <button type="submit" className="login-button">
               Login
             </button>

@@ -8,17 +8,18 @@ import {
 import PropTypes from "prop-types";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import isAuth from "../isAuth";
-import isId from "../isId";
+import { useContext } from "react";
+import { TokenContext } from "../utils/TokenContext";
+import isAuth from "../utils/isAuth";
+import isId from "../utils/isId";
 
 const Interactions = ({ post, likes, setLikes }) => {
-  const [cookies] = useCookies(["Token"]);
+  const { token, loggedUser } = useContext(TokenContext);
   const navigate = useNavigate();
 
   const sendLike = async (postId) => {
     //Con esta línea de código nos aseguramos que si el usuario no esta logueado la página le rediriga a login
-    if (!isAuth(cookies.Token)) {
+    if (!isAuth(token)) {
       navigate("/login");
       return;
     }
@@ -33,7 +34,7 @@ const Interactions = ({ post, likes, setLikes }) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${cookies.Token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -46,7 +47,7 @@ const Interactions = ({ post, likes, setLikes }) => {
 
   const sendDisLike = async (postId) => {
     //Con esta línea de código nos aseguramos que si el usuario no esta logueado la página le rediriga a login
-    if (!isAuth(cookies.Token)) {
+    if (!isAuth(token)) {
       navigate("/login");
       return;
     }
@@ -61,7 +62,7 @@ const Interactions = ({ post, likes, setLikes }) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${cookies.Token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -78,7 +79,7 @@ const Interactions = ({ post, likes, setLikes }) => {
         <div className="sendLike">
           {likes.some(
             (like) =>
-              like.userId === isId(cookies.Token) &&
+              like.userId === isId(token) &&
               post.id === like.postId &&
               like.interaction === 1
           ) ? (
@@ -104,7 +105,7 @@ const Interactions = ({ post, likes, setLikes }) => {
         <div className="sendDisLike">
           {!likes.some(
             (like) =>
-              like.userId === isId(cookies.Token) &&
+              like.userId === isId(token) &&
               post.id === like.postId &&
               like.interaction === 0
           ) ? (

@@ -4,8 +4,7 @@ import "./Profile.css";
 import dateFormat from "../../utils/dateFormat";
 import ModifyProfile from "../../components/users/ModifyProfile";
 import { TokenContext } from "../../utils/TokenContext";
-import { useCookies } from "react-cookie";
-import isAuth from "../../isAuth";
+import isAuth from "../../utils/isAuth";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,22 +13,21 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Profile = () => {
   const [user, setUser] = useState({});
-  const [cookies] = useCookies(["Token"]);
   const { token, loggedUser } = useContext(TokenContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
-    if (!isAuth(cookies.Token)) {
+    if (!isAuth(token)) {
       navigate("/login");
     }
-  }, [cookies.Token]);
+  }, [token]);
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/profile`,
-        { headers: { Authorization: `Bearer ${cookies.Token}` } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       setUser(response.data);
