@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./About.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const About = () => {
   const [userCount, setUserCount] = useState("");
@@ -22,6 +25,7 @@ const About = () => {
         setCommentsCount(response.data.totalComments);
       } catch (error) {
         console.log("error del About");
+        toast.error("Estamos realizando mantenimento, disculpelas molestias");
       }
     };
 
@@ -30,6 +34,7 @@ const About = () => {
 
   return (
     <div className="mainAbout">
+      <ToastContainer />
       <h1 className="titlePageAbout"> Repartiendo desde 2023</h1>
 
       <section className="presentation">

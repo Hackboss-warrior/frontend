@@ -4,9 +4,10 @@ import Post from "../../components/Post/Post";
 import { v4 as uuidv4 } from "uuid";
 import Interactions from "../../components/Interactions";
 import DeleteAndEditPost from "../../components/Post/DeleteAndEditPost";
-
 import { useCookies } from "react-cookie";
 import AddFavoritePost from "../../components/AddFavoritePost";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Favorites = () => {
   const [posts, setPosts] = useState([]);
@@ -24,13 +25,14 @@ const Favorites = () => {
           { headers: { Authorization: `Bearer ${cookies.Token}` } }
         );
 
-        console.log(response);
         setPosts(response.data[0]);
+
         setComments(response.data[1]);
         setLikes(response.data[2]);
         setFavs(response.data[3]);
       } catch (error) {
         console.error(error);
+        toast.error("Ha sucedido un imprevisto con su lista de Favoritos");
       }
     };
 
@@ -39,8 +41,10 @@ const Favorites = () => {
 
   return (
     <>
+      <ToastContainer />
       <main className="posts">
         <h1>Mis Favoritos</h1>
+
         {posts
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .map((post) => (

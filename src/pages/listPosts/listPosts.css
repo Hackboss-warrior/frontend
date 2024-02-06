@@ -8,3 +8,30 @@
   width: 400px;
   margin: 0 auto;
 }
+
+/* RESPONSIVE */
+
+/*TABLET*/
+
+@media screen and (max-width: 768px) {
+  .posts {
+    margin: 20px 0;
+  }
+
+  .fakNewsLogo {
+    width: 300px;
+    margin: 0 auto;
+  }
+}
+
+/* MOBILE */
+@media screen and (max-width: 480px) {
+  .posts {
+    margin: 10px 0;
+  }
+
+  .fakNewsLogo {
+    width: 200px;
+    margin: 0 auto;
+  }
+}

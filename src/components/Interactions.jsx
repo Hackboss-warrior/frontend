@@ -74,42 +74,52 @@ const Interactions = ({ post, likes, setLikes }) => {
 
   return (
     <>
-      <button className="postLikes" onClick={() => sendLike(post.id)}>
-        {likes.some(
-          (like) =>
-            like.userId === isId(cookies.Token) &&
-            post.id === like.postId &&
-            like.interaction === 1
-        ) ? (
-          <BiSolidUpvote />
-        ) : (
-          <BiUpvote />
-        )}
-
-        {
-          likes.filter(
+      <div className="postLikes">
+        <div className="sendLike">
+          {likes.some(
+            (like) =>
+              like.userId === isId(cookies.Token) &&
+              post.id === like.postId &&
+              like.interaction === 1
+          ) ? (
+            <BiSolidUpvote
+              className="clickLikeArrow"
+              onClick={() => sendLike(post.id)}
+            />
+          ) : (
+            <BiUpvote
+              className="notClickLikeArrow"
+              onClick={() => sendLike(post.id)}
+            />
+          )}
+        </div>
+        <p className="likesNumber">
+          {likes.filter(
             (like) => like.postId === post.id && like.interaction === 1
-          ).length
-        }
-      </button>
-
-      <button className="postDisLikes" onClick={() => sendDisLike(post.id)}>
-        {!likes.some(
-          (like) =>
-            like.userId === isId(cookies.Token) &&
-            post.id === like.postId &&
-            like.interaction === 0
-        ) ? (
-          <BiDownvote />
-        ) : (
-          <BiSolidDownvote />
-        )}
-        {
-          likes.filter(
-            (like) => like.postId === post.id && like.interaction === 0
-          ).length
-        }
-      </button>
+          ).length -
+            likes.filter(
+              (like) => like.postId === post.id && like.interaction === 0
+            ).length}
+        </p>
+        <div className="sendDisLike">
+          {!likes.some(
+            (like) =>
+              like.userId === isId(cookies.Token) &&
+              post.id === like.postId &&
+              like.interaction === 0
+          ) ? (
+            <BiDownvote
+              className="notClickDislikeArrow"
+              onClick={() => sendDisLike(post.id)}
+            />
+          ) : (
+            <BiSolidDownvote
+              className="clickDisLikeArrow"
+              onClick={() => sendDisLike(post.id)}
+            />
+          )}
+        </div>
+      </div>
     </>
   );
 };

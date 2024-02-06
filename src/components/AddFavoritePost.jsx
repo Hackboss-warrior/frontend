@@ -35,7 +35,9 @@ const AddFavoritePost = ({ post, favs, setFavs }) => {
     }
   };
 
-  return (
+  return !isAuth(cookies.Token) ? (
+    <></>
+  ) : (
     <div className="favContainer">
       <button
         className="favoriteBtn"
