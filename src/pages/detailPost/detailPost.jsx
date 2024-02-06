@@ -40,7 +40,7 @@ const DetailPost = () => {
       <Post
         key={uuidv4()}
         post={post}
-        title={<h1 className="">{post.title}</h1>}
+        title={<h1 className="postTitle">{post.title}</h1>}
         postId={post.id}
         avatar={post.avatar}
         nickName={post.nickName}
