@@ -62,9 +62,33 @@
   width: 50%;
 }
 
+/* RESPONSIVE */
+@media screen and (max-width: 1024px) {
+  .input-container {
+    width: 70vw;
+  }
+
+  .loginForm input {
+    width: 55vw;
+  }
+  .login-button {
+    width: 55vw;
+  }
+}
+@media screen and (max-width: 820px) {
+  .input-container {
+    width: 80vw;
+  }
+
+  .loginForm input {
+    width: 60vw;
+  }
+  .login-button {
+    width: 60vw;
+  }
+}
 
 @media screen and (max-width: 500px) {
-  
   .input-container {
     width: 90vw;
     height: 300px;
