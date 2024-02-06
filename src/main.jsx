@@ -15,7 +15,6 @@ import Admin from "./pages/Admin/Admin";
 import User from "./pages/Admin/User";
 import Favorites from "./pages/favorites/Favorites"
 import CreatePost from "./pages/createPost/CreatePost";
-import { CookiesProvider } from "react-cookie";
 import { CustomTokenContextProvider } from "./utils/TokenContext";
 import isAdmin from "./utils/isAdmin";
 import EditPost from "./pages/editPost/editPost";
