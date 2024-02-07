@@ -13,7 +13,6 @@ const About = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("antes de axios");
         const response = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/about`
         );
@@ -24,8 +23,9 @@ const About = () => {
 
         setCommentsCount(response.data.totalComments);
       } catch (error) {
-        console.log("error del About");
+
         toast.error("Estamos realizando mantenimento, disculpelas molestias");
+        
       }
     };
 

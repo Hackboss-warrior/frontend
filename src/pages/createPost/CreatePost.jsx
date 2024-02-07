@@ -18,7 +18,6 @@ const CreatePost = () => {
   // --------- Manejadores de eventos. No se manda al backend ---------
   const { token, loggedUser } = useContext(TokenContext);
   const [errorAlert, setErrorAlert] = useState("");
-  const [cookies] = useCookies(["Token"]);
   const navigate = useNavigate();
 
   useEffect(() => {

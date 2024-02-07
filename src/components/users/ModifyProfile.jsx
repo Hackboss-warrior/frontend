@@ -66,8 +66,7 @@ const ModifyProfile = ({ user, setUser }) => {
       if (DOB) {
         formData.append("DOB", DOB);
       }
-      console.log({ formData });
-      // console.log(Object.fromEntries(formData));
+
       const response = await axios.patch(
         `${import.meta.env.VITE_BACKEND_URL}/user`,
         formData,
@@ -78,7 +77,7 @@ const ModifyProfile = ({ user, setUser }) => {
           },
         }
       );
-      console.log("respuesta de user", response.data[0]);
+
       setButton("form");
 
       setUser(response.data[0]);

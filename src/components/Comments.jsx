@@ -18,8 +18,6 @@ const Comments = ({ comments, postId, setComments }) => {
   const insertAnswers = async (e, commentId) => {
     e.preventDefault();
     const replyValue = replyValues[commentId] || "";
-    console.log(replyValue);
-    console.log(commentId);
 
     const formData = new FormData();
     formData.append("commentId", commentId);

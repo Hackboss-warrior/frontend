@@ -19,8 +19,6 @@ const Favorites = () => {
           `${import.meta.env.VITE_BACKEND_URL}/favorites`,
           { headers: { Authorization: `Bearer ${token}` } }
           );
-          console.log(response.data, "RESPONSE");
-      
 
         setPosts(response.data);
         setComments(response.data.comment);

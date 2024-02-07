@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import axios from "axios";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import Post from "../../components/Post/Post";
 import { v4 as uuidv4 } from "uuid";
 import Interactions from "../../components/Interactions";
@@ -13,9 +13,7 @@ const Search = ({ title, tag }) => {
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
   const [favs, setFavs] = useState([]);
-  
 
-  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,10 +43,6 @@ const Search = ({ title, tag }) => {
     <>
       <ToastContainer />
       <main className="posts">
-        <h3>
-          Resultados para {title} y tema:{tag}
-        </h3>
-
         {posts
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .map((post) => (

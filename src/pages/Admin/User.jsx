@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import './Admin.css';
-import { useCookies } from 'react-cookie';
+import { TokenContext } from "../../utils/TokenContext";
 import { useNavigate } from "react-router-dom";
 import isAuth from "../../utils/isAuth";
 
 const User = () => {
   const [userData, setUserData] = useState(null);
-  const [cookies] = useCookies(['Token']);
+  const { token } = useContext(TokenContext);
   const navigate = useNavigate();
 
   useEffect(()=>{
     fetchUserData();
-    if (!isAuth(cookies.Token)){
+    if (!isAuth(token)){
       navigate("/login")
     }
-  },[cookies.Token]) 
+  },[token]) 
 
   const fetchUserData = async () => {
     try {
@@ -23,7 +23,7 @@ const User = () => {
         `${import.meta.env.VITE_BACKEND_URL}/user`,
         {
           headers: {
-            Authorization: `Bearer ${cookies.Token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -41,7 +41,7 @@ const User = () => {
     if (shouldDelete) {
       await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/user/${userId}`, {
         headers: {
-          Authorization: `Bearer ${cookies.Token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
 

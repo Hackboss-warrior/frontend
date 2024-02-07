@@ -35,7 +35,6 @@ const Login = () => {
       );
       toast.success("¡Bienvenido/a!");
       setToken(res.data.token)
-      setCookie("Token", res.data.token);
       navigate("/");
     } catch (error) {
       toast.error("Revisa los datos introducidos");

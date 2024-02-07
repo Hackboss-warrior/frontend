@@ -32,7 +32,7 @@ const Sidebar = ({ handleSectionChange }) => {
   const [activeLink, setActiveLink] = useState("home");
   const navigate = useNavigate();
   const [user, setUser] = useState([]);
-  const { token, loggedUser } = useContext(TokenContext);
+  const { token, setToken } = useContext(TokenContext);
 
   useEffect(() => {
     const path = location.pathname;
@@ -77,7 +77,7 @@ const Sidebar = ({ handleSectionChange }) => {
   };
 
   const handleLogout = () => {
-    removeCookie("Token");
+    setToken("");
     navigate("/");
   };
 

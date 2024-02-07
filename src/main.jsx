@@ -20,15 +20,9 @@ import isAdmin from "./utils/isAdmin";
 import EditPost from "./pages/editPost/editPost";
 
 const PrivateRoute = () => {
-  const cookies = document.cookie;
+  const localStorageData = localStorage.getItem('token');
 
-  const tokenCookie = cookies
-    .split(";")
-    .find((cookie) => cookie.trim().startsWith("Token="));
-
-  const tokenValue = tokenCookie.split("=")[1];
-
-  return isAdmin(tokenValue);
+  return isAdmin(localStorageData);
 };
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -48,9 +42,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
-            <Route path="/users" element={<User />} />
-            <Route path="/admin" element={<Admin />} />
-            {/* {PrivateRoute() ? (<Route path="/users" element={<User />} />) : <Route path="/*" element={<Error />} />} */}
+            {PrivateRoute() ? (<Route path="/admin" element={<Admin />} />) : <Route path="/*" element={<Error />} />}
+            {PrivateRoute() ? (<Route path="/users" element={<User />} />) : <Route path="/*" element={<Error />} />}
             <Route path="/*" element={<Error />} />
           </Routes>
         </div>

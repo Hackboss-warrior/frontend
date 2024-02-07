@@ -78,13 +78,16 @@ img {
 /*=============== HEADER ===============*/
 .header {
   position: fixed;
-  top: 0;
+  top: 0px;
   left: 0;
   width: 100%;
   background-color: var(--dark-color-light);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   z-index: var(100);
+}
+.headerspace{
+  margin-top: 80px;
 }
 
 .header::after {

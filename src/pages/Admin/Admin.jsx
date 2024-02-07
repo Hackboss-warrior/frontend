@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { useCookies } from 'react-cookie';
+import { TokenContext } from "../../utils/TokenContext";
 import { useNavigate } from "react-router-dom";
 import './Admin.css';
 import isAuth from "../../utils/isAuth";
 
 function Admin() {
     const [userData, setUserData] = useState(null);
-    const [cookies] = useCookies(['Token']);
+    const { token } = useContext(TokenContext);
     const navigate = useNavigate();
 
 
     useEffect(()=>{
         fetchUserData();
-        if (!isAuth(cookies.Token)){
+        if (!isAuth(token)){
           navigate("/login")
         }
-      },[cookies.Token]) 
+      },[token]) 
 
     const fetchUserData = async () => {
         try {
@@ -24,7 +24,7 @@ function Admin() {
                 `${import.meta.env.VITE_BACKEND_URL}/user`,
                 {
                     headers: {
-                        Authorization: `Bearer ${cookies.Token}`,
+                        Authorization: `Bearer ${token}`,
                     },
                 }
             );
@@ -44,7 +44,7 @@ function Admin() {
                     { role: newRole },
                     {
                         headers: {
-                            Authorization: `Bearer ${cookies.Token}`,
+                            Authorization: `Bearer ${token}`,
                         },
                     }
                 );

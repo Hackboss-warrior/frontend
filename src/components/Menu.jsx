@@ -24,8 +24,6 @@ function Menu() {
   const handleSearch = async () => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/posts/${title}`);
-      console.log(response.data)
-
 
       setSearchResults(response.data);
 
@@ -50,20 +48,12 @@ function Menu() {
           <div className="header__toggle" id="header-toggle" onClick={handleToggleSidebar}>
             <AiOutlineMenu />
           </div>
-
-
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Buscar por título"
-          />
-
           <a href="#" className="header__logo">
             <img src={fakNews} alt="" />
           </a>
         </div>
       </header>
+      <div className='headerspace'></div>
     </>
   );
 }

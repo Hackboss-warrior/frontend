@@ -18,7 +18,6 @@ const Contact = () => {
 
 
   const handleForm = async (e) => {
-    console.log(e);
     e.preventDefault();
     try {
      

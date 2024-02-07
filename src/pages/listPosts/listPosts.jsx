@@ -6,18 +6,23 @@ import { v4 as uuidv4 } from "uuid";
 import Interactions from "../../components/Interactions";
 import AddFavoritePost from "../../components/AddFavoritePost";
 import DeleteAndEditPost from "../../components/Post/DeleteAndEditPost";
+import { useSearchParams } from "react-router-dom";
 
 const ListPosts = () => {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
   const [favs, setFavs] = useState([]);
+  const [tag, setTag] = useState("");
+  const [searchTitle, setSearchTitle] = useState("");
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+
         const res = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/posts`
+          `${import.meta.env.VITE_BACKEND_URL}/posts${searchTitle ? `?title=${searchTitle}&` : '?'}${tag ? `tag=${tag}` : ''}`
         );
 
         setPosts(res.data[0]);
@@ -30,10 +35,32 @@ const ListPosts = () => {
     };
 
     fetchData();
-  }, []);
+  }, [searchTitle, tag]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchTitle(e.target.elements.title.value);
+    setTag(e.target.elements.tag.value);
+  };
 
   return (
     <>
+      <form onSubmit={handleSearch}>
+        <input name="title" />
+        <select name="tag">
+          <option value="">Selecciona una opción</option>
+          <option value="Política">Política</option>
+          <option value="Economía">Economía</option>
+          <option value="Tecnología">Tecnología</option>
+          <option value="Ciencia">Ciencia</option>
+          <option value="Salud">Salud</option>
+          <option value="Cultura">Cultura</option>
+          <option value="Deportes">Deportes</option>
+          <option value="Entretenimiento">Entretenimiento</option>
+          <option value="NSFW">NSFW</option>
+        </select>
+        <button type="submit">Buscar</button>
+      </form>
       {posts
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .map((post) => (
