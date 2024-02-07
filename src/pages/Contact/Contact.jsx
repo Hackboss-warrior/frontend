@@ -76,7 +76,7 @@ const Contact = () => {
         <form className="contactMessage" onSubmit={handleForm}>
           <legend>Contacte con nosostros aquí</legend>
           <div className="labelImputConectForm">
-            <label htmlFor="subject">Asunto</label>
+            
             <input
               className="inputFormContac"
               type="text"
@@ -87,9 +87,8 @@ const Contact = () => {
               value={inputsubject}
               required
             />
-          </div>
-          <div className="labelImputConectForm">
-            <label htmlFor="email">Correo al que responder</label>
+        
+          
             <input
               className="inputFormContac"
               type="email"
@@ -100,9 +99,7 @@ const Contact = () => {
               value={inputemail}
               required
             />
-          </div>
-          <div className="labelImputConectForm">
-            <label htmlFor="expo">Exponga aqui su consulta</label>
+            
             <input
               className="inputFormContac gruesoConsulta"
               type="text"

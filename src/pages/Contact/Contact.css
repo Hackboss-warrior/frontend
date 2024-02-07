@@ -63,10 +63,10 @@ legend {
   flex-wrap: wrap;
   align-items: left;
   width: 100%;
-}
-.inputFormContac{
+  margin-top: 20px;
   
 }
+
 .inputFormContac::placeholder {
   color: white;
   font-size: 0.8rem;
