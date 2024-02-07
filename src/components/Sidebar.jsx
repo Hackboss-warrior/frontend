@@ -32,7 +32,7 @@ const Sidebar = ({ handleSectionChange }) => {
   const [activeLink, setActiveLink] = useState("home");
   const navigate = useNavigate();
   const [user, setUser] = useState([]);
-  const { token, setToken } = useContext(TokenContext);
+  const { token, setToken, loggedUser } = useContext(TokenContext);
 
   useEffect(() => {
     const path = location.pathname;
@@ -249,17 +249,17 @@ const Sidebar = ({ handleSectionChange }) => {
           </div>
           {isAuth(token) ? (
             <div className="sidebar__account">
-              {user.avatar && (
+              {loggedUser.avatar && (
                 <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
-                  alt={user.name}
+                  src={`${import.meta.env.VITE_BACKEND_URL}/${loggedUser.avatar}`}
+                  alt={loggedUser.name}
                   className="sidebar__perfil"
                 />
               )}
 
               <div className="sidebar__names">
-                <h3 className="sidebar__name">{user.nickName}</h3>
-                <span className="sidebar__email">{user.email}</span>
+                <h3 className="sidebar__name">{loggedUser.nickName}</h3>
+                <span className="sidebar__email">{loggedUser.email}</span>
               </div>
             </div>
           ) : (
