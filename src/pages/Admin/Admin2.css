@@ -44,10 +44,12 @@
   .adminTitle {
     font-size: 2.3rem;
   }
+
   .userTable td,
   .userTable th {
     font-size: 0.5rem;
   }
+
   .userTable {
     width: 300px;
     margin: 0 auto;
