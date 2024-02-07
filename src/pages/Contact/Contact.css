@@ -42,15 +42,16 @@ width: 75vw;
   padding: 1rem;
   width: 90%;
   box-shadow: var(--box-shadow);
-  border: 5px solid var(--main-red-color);
+  border: 2px solid var(--main-red-color);
   border-radius: 25px;
   background-color: #2d2d2d;
   color: white;
 }
 
 legend {
-  font-size: 2rem;
+  font-size: 1.5rem;
   border-bottom: 3px solid#a9191f;
+  
 }
 
 .labelImputConectForm {
@@ -61,6 +62,7 @@ legend {
   align-items: left;
   width: 100%;
   margin-top: 20px;
+  padding: 0px 20px;
   
 }
 
@@ -90,7 +92,7 @@ legend {
 .ButtonContact {
   background: var(--main-red-color);
   color: white;
-  margin: auto;
+  margin: 1rem auto;
   padding: 10px 40px;
   cursor: pointer;
   font-size: 20px;
@@ -113,30 +115,13 @@ legend {
     margin: 20px;
     padding: 0.5rem;
   }
-
+  legend {
+   margin: 0 1.5rem;
+   padding-bottom:0.5rem;
+  }
   .ButtonContact {
     padding: 10px 20px;
   }
 }
 
-@media only screen and (max-width: 600px) {
-  .mainContact {
-    padding: 20px;
-    margin: 30px 0px;
-  }
 
-  .titleContact {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .cabeceraContactos,
-  .FormContact {
-    margin: 20px;
-    padding: 0.5rem;
-  }
-
-  .ButtonContact {
-    padding: 10px 20px;
-  }
-}
