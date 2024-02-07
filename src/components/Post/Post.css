@@ -2,7 +2,7 @@
   border-radius: 25px;
   box-shadow: var(--box-shadow);
   padding: 50px;
-  margin: 50px 0px;
+  margin: 50px auto;
   text-align: center;
   background-color: var(--dark-grey-color);
   color: #fff;
@@ -329,13 +329,63 @@
   margin: 0 0 0 auto;
 }
 
+/* CSS SEARCHFORM */
+
+.searchFormDiv {
+  display: flex;
+  justify-content: flex-start;
+  margin: auto;
+}
+
+.searchForm {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 0 auto;
+  gap: 15px;
+  box-shadow: var(--box-shadow);
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.firstSearchBtn {
+  background-color: var(--main-red-color);
+  font-family: "Lato", sans-serif;
+  padding: 10px 60px;
+  font-size: 1.4rem;
+  border-radius: 15px;
+  margin-bottom: -25px;
+}
+
+.firstSearchBtn:hover {
+  border: 1px solid var(--light-grey-color);
+}
+.searchButton {
+  background-color: var(--main-red-color);
+  font-family: "Lato", sans-serif;
+}
+
+.cancelSearchButton {
+  background-color: var(--dark-grey-color);
+}
+
+.searchButton:hover,
+.cancelSearchButton:hover {
+  border: 1px solid var(--light-grey-color);
+}
+/* CSS SEARCHFORM */
+
 /* RESPONSIVE */
 
 /* TABLET */
 @media screen and (max-width: 1024px) {
   .post {
-    width: 90%;
+    width: 800px;
     margin: 60px auto;
+  }
+
+  .searchFormDiv {
+    width: 90%;
   }
 
   .comments {
@@ -346,8 +396,7 @@
 
 @media screen and (max-width: 820px) {
   .post {
-    width: 85%;
-    margin: 80px auto;
+    width: 700px;
     padding: 20px;
   }
 
@@ -355,6 +404,10 @@
     flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
+  }
+
+  .searchFormDiv {
+    width: 85%;
   }
 
   .postTitle {
@@ -420,11 +473,32 @@
     width: 85%;
     margin: 50px auto;
   }
+
+  .searchForm {
+    width: 70%;
+  }
 }
 
 @media screen and (max-width: 480px) {
-  .post {
+  .searchFormDiv {
     width: 90%;
+  }
+
+  .firstSearchBtn {
+    background-color: var(--main-red-color);
+    font-family: "Lato", sans-serif;
+    padding: 8px 40px;
+    font-size: 1.4rem;
+    border-radius: 15px;
+    margin-bottom: -25px;
+  }
+
+  .searchForm {
+    width: 90%;
+  }
+
+  .post {
+    width: 320px;
     padding: 15px;
     border-radius: 15px;
   }
@@ -451,9 +525,12 @@
     margin-bottom: 20px;
   }
   .commentsNumber {
-    height: 30px;
-    width: 65px;
-    font-size: 0.9rem;
+    height: 40px;
+    width: 80px;
+    font-size: 1.2rem;
+  }
+  .interactCommentsButtons {
+    gap: 5px;
   }
 
   .interactComments {
@@ -468,27 +545,17 @@
   .clickDisLikeArrow {
     font-size: 1.2rem;
   }
-  .editDeltBtn {
-    gap: 10px;
-  }
+
   .editListPostBtn,
   .delPostBtn {
     height: 40px;
-    width: 60px;
-    font-size: 0.8rem;
+    width: 55px;
+    font-size: 0.9rem;
   }
-  .editListPostBtn {
-    font-size: 1rem;
-  }
+
   .delPostBtn:hover,
   .editListPostBtn:hover {
     border: none;
-  }
-  .commentsNumber {
-    height: 40px;
-    width: 80px;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
   }
 
   .sendLike,

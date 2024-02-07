@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import Interactions from "../../components/Interactions";
 import AddFavoritePost from "../../components/AddFavoritePost";
 import DeleteAndEditPost from "../../components/Post/DeleteAndEditPost";
-import { useSearchParams } from "react-router-dom";
+import { MdOutlineSearch } from "react-icons/md";
 
 const ListPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -15,14 +15,15 @@ const ListPosts = () => {
   const [favs, setFavs] = useState([]);
   const [tag, setTag] = useState("");
   const [searchTitle, setSearchTitle] = useState("");
-
+  const [activeSearch, setActiveSearch] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-
         const res = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/posts${searchTitle ? `?title=${searchTitle}&` : '?'}${tag ? `tag=${tag}` : ''}`
+          `${import.meta.env.VITE_BACKEND_URL}/posts${
+            searchTitle ? `?title=${searchTitle}&` : "?"
+          }${tag ? `tag=${tag}` : ""}`
         );
 
         setPosts(res.data[0]);
@@ -43,24 +44,45 @@ const ListPosts = () => {
     setTag(e.target.elements.tag.value);
   };
 
+  const changeBtnForm = () => {
+    setActiveSearch(true);
+  };
+
   return (
     <>
-      <form onSubmit={handleSearch}>
-        <input name="title" />
-        <select name="tag">
-          <option value="">Selecciona una opción</option>
-          <option value="Política">Política</option>
-          <option value="Economía">Economía</option>
-          <option value="Tecnología">Tecnología</option>
-          <option value="Ciencia">Ciencia</option>
-          <option value="Salud">Salud</option>
-          <option value="Cultura">Cultura</option>
-          <option value="Deportes">Deportes</option>
-          <option value="Entretenimiento">Entretenimiento</option>
-          <option value="NSFW">NSFW</option>
-        </select>
-        <button type="submit">Buscar</button>
-      </form>
+      <div className="searchFormDiv">
+        {!activeSearch ? (
+          <button className="firstSearchBtn" onClick={() => changeBtnForm()}>
+            <MdOutlineSearch />
+          </button>
+        ) : (
+          <form onSubmit={handleSearch} className="searchForm">
+            <input name="title" placeholder="Introduce tu búsqueda..." />
+            <select name="tag">
+              <option value="">Selecciona una opción</option>
+              <option value="Política">Política</option>
+              <option value="Economía">Economía</option>
+              <option value="Tecnología">Tecnología</option>
+              <option value="Ciencia">Ciencia</option>
+              <option value="Salud">Salud</option>
+              <option value="Cultura">Cultura</option>
+              <option value="Deportes">Deportes</option>
+              <option value="Entretenimiento">Entretenimiento</option>
+              <option value="NSFW">NSFW</option>
+            </select>
+            <button type="submit" className="searchButton">
+              Buscar
+            </button>
+            <button
+              className="cancelSearchButton"
+              onClick={() => setActiveSearch(false)}
+            >
+              Cancelar
+            </button>
+          </form>
+        )}
+      </div>
+
       {posts
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .map((post) => (
