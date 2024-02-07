@@ -10,7 +10,7 @@
   text-align: center;
   background-color: var(--dark-grey-color);
   color: #fff;
-  max-width: 1000px;
+  width: 75vw;
 }
 .titlePageAbout {
   color: white;
@@ -76,6 +76,8 @@
 @media only screen and (max-width: 600px) {
   .mainAbout {
     padding: 40px;
+    width:85vw;
+    margin: 0 auto;
   }
 
   .titlePageAbout {
