@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
+import { useState, useEffect, useContext } from "react";
+import { TokenContext } from "../../utils/TokenContext";
 import { useNavigate } from "react-router-dom";
 import isAuth from "../../utils/isAuth";
 import PropTypes from "prop-types";
@@ -22,7 +22,7 @@ const ModifyProfile = ({ user, setUser }) => {
 
   /*manejador del botón editar formulario*/
   const [button, setButton] = useState("button");
-  const [cookies] = useCookies(["Token"]);
+  const { token, loggedUser } = useContext(TokenContext);
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   //control de edad
@@ -33,10 +33,10 @@ const ModifyProfile = ({ user, setUser }) => {
     .split("T")[0];
 
   useEffect(() => {
-    if (!isAuth(cookies.Token)) {
+    if (!isAuth(token)) {
       navigate("/login");
     }
-  }, [cookies.Token]);
+  }, [token]);
 
   const sendModifies = async (e) => {
     e.preventDefault();
@@ -73,7 +73,7 @@ const ModifyProfile = ({ user, setUser }) => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${cookies.Token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
