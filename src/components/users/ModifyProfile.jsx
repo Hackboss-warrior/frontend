@@ -28,6 +28,20 @@ const ModifyProfile = ({ user, setUser }) => {
   //control de edad
   const currentDate = new Date().toISOString().split("T")[0];
 
+  const [currentAvatar, setCurrentAvatar] = useState(null);
+  const [isEditingAvatar, setIsEditingAvatar] = useState(false);
+
+  const handleAvatarClick = () => {
+    if (!isEditingAvatar) {
+      document.getElementById("fileInput").click();
+    }
+  };
+
+  const handleFileChange = (e) => {
+    setAvatar(e.target.files.length > 0 ? e.target.files[0] : null);
+    setIsEditingAvatar(true);
+  };
+
   const oldDate = new Date(new Date().getFullYear() - 100, 0, 1)
     .toISOString()
     .split("T")[0];
@@ -82,12 +96,18 @@ const ModifyProfile = ({ user, setUser }) => {
 
       setUser(response.data[0]);
 
+
       toast.success("Se han realizado cambios en su perfil");
+      navigate("/")
     } catch (error) {
       console.error("Error al actualizar el perfil:", error);
       toast.error("Revisa los datos introducidos");
     }
   };
+
+  useEffect(() => {
+    setCurrentAvatar(`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`);
+  }, [user.avatar]);
 
   const changeBtnForm = () => {
     if (button === "button") {
@@ -175,54 +195,41 @@ const ModifyProfile = ({ user, setUser }) => {
               />
             </section>
 
-            <section
-              className="imagenContenedor"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              {isHovered ? (
-                <label htmlFor="avatar" className="AvatarHover">
-                  Cambiar foto
-                  <img
-                    src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
-                    alt={user.name}
-                  />
-                  <input
-                    type="file"
-                    onChange={(e) =>
-                      setAvatar(
-                        e.target.files.length > 0 ? e.target.files[0] : null
-                      )
-                    }
-                    id="avatar"
-                    name="avatar"
-                    accept="image/*"
-                    style={{ display: "none" }}
-                    className="AvatarHover"
-                  />
-                </label>
-              ) : (
+            <input
+              type="file"
+              onChange={handleFileChange}
+              id="fileInput"
+              name="image"
+              className="input-100"
+              style={{ display: "none" }}
+            />
+            {isEditingAvatar && (
+              <img
+                src={URL.createObjectURL(avatar)}
+                alt={user.name}
+                style={{ maxWidth: "25%", maxHeight: "25%" }}
+              />
+            )}
+            {!isEditingAvatar && (
+              <label onClick={handleAvatarClick}>
                 <img
                   className="avatarProfile"
-                  src={`${import.meta.env.VITE_BACKEND_URL}/${user.avatar}`}
+                  src={currentAvatar}
                   alt={user.name}
                 />
-              )}
-            </section>
+              </label>
+            )}
 
             <section className="buttonsFrom">
               <button className="ButtonForm sendButton" type="submit">
                 Enviar
               </button>
-              <button
-                className="ButtonForm"
-                type="submit"
-                onClick={changeBtnForm}
-              >
-                Cancelar
+              <button type="button" className="ButtonForm" onClick={changeBtnForm}>
+               Cancelar
               </button>
             </section>
           </form>
+          
         </div>
       )}
     </>
