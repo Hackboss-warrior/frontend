@@ -389,7 +389,7 @@
   }
 
   .comments {
-    width: 90%;
+    width: 800px;
     margin: 60px auto;
   }
 }
@@ -469,9 +469,10 @@
   }
   .comments {
     padding: 15px;
-    margin-bottom: 30px;
-    width: 85%;
-    margin: 50px auto;
+
+    width: 700px;
+    margin: 0 auto;
+    margin-bottom: 60px;
   }
 
   .searchForm {
@@ -527,7 +528,7 @@
   .commentsNumber {
     height: 40px;
     width: 80px;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .interactCommentsButtons {
     gap: 5px;
@@ -607,6 +608,7 @@
   .comments {
     padding: 10px;
     margin-bottom: 20px;
+    width: 320px;
   }
   .commentBox {
     margin: 20px 10px;
