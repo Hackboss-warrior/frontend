@@ -86,7 +86,8 @@
   }
 
   .presentation {
-    margin: 30px;
+    margin: 20px 40px 30px 10px;
+    width: none;
     font-size: 0.9rem;
   }
   .acounting {
