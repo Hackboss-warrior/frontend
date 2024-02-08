@@ -9,39 +9,10 @@ import isAuth from "../utils/isAuth";
 import DeleteComment from "./DeleteComment";
 
 const Comments = ({ comments, postId, setComments }) => {
-  const { token, loggedUser } = useContext(TokenContext);
+  const { token } = useContext(TokenContext);
   const [commentValue, setCommentValue] = useState("");
-  const [replyValues, setReplyValues] = useState({}); // Nuevo estado para respuestas
-  const [errorMsg, setErrorMsg] = useState("");
+ const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
-
-  const insertAnswers = async (e, commentId) => {
-    e.preventDefault();
-    const replyValue = replyValues[commentId] || "";
-
-    const formData = new FormData();
-    formData.append("commentId", commentId);
-    formData.append("answer", replyValue);
-
-    try {
-      const responsecomments = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/answers`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-    } catch (error) {
-      console.error(error);
-      setErrorMsg(error.response.data.error);
-      setTimeout(() => {
-        setErrorMsg(null);
-      }, 5000);
-    }
-  };
 
   const insertComment = async (e) => {
     e.preventDefault();
@@ -121,17 +92,6 @@ const Comments = ({ comments, postId, setComments }) => {
                 comments={comments}
               />
             </div>
-            {/* <form className="commentsForm" onSubmit={(e) => insertAnswers(e, cmt.id)}>
-              <input
-                type="text"
-                onChange={(e) => setReplyValues({ ...replyValues, [cmt.id]: e.target.value })}
-                value={replyValues[cmt.id] || ''}
-                placeholder="Introduce tu respuesta aquí ..."
-                className="input-comment"
-                required
-              />
-              <button type="submit">Responder</button>
-            </form> */}
           </div>
         ))}
     </div>
