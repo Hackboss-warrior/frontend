@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./Admin.css";
-import "./Admin2.css";
 import { TokenContext } from "../../utils/TokenContext";
 import { useNavigate } from "react-router-dom";
 import isAuth from "../../utils/isAuth";
