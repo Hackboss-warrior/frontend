@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import { TokenContext } from "../utils/TokenContext";
 import { useNavigate } from "react-router-dom";
-import "../pages/Admin/Admin.css";
+import "./Sidebar.css";
 import SidebarLink from "./SidebarLink";
 import { IoMdLogOut, IoMdInformationCircle, IoIosPerson } from "react-icons/io";
 import { FaHome, FaStar} from "react-icons/fa";
