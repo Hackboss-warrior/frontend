@@ -5,13 +5,14 @@ import { TokenContext } from "../utils/TokenContext";
 import dateFormat from "../utils/dateFormat";
 import { useNavigate } from "react-router-dom";
 import isAuth from "../utils/isAuth";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import DeleteComment from "./DeleteComment";
 
 const Comments = ({ comments, postId, setComments }) => {
   const { token } = useContext(TokenContext);
   const [commentValue, setCommentValue] = useState("");
- const [errorMsg, setErrorMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
 
   const insertComment = async (e) => {
@@ -42,19 +43,13 @@ const Comments = ({ comments, postId, setComments }) => {
       setComments(res.data);
     } catch (error) {
       console.error(error);
-      setErrorMsg(error.response.data.error);
-      setTimeout(() => {
-        setErrorMsg(null);
-      }, 5000);
     }
   };
 
   return (
     <div className="comments">
       <h3>Comentarios</h3>
-      {/* Cambiar por react toastify */}
-      {errorMsg}
-      {/* Cambiar por react toastify */}
+      
       <form className="commentsForm" onSubmit={insertComment}>
         <input
           type="tex"
