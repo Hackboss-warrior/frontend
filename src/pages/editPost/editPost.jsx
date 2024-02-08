@@ -62,11 +62,11 @@ const EditPost = () => {
   // Imagen
 
   const handleFieldClick = (field) => {
-    setEditableFields({ ...editableFields, [field]: true, });
+    setEditableFields({ ...editableFields, [field]: true });
   };
 
   const handleEditChange = (field, e) => {
-    setEditedValues({ ...editedValues, [field]: e.target.value, });
+    setEditedValues({ ...editedValues, [field]: e.target.value });
   };
 
   const handleSaveEdit = async () => {
@@ -77,22 +77,25 @@ const EditPost = () => {
       formData.append("body", editedValues.body);
       formData.append("tag", editedValues.tag);
       formData.append("file", file);
-      const res = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/post/${postId}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.patch(
+        `${import.meta.env.VITE_BACKEND_URL}/post/${postId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-      console.log(res.data)
-
+      setPost(res.data.updatedPost);
+      console.log(res.data);
       setEditableFields({
         title: false,
         topic: false,
         body: false,
         tag: false,
       });
-
     } catch (error) {
       console.error("Error al actualizar la publicación:", error);
     }
@@ -142,7 +145,7 @@ const EditPost = () => {
           />
         )}
         {!isEditingFile && (
-          <label onClick={handleFileClick} >
+          <label onClick={handleFileClick}>
             {post.files ? (
               <img
                 className="postImg"
@@ -154,8 +157,6 @@ const EditPost = () => {
             )}
           </label>
         )}
-
-
 
         <div className="postContent">
           {editableFields.topic ? (
@@ -175,11 +176,17 @@ const EditPost = () => {
               value={editedValues.body}
               onChange={(e) => handleEditChange("body", e)}
             />
-          ) : (<p className="postBody" onClick={() => handleFieldClick("body")}>{post.body}</p>)}
+          ) : (
+            <p className="postBody" onClick={() => handleFieldClick("body")}>
+              {post.body}
+            </p>
+          )}
         </div>
         {editableFields.tag ? (
           <select onChange={(e) => handleEditChange("tag", e)}>
-            <option value={post.tag} defaultChecked>Selecciona una opción</option>
+            <option value={post.tag} defaultChecked>
+              Selecciona una opción
+            </option>
             <option value="Política">Política</option>
             <option value="Economía">Economía</option>
             <option value="Tecnología">Tecnología</option>
@@ -191,7 +198,11 @@ const EditPost = () => {
             <option value="NSFW">NSFW</option>
             <option value="Otros">Otros</option>
           </select>
-        ) : (<p className="postTag" onClick={() => handleFieldClick("tag")}>{post.tag}</p>)}
+        ) : (
+          <p className="postTag" onClick={() => handleFieldClick("tag")}>
+            {post.tag}
+          </p>
+        )}
         <div className="saveEditBtnSection">
           <button className="saveEditBtn" onClick={handleSaveEdit}>
             <FaSave />
