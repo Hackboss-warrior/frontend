@@ -11,16 +11,9 @@ const Contact = () => {
   const [inputemail, setInputEmail] = useState("");
   const [inputbody, setInputBody] = useState("");
 
-
-
-
-
-
-
   const handleForm = async (e) => {
     e.preventDefault();
     try {
-     
 
       const formData = new FormData();
       formData.append("subject", e.target.subject.value);
@@ -119,4 +112,5 @@ const Contact = () => {
     </div>
   );
 };
+
 export default Contact;
