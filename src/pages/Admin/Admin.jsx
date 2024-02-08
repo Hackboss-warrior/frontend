@@ -3,7 +3,6 @@ import axios from "axios";
 import { TokenContext } from "../../utils/TokenContext";
 import { useNavigate } from "react-router-dom";
 import "./Admin.css";
-import "./Admin2.css";
 import isAuth from "../../utils/isAuth";
 
 function Admin() {
