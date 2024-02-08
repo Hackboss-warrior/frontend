@@ -89,7 +89,6 @@ const EditPost = () => {
       );
 
       setPost(res.data.updatedPost);
-      console.log(res.data);
       setEditableFields({
         title: false,
         topic: false,
@@ -117,16 +116,7 @@ const EditPost = () => {
         )}
 
         <div className="postUserAndDate">
-          <div className="postUserInfo">
-            {post.avatar && (
-              <img
-                className="userAvatar"
-                src={`${import.meta.env.VITE_BACKEND_URL}/${post.avatar}`}
-                alt={`Avatar del usuario: ${post.nickName}`}
-              />
-            )}
-            <p className="nickName">{post.nickName}</p>
-          </div>
+          
         </div>
 
         <input
