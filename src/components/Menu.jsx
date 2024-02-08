@@ -1,11 +1,10 @@
 // En el componente Admin
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import '../pages/Admin/Admin.css';
+import './Sidebar.css';
 import Sidebar from './Sidebar.jsx';
 import { AiOutlineMenu } from "react-icons/ai";
 import fakNews from '../assets/faknews-logo.svg';
-import '../pages/Admin/Admin.css'
 
 function Menu() {
   const [title, setTitle] = useState('');
