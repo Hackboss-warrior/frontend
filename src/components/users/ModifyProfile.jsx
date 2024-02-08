@@ -22,7 +22,7 @@ const ModifyProfile = ({ user, setUser }) => {
 
   /*manejador del botón editar formulario*/
   const [button, setButton] = useState("button");
-  const { token, loggedUser } = useContext(TokenContext);
+  const { token } = useContext(TokenContext);
   const navigate = useNavigate();
   //control de edad
   const currentDate = new Date().toISOString().split("T")[0];

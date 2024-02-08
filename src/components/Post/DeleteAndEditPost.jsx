@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import isId from "../../utils/isId";
 
 const DeleteAndEditPost = ({ post, setPosts, posts }) => {
-  const { token, loggedUser } = useContext(TokenContext);
+  const { token } = useContext(TokenContext);
   const navigate = useNavigate();
   const activeLink = localStorage.getItem("activeLink");
 

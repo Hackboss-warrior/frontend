@@ -14,7 +14,7 @@ import isAuth from "../utils/isAuth";
 import isId from "../utils/isId";
 
 const Interactions = ({ post, likes, setLikes }) => {
-  const { token, loggedUser } = useContext(TokenContext);
+  const { token } = useContext(TokenContext);
   const navigate = useNavigate();
 
   const sendLike = async (postId) => {

@@ -6,7 +6,7 @@ import isId from "../utils/isId";
 import axios from "axios";
 
 const DeleteComment = ({ cmt, setComments, comments }) => {
-  const { token, loggedUser } = useContext(TokenContext);
+  const { token } = useContext(TokenContext);
   const deleteComment = async (cmtId) => {
     const shouldDelete = window.confirm(
       "¿Estás seguro de que quieres eliminar este comentario?"

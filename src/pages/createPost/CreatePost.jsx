@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "./CreatePost.css";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,7 +15,7 @@ const CreatePost = () => {
   const [image, setImage] = useState("");
 
   // --------- Manejadores de eventos. No se manda al backend ---------
-  const { token, loggedUser } = useContext(TokenContext);
+  const { token } = useContext(TokenContext);
   const [errorAlert, setErrorAlert] = useState("");
   const navigate = useNavigate();
 

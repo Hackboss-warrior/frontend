@@ -14,7 +14,7 @@ const Favorites = () => {
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
   const [favs, setFavs] = useState([]);
-  const {token, loggedUser } = useContext(TokenContext);
+  const {token } = useContext(TokenContext);
 
   useEffect(() => {
     const fetchData = async () => {

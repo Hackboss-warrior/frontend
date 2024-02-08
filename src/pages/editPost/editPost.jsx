@@ -8,7 +8,7 @@ import { FaSave } from "react-icons/fa";
 
 const EditPost = () => {
   const [post, setPost] = useState({});
-  const { token, loggedUser } = useContext(TokenContext);
+  const { token } = useContext(TokenContext);
   const [isEditingFile, setIsEditingFile] = useState(false);
   const [file, setFile] = useState("");
   const [editableFields, setEditableFields] = useState({

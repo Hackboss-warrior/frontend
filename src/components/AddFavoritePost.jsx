@@ -8,7 +8,7 @@ import axios from "axios";
 import isId from "../utils/isId";
 
 const AddFavoritePost = ({ post, favs, setFavs }) => {
-  const { token, loggedUser } = useContext(TokenContext);
+  const { token } = useContext(TokenContext);
   const navigate = useNavigate();
 
   const addFavoriteHandler = async (postId) => {

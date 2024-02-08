@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Profile = () => {
   const [user, setUser] = useState({});
-  const { token, loggedUser } = useContext(TokenContext);
+  const { token } = useContext(TokenContext);
   const navigate = useNavigate();
 
   useEffect(() => {
