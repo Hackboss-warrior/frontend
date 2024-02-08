@@ -103,12 +103,6 @@ const Sidebar = ({ handleSectionChange }) => {
 
                 <div className="sidebar__list">
                   <SidebarLink
-                    name="Publicaciones"
-                    isActive={activeLink === "post"}
-                    onClick={() => handleLinkClick("users", "/post")}
-                    icon={<BsFileEarmarkPost />}
-                  />
-                  <SidebarLink
                     name="Usuarios"
                     isActive={activeLink === "users"}
                     onClick={() => handleLinkClick("users", "/users")}
