@@ -115,9 +115,7 @@ const EditPost = () => {
           </h1>
         )}
 
-        <div className="postUserAndDate">
-          
-        </div>
+        <div className="postUserAndDate"></div>
 
         <input
           type="file"
