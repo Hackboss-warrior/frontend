@@ -24,7 +24,6 @@ const ModifyProfile = ({ user, setUser }) => {
   const [button, setButton] = useState("button");
   const { token, loggedUser } = useContext(TokenContext);
   const navigate = useNavigate();
-  const [isHovered, setIsHovered] = useState(false);
   //control de edad
   const currentDate = new Date().toISOString().split("T")[0];
 
@@ -95,7 +94,6 @@ const ModifyProfile = ({ user, setUser }) => {
       setButton("form");
 
       setUser(response.data[0]);
-
 
       toast.success("Se han realizado cambios en su perfil");
       navigate("/")
