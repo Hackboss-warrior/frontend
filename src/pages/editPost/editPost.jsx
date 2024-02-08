@@ -1,20 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { TokenContext } from "../../utils/TokenContext";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./editPost.css";
-import { v4 as uuidv4 } from "uuid";
-
-import Post from "../../components/Post/Post";
-import SaveEditPostButton from "../../components/SaveEditPostButton";
-
-/*
-import dateFormat from "../../utils/dateFormat";
 import logo from "../../assets/faknews-logo.svg";
 import { FaSave } from "react-icons/fa";
-*/
 
 const EditPost = () => {
   const [post, setPost] = useState({});
+  const { token, loggedUser } = useContext(TokenContext);
+  const [isEditingFile, setIsEditingFile] = useState(false);
+  const [file, setFile] = useState("");
+  const [editableFields, setEditableFields] = useState({
+    title: false,
+    topic: false,
+    body: false,
+    tag: false,
+  });
+  const [editedValues, setEditedValues] = useState({
+    title: "",
+    topic: "",
+    body: "",
+    tag: "",
+  });
 
   const { postId } = useParams();
 
@@ -25,7 +33,14 @@ const EditPost = () => {
           `${import.meta.env.VITE_BACKEND_URL}/post/${postId}`
         );
 
-        setPost(res.data[0]);
+        const postData = res.data[0];
+        setPost(postData);
+        setEditedValues({
+          title: postData.title,
+          topic: postData.topic,
+          body: postData.body,
+          tag: postData.tag,
+        });
       } catch (error) {
         console.error(error);
       }
@@ -33,68 +48,158 @@ const EditPost = () => {
 
     fetchData();
   }, [postId]);
+  // Imagen
+  const handleFileClick = () => {
+    if (!isEditingFile) {
+      document.getElementById("fileInput").click();
+    }
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files.length > 0 ? e.target.files[0] : null);
+    setIsEditingFile(true);
+  };
+  // Imagen
+
+  const handleFieldClick = (field) => {
+    setEditableFields({ ...editableFields, [field]: true, });
+  };
+
+  const handleEditChange = (field, e) => {
+    setEditedValues({ ...editedValues, [field]: e.target.value, });
+  };
+
+  const handleSaveEdit = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("title", editedValues.title);
+      formData.append("topic", editedValues.topic);
+      formData.append("body", editedValues.body);
+      formData.append("tag", editedValues.tag);
+      formData.append("file", file);
+      const res = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/post/${postId}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log(res.data)
+
+      setEditableFields({
+        title: false,
+        topic: false,
+        body: false,
+        tag: false,
+      });
+
+    } catch (error) {
+      console.error("Error al actualizar la publicación:", error);
+    }
+  };
 
   return (
     <>
-      <Post
-        key={uuidv4()}
-        post={post}
-        title={<h1 className="">{post.title}</h1>}
-        postId={post.id}
-        avatar={post.avatar}
-        nickName={post.nickName}
-        createdAt={post.createdAt}
-        files={post.files}
-        topic={<h2 className="postTopic">{post.topic}</h2>}
-        body={post.body}
-        tag={post.tag}
-        savePostEdit={<SaveEditPostButton />}
-      />
-    </>
-  );
-
-  /* <main className="posts">
       <article className="post">
-        <div className="postMainContent">
-          <h1 className="postTitle">{post.title}</h1>
+        {editableFields.title ? (
+          <input
+            type="text"
+            value={editedValues.title}
+            onChange={(e) => handleEditChange("title", e)}
+          />
+        ) : (
+          <h1 className="" onClick={() => handleFieldClick("title")}>
+            {post.title}
+          </h1>
+        )}
 
-          <div className="postUserAndDate">
-            <div className="postUserInfo">
-              {post.avatar && (
-                <img
-                  className="userAvatar"
-                  src={`${import.meta.env.VITE_BACKEND_URL}/${post.avatar}`}
-                  alt={`Avatar del usuario: ${post.nickName}`}
-                />
-              )}
-              <p className="nickName"> {post.nickName}</p>
-            </div>
-            <p className="postCreatedAt">{dateFormat(post.createdAt)}</p>
+        <div className="postUserAndDate">
+          <div className="postUserInfo">
+            {post.avatar && (
+              <img
+                className="userAvatar"
+                src={`${import.meta.env.VITE_BACKEND_URL}/${post.avatar}`}
+                alt={`Avatar del usuario: ${post.nickName}`}
+              />
+            )}
+            <p className="nickName">{post.nickName}</p>
           </div>
-
-          {post.files ? (
-            <img
-              className="postImg"
-              src={`${import.meta.env.VITE_BACKEND_URL}/${post.files}`}
-              alt={post.topic}
-            />
-          ) : (
-            <img src={logo} className="defaultPostImg" alt="fakNews logo" />
-          )}
         </div>
+
+        <input
+          type="file"
+          onChange={handleFileChange}
+          id="fileInput"
+          name="image"
+          className="input-100"
+          style={{ display: "none" }}
+        />
+        {isEditingFile && (
+          <img
+            src={URL.createObjectURL(file)}
+            alt="Imagen de la publicación"
+            className="postImg"
+          />
+        )}
+        {!isEditingFile && (
+          <label onClick={handleFileClick} >
+            {post.files ? (
+              <img
+                className="postImg"
+                src={`${import.meta.env.VITE_BACKEND_URL}/${post.files}`}
+                alt="Imagen de la publicación"
+              />
+            ) : (
+              <img src={logo} className="defaultPostImg" alt="fakNews logo" />
+            )}
+          </label>
+        )}
+
+
 
         <div className="postContent">
-          <h2 className="postTopic"> {post.topic}</h2>
-          <p className="postBody">{post.body}</p>
+          {editableFields.topic ? (
+            <input
+              type="text"
+              value={editedValues.topic}
+              onChange={(e) => handleEditChange("topic", e)}
+            />
+          ) : (
+            <h2 className="postTopic" onClick={() => handleFieldClick("topic")}>
+              {post.topic}
+            </h2>
+          )}
+          {editableFields.body ? (
+            <input
+              type="text"
+              value={editedValues.body}
+              onChange={(e) => handleEditChange("body", e)}
+            />
+          ) : (<p className="postBody" onClick={() => handleFieldClick("body")}>{post.body}</p>)}
         </div>
-        <p className="postTag">{post.tag}</p>
+        {editableFields.tag ? (
+          <select onChange={(e) => handleEditChange("tag", e)}>
+            <option value={post.tag} defaultChecked>Selecciona una opción</option>
+            <option value="Política">Política</option>
+            <option value="Economía">Economía</option>
+            <option value="Tecnología">Tecnología</option>
+            <option value="Ciencia">Ciencia</option>
+            <option value="Salud">Salud</option>
+            <option value="Cultura">Cultura</option>
+            <option value="Deportes">Deportes</option>
+            <option value="Entretenimiento">Entretenimiento</option>
+            <option value="NSFW">NSFW</option>
+            <option value="Otros">Otros</option>
+          </select>
+        ) : (<p className="postTag" onClick={() => handleFieldClick("tag")}>{post.tag}</p>)}
         <div className="saveEditBtnSection">
-          <button className="saveEditBtn" onClick={() => editPost}>
+          <button className="saveEditBtn" onClick={handleSaveEdit}>
             <FaSave />
           </button>
         </div>
       </article>
-    </main> */
+    </>
+  );
 };
 
 export default EditPost;
