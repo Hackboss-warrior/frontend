@@ -9,8 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// import Favorites from "../../components/Favorites";
-
 const Profile = () => {
   const [user, setUser] = useState({});
   const { token, loggedUser } = useContext(TokenContext);
