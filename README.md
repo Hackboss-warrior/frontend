@@ -5,8 +5,12 @@
 [![ReactDom](https://img.shields.io/badge/reactdom-V18.2.0-purple)](https://es.legacy.reactjs.org/docs/react-dom.html)
 [![ReactIcons](https://img.shields.io/badge/reacticons-V5.0.1-orange)](https://www.npmjs.com/package/react-icons)
 [![ReactRouterDom](https://img.shields.io/badge/reactrouterdom-V6.21.2-white)](https://reactrouter.com/en/main/start/tutorial)
-[![Toastify](https://img.shields.io/badge/reacttoastify-V10.0.4-aquamarine)](https://reactrouter.com/en/main/start/tutorial)
-[![UUID](https://img.shields.io/badge/uuid-V9.0.1-brown)](https://reactrouter.com/en/main/start/tutorial)
+[![Toastify](https://img.shields.io/badge/reacttoastify-V10.0.4-aquamarine)](https://www.npmjs.com/package/react-toastify)
+[![UUID](https://img.shields.io/badge/uuid-V9.0.1-brown)](https://www.npmjs.com/package/uuid)
+[![typesreact](https://img.shields.io/badge/typesreact-V18.2.43-pink)](https://www.npmjs.com/package/@types/react)
+[![typesreactdom](https://img.shields.io/badge/typesreactdom-V18.2.17-pink)](https://www.npmjs.com/package/@types/react-dom)
+[![VITE](https://img.shields.io/badge/vite-V5.0.8-purple)](https://vitejs.dev/)
+[![esLint](https://img.shields.io/badge/eslint-V8.55.0-red)](https://eslint.org/)
 
 # fakNews Front-end
 
