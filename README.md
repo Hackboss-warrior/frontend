@@ -9,7 +9,7 @@
 [![UUID](https://img.shields.io/badge/uuid-V9.0.1-brown)](https://www.npmjs.com/package/uuid)
 [![typesreact](https://img.shields.io/badge/typesreact-V18.2.43-pink)](https://www.npmjs.com/package/@types/react)
 [![typesreactdom](https://img.shields.io/badge/typesreactdom-V18.2.17-pink)](https://www.npmjs.com/package/@types/react-dom)
-[![VITE](https://img.shields.io/badge/vite-V5.0.8-purple)](https://vitejs.dev/)
+[![VITE](https://img.shields.io/badge/vite-V5.0.8-yellow)](https://vitejs.dev/)
 [![esLint](https://img.shields.io/badge/eslint-V8.55.0-red)](https://eslint.org/)
 
 # fakNews Front-end
