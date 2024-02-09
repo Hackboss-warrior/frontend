@@ -1,11 +1,11 @@
 [![React](https://img.shields.io/badge/react-V18.2.0-blue)](https://es.react.dev/)
 [![TsParticles](https://img.shields.io/badge/tsParticles-V3.1.0-green)](https://particles.js.org/)
 [![Axios](https://img.shields.io/badge/axios-V1.6.5-red)](https://axios-http.com/es/docs/intro)
-[![JwtDecode](https://img.shields.io/badge/jwt-decode-V4.0.0-yellow)](https://www.npmjs.com/package/jwt-decode)
-[![ReactDom](https://img.shields.io/badge/react-dom-V18.2.0-purple)](https://es.legacy.reactjs.org/docs/react-dom.html)
-[![ReactIcons](https://img.shields.io/badge/react-icons-V5.0.1-orange)](https://www.npmjs.com/package/react-icons)
-[![ReactRouterDom](https://img.shields.io/badge/react-router-dom-V6.21.2-white)](https://reactrouter.com/en/main/start/tutorial)
-[![Toastify](https://img.shields.io/badge/react-toastify-V10.0.4-aquamarine)](https://reactrouter.com/en/main/start/tutorial)
+[![JwtDecode](https://img.shields.io/badge/jwtdecode-V4.0.0-yellow)](https://www.npmjs.com/package/jwt-decode)
+[![ReactDom](https://img.shields.io/badge/reactdom-V18.2.0-purple)](https://es.legacy.reactjs.org/docs/react-dom.html)
+[![ReactIcons](https://img.shields.io/badge/reacticons-V5.0.1-orange)](https://www.npmjs.com/package/react-icons)
+[![ReactRouterDom](https://img.shields.io/badge/reactrouterdom-V6.21.2-white)](https://reactrouter.com/en/main/start/tutorial)
+[![Toastify](https://img.shields.io/badge/reacttoastify-V10.0.4-aquamarine)](https://reactrouter.com/en/main/start/tutorial)
 [![UUID](https://img.shields.io/badge/uuid-V9.0.1-brown)](https://reactrouter.com/en/main/start/tutorial)
 
 # fakNews Front-end
