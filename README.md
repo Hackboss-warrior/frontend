@@ -1,4 +1,7 @@
 [![React](https://img.shields.io/badge/React-V18.2.0-blue)](https://es.react.dev/)
+[![tsParticles](https://img.shields.io/badge/tsParticles-3.1.0-green)](https://particles.js.org/)
+[![Axios](https://img.shields.io/badge/axios-1.6.5-red)](https://axios-http.com/es/docs/intro)
+[![jwt-decode](https://img.shields.io/badge/jwt-decode-4.0.0-yellow)](https://www.npmjs.com/package/jwt-decode)
 
 # fakNews Front-end
 
