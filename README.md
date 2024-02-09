@@ -1,4 +1,4 @@
-[![React](https://img.shields.io/badge/React-V20.10.0-green)](https://es.react.dev/)
+[![React](https://img.shields.io/badge/React-V18.2.0-blue)](https://es.react.dev/)
 
 # fakNews Front-end
 
