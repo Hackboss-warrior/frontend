@@ -532,6 +532,7 @@
   }
   .interactCommentsButtons {
     gap: 5px;
+    justify-content: center;
   }
 
   .interactComments {
@@ -541,6 +542,7 @@
     height: 40px;
     width: 80px;
     font-size: 1rem;
+    gap: 10px;
   }
   .clickLikeArrow,
   .clickDisLikeArrow {
