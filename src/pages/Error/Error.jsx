@@ -35,7 +35,7 @@ const Error = () => {
           value: "#2d2d2d",
         },
         image:
-          "url('https://cdn.discordapp.com/attachments/1161702199794090014/1204732598707027978/Recurso_4fakNews-white-logo-no-bg.png?ex=65d5cdaa&is=65c358aa&hm=aa896277ec1b9319bf7ec74fc462feb272abc1e05d0aae10334cf8a23fd85ba5&')",
+          "url('https://cdn.discordapp.com/attachments/1161702199794090014/1204732598707027978/Recurso_4fakNews-white-logo-no-bg.png?ex=65e842aa&is=65d5cdaa&hm=ca093eb100496a0d75e2b2c99e34f39557c7ae92da21dfadc261591d391bbef3&')",
         position: "50% 50%",
         repeat: "no-repeat",
         size: "20%",
