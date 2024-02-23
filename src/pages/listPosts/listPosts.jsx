@@ -42,6 +42,7 @@ const ListPosts = () => {
     e.preventDefault();
     setSearchTitle(e.target.elements.title.value);
     setTag(e.target.elements.tag.value);
+    setActiveSearch(false);
   };
 
   const changeBtnForm = () => {
@@ -72,12 +73,6 @@ const ListPosts = () => {
             </select>
             <button type="submit" className="searchButton">
               Buscar
-            </button>
-            <button
-              className="cancelSearchButton"
-              onClick={() => setActiveSearch(false)}
-            >
-              Cancelar
             </button>
           </form>
         )}
