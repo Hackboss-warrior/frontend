@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import whiteLogo from "../../assets/fakNews-white-logo-no-bg.svg";
-import { useCookies } from "react-cookie";
+
 import { ToastContainer, toast } from "react-toastify";
 import { TokenContext } from "../../utils/TokenContext";
 import "react-toastify/dist/ReactToastify.css";
